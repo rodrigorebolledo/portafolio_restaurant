@@ -1,12 +1,13 @@
 import React from 'react'
-import { Container, Row } from 'react-bootstrap';
-import MenuAdmin from './MenuAdmin';
+import { Container } from 'react-bootstrap';
 import Header from '../../Comunes/Header/Header';
-import Footer from '../../Comunes/Footer'
+import Footer from '../../Comunes/Footer';
+import MenuCliente from './MenuCliente';
 import './Layout.scss';
+
+
 const statusObject = {
-    isLogin: true,
-    isAdmin: true,
+    isLogin: false,
     itemCount: 1
 }
 
@@ -17,7 +18,7 @@ const Layout = (props) => {
     return (
         <>
             <Header statusObject={statusObject} />
-            <MenuAdmin />
+            <MenuCliente />
             <Container className="container-client">
                 {children}
             </Container>
@@ -27,14 +28,3 @@ const Layout = (props) => {
 }
 
 export default Layout;
-
-
-export const LayoutCrud = (props) => {
-    const { children } = props;
-    return (
-        <Row className="mt-5">
-            {children}
-        </Row>
-    )
-
-};

@@ -1,2 +1,1 @@
-import Usuarios from './Usuarios';
-export default Usuarios;
+export { default } from './Usuarios';

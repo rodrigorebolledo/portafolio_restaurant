@@ -5,36 +5,20 @@ import {
     Route,
 } from "react-router-dom";
 
-import Inicio from './Inicio';
-import Mesas from './Mesas';
-import Usuarios from './Usuarios';
-import Productos from './Productos';
-import GeneradorReportes from './GeneradorReportes';
-import ReportesHistoricos from './ReportesHistoricos';
 import NotFound from '../Comunes/NotFound';
-
+import routes from './Config/routes';
 const AdministradorRouter = () => {
     return (
         <Router>
             <Switch>
-                <Route exact path="/admin/reportes_historicos">
-                    <ReportesHistoricos />
-                </Route>
-                <Route exact path="/admin/generar_reportes">
-                    <GeneradorReportes />
-                </Route>
-                <Route exact path="/admin/productos">
-                    <Productos />
-                </Route>
-                <Route exact path="/admin/usuarios">
-                    <Usuarios />
-                </Route>
-                <Route exact path="/admin/mesas">
-                    <Mesas />
-                </Route>
-                <Route  exact path="/admin">
-                    <Inicio />
-                </Route>
+                {routes.map((route) => (
+                    <Route
+                        key={route.path}
+                        path={route.path}
+                        component={route.component}
+                        exact={route.exact}
+                    />
+                ))}
                 <Route>
                     <NotFound />
                 </Route>

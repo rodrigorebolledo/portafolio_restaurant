@@ -1,0 +1,22 @@
+.container-form {
+    .form {
+        background: rgb(29,7,50);
+        background: -moz-linear-gradient(180deg, rgba(29,7,50,1) 0%, rgba(0,10,50,1) 51%, rgba(0,49,112,1) 100%);
+        background: -webkit-linear-gradient(180deg, rgba(29,7,50,1) 0%, rgba(0,10,50,1) 51%, rgba(0,49,112,1) 100%);
+        background: linear-gradient(180deg, rgba(29,7,50,1) 0%, rgba(0,10,50,1) 51%, rgba(0,49,112,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1d0732",endColorstr="#003170",GradientType=1);
+
+
+        color: white;
+        
+        border-radius: 10px 10px 10px 10px;
+        -moz-border-radius: 10px 10px 10px 10px;
+        -webkit-border-radius: 10px 10px 10px 10px;
+        border: 0px solid #000000;
+        padding: 50px;
+    }
+
+    .button {
+        width: 100%;
+    }
+}

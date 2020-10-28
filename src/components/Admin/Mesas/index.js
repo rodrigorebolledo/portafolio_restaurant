@@ -1,2 +1,1 @@
-import Mesas from './Mesas';
-export default Mesas;
+export { default } from './Mesas';

@@ -1,2 +1,1 @@
-import GeneradorReportes from './GeneradorReportes';
-export default GeneradorReportes;
+export { default } from './GeneradorReportes';

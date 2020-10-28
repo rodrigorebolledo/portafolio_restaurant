@@ -1,2 +1,1 @@
-import CrudTable from './CrudTable';
-export default CrudTable;
+export { default } from './CrudTable';
