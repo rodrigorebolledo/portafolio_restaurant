@@ -1,11 +1,14 @@
 .header {
-    background-color: #F1C40F;
+    background-color: #F51811;
 
 }
 
 .boton-ico-text {
     cursor: pointer;
-
+    color: white;
+    &:hover {
+        color: #E6E6E6;
+    }
     .badge-notify{
         position:relative;
         top: -10px;

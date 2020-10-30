@@ -1,0 +1,32 @@
+.button {
+    margin-left: 10px;
+    float: right;
+
+}
+
+.table-title {
+    padding-bottom: 15px;
+    background: #343a40;
+    color: #fff;
+    padding: 10px 30px;
+    min-width: 100%;
+    border-radius: 3px 3px 0 0;
+
+    .title {
+        font-size: 24px;
+        margin-top: 5px;
+        font-weight: 100;
+    }
+
+
+}
+
+.table-wrapper {
+    background: #fff;
+    padding: 20px 25px;
+    border-radius: 3px;
+    min-width: 1000px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+
+

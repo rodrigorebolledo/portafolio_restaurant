@@ -7,26 +7,28 @@ import {
 
 import routes from './GlobalConfig/routes';
 import NotFound from './components/Comunes/NotFound';
-
+import { AuthProvider } from './components/Context';
 function App() {
     return (
-        <Router>
-            <Switch>
-                {
-                    routes.map((route) => (
-                        <Route 
-                            key={route.path}
-                            path={route.path}
-                            component={route.component}
-                            exact={route.exact}
-                        />
-                    ))
-                }
-                <Route>
-                    <NotFound />
-                </Route>
-            </Switch>
-         </Router>
+        <AuthProvider>
+            <Router>
+                <Switch>
+                    {
+                        routes.map((route) => (
+                            <Route 
+                                key={route.path}
+                                path={route.path}
+                                component={route.component}
+                                exact={route.exact}
+                            />
+                        ))
+                    }
+                    <Route>
+                        <NotFound />
+                    </Route>
+                </Switch>
+            </Router>
+         </AuthProvider>
     );
 }
 

@@ -7,23 +7,25 @@ import {
 
 import NotFound from '../Comunes/NotFound';
 import routes from './Config/routes';
+import AppRoutes from './AppRoutes';
 const AdministradorRouter = () => {
     return (
         <Router>
             <Switch>
                 {routes.map((route) => (
-                    <Route
+                    <AppRoutes
                         key={route.path}
                         path={route.path}
                         component={route.component}
                         exact={route.exact}
+                        isPrivate={route.isPrivate}
                     />
                 ))}
                 <Route>
                     <NotFound />
                 </Route>
             </Switch>
-         </Router>
+        </Router>
     )
 }
 

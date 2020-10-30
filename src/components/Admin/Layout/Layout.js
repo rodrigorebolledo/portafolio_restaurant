@@ -10,7 +10,7 @@ const statusObject = {
     itemCount: 1
 }
 
-const Layout = (props) => {
+ export const Layout = (props) => {
 
     const { children } = props;
     
@@ -26,13 +26,11 @@ const Layout = (props) => {
     )
 }
 
-export default Layout;
-
 
 export const LayoutCrud = (props) => {
     const { children } = props;
     return (
-        <Row className="mt-5">
+        <Row className="mt-5 layout-crud">
             {children}
         </Row>
     )

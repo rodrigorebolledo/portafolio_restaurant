@@ -2,12 +2,12 @@ import React from 'react'
 import { Navbar, Nav } from 'react-bootstrap';
 import { NavLink } from "react-router-dom";
 import { Container } from 'react-bootstrap';
-
+import './Layout.scss';
 const MenuCliente = () => {
     return (
         <>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-                <Container>
+                <Container className="navbar-container">
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mr-auto">

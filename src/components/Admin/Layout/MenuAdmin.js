@@ -2,12 +2,12 @@ import React from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { NavLink } from "react-router-dom";
 import { Container } from 'react-bootstrap';
-  
+import './Layout.scss';
 const MenuAdmin = () => {
     return (
         <>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-                <Container>
+                <Container className="nav-container">
                     <Navbar.Brand>Menú Administrador</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
