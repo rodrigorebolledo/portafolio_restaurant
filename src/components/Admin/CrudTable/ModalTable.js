@@ -28,7 +28,25 @@ export const ModalDelete = ({ show, setShow, title, deleteItem, item }) => {
 }
 
 
-export const ModalEdit = ({ show, setShow, title, inputs }) => {
+
+// const getResultsInputs = (inputs, nameId, item) => {
+//     let objeto = {}
+//     objeto[nameId] = item[nameId];
+//     inputs.map((input) => {
+//         if(input.subcolumn === undefined) {
+//             objeto[input.column] = input.value
+//         }else {
+//             let objectSubColumn = {}
+//             objectSubColumn[input.subcolumn] = input.value
+//             objeto[input.column] = objectSubColumn
+//         }
+//     })
+//     console.log(objeto);
+// }
+
+
+
+export const ModalEdit = ({ show, setShow, title, inputs, item, nameId, editObject }) => {
     const handleClose = () => setShow(false);
   
     return (
@@ -43,20 +61,20 @@ export const ModalEdit = ({ show, setShow, title, inputs }) => {
             </Modal.Header>
             <Modal.Body>
                 <Form>
-                    <PrintInputs inputs={inputs} />
+                    <PrintInputsEdit inputs={inputs} item={item} />
                 </Form>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
                   Cancelar
                 </Button>
-                <Button variant="success">Editar</Button>
+                <Button variant="success" onClick={() => editObject(inputs, nameId, item)}>Editar</Button>
             </Modal.Footer>
             </Modal>
         );
 }
 
-export const ModalAdd = ({ show, setShow, title, inputs}) => {
+export const ModalAdd = ({ show, setShow, title, inputs }) => {
 
 
     const handleClose = () => setShow(false);
@@ -74,7 +92,7 @@ export const ModalAdd = ({ show, setShow, title, inputs}) => {
         </Modal.Header>
         <Modal.Body>
             <Form>
-                <PrintInputs inputs={inputs} />
+                <PrintInputsAdd inputs={inputs} />
             </Form>
         </Modal.Body>
         <Modal.Footer>
@@ -89,13 +107,13 @@ export const ModalAdd = ({ show, setShow, title, inputs}) => {
 
 
 
-const PrintInputs = ({ inputs }) => {
+const PrintInputsAdd = ({ inputs }) => {
         return inputs.map((input, idx) => {
             if(input.type === 'select'){
                 return (
                     <Form.Group key={idx}>
                         <Form.Label>{input.label}</Form.Label>
-                        <Form.Control as="select" value={input.value}  onChange={((e) => input.setValue(e.target.value))}>
+                        <Form.Control as="select" value={input.value}  onChange={(e) => input.setValue(e.target.value)}>
                             {input.options.map((option, idx) => (<option key={idx} value={option.value}>{option.nombre}</option>))}
                         </Form.Control>
                     </Form.Group>                    
@@ -108,33 +126,29 @@ const PrintInputs = ({ inputs }) => {
                     </Form.Group>               
                 )
             }
-        })
-    //     <Form.Group controlId="exampleForm.ControlInput1">
-    //     <Form.Label>Email address</Form.Label>
-    //     <Form.Control type="email" placeholder="name@example.com" />
-    // </Form.Group>
-    // <Form.Group controlId="exampleForm.ControlSelect1">
-    //     <Form.Label>Example select</Form.Label>
-    //     <Form.Control as="select">
-    //     <option>1</option>
-    //     <option>2</option>
-    //     <option>3</option>
-    //     <option>4</option>
-    //     <option>5</option>
-    //     </Form.Control>
-    // </Form.Group>
-    // <Form.Group controlId="exampleForm.ControlSelect2">
-    //     <Form.Label>Example multiple select</Form.Label>
-    //     <Form.Control as="select" multiple>
-    //     <option>1</option>
-    //     <option>2</option>
-    //     <option>3</option>
-    //     <option>4</option>
-    //     <option>5</option>
-    //     </Form.Control>
-    // </Form.Group>
-    // <Form.Group controlId="exampleForm.ControlTextarea1">
-    //     <Form.Label>Example textarea</Form.Label>
-    //     <Form.Control as="textarea" rows={3} />
-    // </Form.Group>
+        });
 }
+
+const PrintInputsEdit = ({ inputs, item }) => {
+    return inputs.map((input, idx) => {
+        if(input.type === 'select'){
+            return (
+                <Form.Group key={idx}>
+                    <Form.Label>{input.label}</Form.Label>
+                    <Form.Control as="select"  value={input.value === undefined ?  item[input.column] : input.value} onChange={(e) => input.setValue(e.target.value)}>
+                        {input.options.map((option, idx) => (<option key={idx} value={option.value}>{option.nombre}</option>))}
+                    </Form.Control>
+                </Form.Group>                    
+            )
+        } else {
+            return(
+                <Form.Group key={idx}>
+                    <Form.Label>{input.label}</Form.Label>
+                    <Form.Control type={input.type} placeholder={input.placeholder}  value={input.value === undefined ?  item[input.column] : input.value} onChange={(e) => input.setValue(e.target.value)} />
+                </Form.Group>               
+            )
+        }
+    });
+}
+
+

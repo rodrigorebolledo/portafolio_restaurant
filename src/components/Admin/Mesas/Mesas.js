@@ -18,6 +18,7 @@ const Mesas = () => {
             label: 'Número mesa',
             type: 'number',
             placeholder: 'Ingrese el numero de la mesa',
+            column: 'numeroMesa',
             value: numeroMesa,
             setValue: setNumeroMesa,  
         },
@@ -25,12 +26,15 @@ const Mesas = () => {
             label: 'Capacidad mesa',
             type: 'number',
             placeholder: 'Ingrese la capacidad de la mesa',
+            column: 'capacidadMesa',
             value: capacidadMesa,
             setValue: setCapacidadMesa,  
         },
         {
             label: 'Estado',
             type: 'select',
+            column: 'estado',
+            subcolumn: 'idEstadoMesa',
             value: estadoMesa,
             setValue: setEstadoMesa,               
             options: [

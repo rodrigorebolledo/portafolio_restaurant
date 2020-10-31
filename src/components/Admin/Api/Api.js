@@ -34,4 +34,17 @@ const deleteById = (url, id) => {
 }
 
 
-export { apiSetStateFromUrl, deleteById };
+
+const editById = (url, id,  objeto) => {
+    console.log(objeto)
+    return api.put(`${url}/${id}`, objeto)
+    .then((res) => {
+        return true;
+    }).catch((err) => {
+        console.log(err);
+        return false;
+    })
+}
+
+
+export { apiSetStateFromUrl, deleteById, editById };
