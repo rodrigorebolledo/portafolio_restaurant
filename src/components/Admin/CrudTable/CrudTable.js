@@ -3,7 +3,7 @@ import { Table, Button, Row, Col, Container, Form } from 'react-bootstrap';
 import './CrudTable.scss';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { deleteById, editById } from '../Api'
+import { deleteById, editById, addElment } from '../Api'
 import { ModalDelete, ModalEdit, ModalAdd } from './ModalTable';
 
 export const CrudTable = ({ body, header, title, url, nameId, inputs }) => {
@@ -19,18 +19,18 @@ export const CrudTable = ({ body, header, title, url, nameId, inputs }) => {
     const handleShowModalDelete = () => setShowModalDelete(true);
     const handleShowModalAdd = () => setShowModalAdd(true);
 
-     const handleLoadItems = (item) => {
+    const handleLoadItems = (item) => {
         item["selected"] = false;
         const itemModificado = item;
         itemsSeleccionados.push(itemModificado);
-     }
+    }
 
-    const selectItem =  async (item) => {
+    const selectItem = async (item) => {
         setItem(item);
     }
 
     const handleCheckItem = (idx) => {
-        if (itemsLoading === false){
+        if (itemsLoading === false) {
             itemsSeleccionados[idx].selected = !itemsSeleccionados[idx].selected;
             console.log(itemsSeleccionados);
 
@@ -39,50 +39,96 @@ export const CrudTable = ({ body, header, title, url, nameId, inputs }) => {
         }
     }
 
-    const deleteItem =  async (item) => {
+    const deleteItem = async (item) => {
         const valid = await deleteById(url, item[nameId]);
-        if(valid){
+        if (valid) {
             console.log('El item fue eliminado exitosamente');
         } else {
             console.log('Ocurrió un error');
         }
     }
 
-    const getResultsInputs = (inputs, nameId, item) => {
+    const getResultsInputs = (inputs, nameId, item, notRequired = 0) => {
         let countEdit = 0;
+        let countInputsWithValue = 0;
         let objeto = {};
-        objeto[nameId] = item[nameId];
-        inputs.map((input) => {
-            if (input.value !== undefined) countEdit += 1;
-            if(input.subcolumn === undefined) {
-                objeto[input.column] = input.value ? input.value:item[input.column]; 
-            }else {
-                let objectSubColumn = {}
-                objectSubColumn[input.subcolumn] = input.value ? input.value:item[input.column][input.subcolumn];
-                objeto[input.column] = objectSubColumn
+        if (item !== undefined && nameId !== undefined) {
+            objeto[nameId] = item[nameId];
+            inputs.map((input) => {
+                if (input.value !== undefined) countEdit += 1;
+                if (input.subcolumn === undefined) {
+                    objeto[input.column] = input.value ? input.value : item[input.column];
+                } else {
+                    let objectSubColumn = {}
+                    objectSubColumn[input.subcolumn] = input.value ? input.value : item[input.column][input.subcolumn];
+                    objeto[input.column] = objectSubColumn
+                }
+            })
+            if (countEdit > 0) {
+                return objeto;
+            } else {
+                return undefined;
             }
-        })
-        if (countEdit > 0){
-            return objeto;
         } else {
-            return undefined;
+            inputs.map((input) => {
+                if (input.value !== undefined) countInputsWithValue += 1;
+                if (input.subcolumn === undefined) {
+                    objeto[input.column] = input.value ? input.value : '';
+                } else {
+                    let objectSubColumn = {}
+                    objectSubColumn[input.subcolumn] = input.value ? input.value : ''
+                    objeto[input.column] = objectSubColumn
+                }
+
+            })
+
+            if (countInputsWithValue === (inputs.length - notRequired)) {
+                return objeto;
+            } else {
+                return undefined;
+
+            }
         }
+
     }
 
     const editObject = async (inputs, nameId, item) => {
         let objeto = getResultsInputs(inputs, nameId, item);
         let valid = false;
-        if(objeto !== undefined && objeto !== {}) {
-             valid = await editById(url, objeto[nameId], objeto)
+        if (objeto !== undefined && objeto !== {}) {
+            valid = await editById(url, objeto[nameId], objeto)
         } else {
             alert('Para editar es necesario modificar al menos un parametro');
             return;
         }
-        if(valid){
+        if (valid) {
             console.log('Editado correctamente');
         } else {
             console.log('Ha ocurrido un error')
         }
+    }
+
+    const addObject = async (inputs) => {
+        let objeto = getResultsInputs(inputs);
+        console.log(objeto);
+        let valid = false;
+        if (objeto !== undefined && objeto !== {}) {
+            valid = await addElment(url, objeto)
+        } else {
+            alert('Para agregar es necesario modificar al menos un parametro');
+            return;
+        }
+        if (valid) {
+            console.log('Agregado correctamente');
+        } else {
+            console.log('Ha ocurrido un error')
+        }
+    }
+
+    const clearValues = () => {
+        inputs.map((input) => {
+            input.setValue(undefined);
+        })
     }
 
 
@@ -110,58 +156,60 @@ export const CrudTable = ({ body, header, title, url, nameId, inputs }) => {
 
     const PrintBody = () => {
         const keys = Object.keys(body[0]);
-        const bodyResult = body.map((item, idx) =>  {
+        const bodyResult = body.map((item, idx) => {
             handleLoadItems(item);
             return (
                 <tr key={idx}>
-                <td><Form.Check onChange={() => handleCheckItem(idx)} /></td>
-                {
-                    keys.map((key, idx) => {
-                        const valor = item[key];
-                        if( typeof valor === 'object'){
-                            const keysChildren = Object.keys(valor);
-                            return (
-                                <td key={idx}>{valor[keysChildren[1]]}</td>
-                            )
-                        }
+                    <td><Form.Check onChange={() => handleCheckItem(idx)} /></td>
+                    {
+                        keys.map((key, idx) => {
+                            const valor = item[key];
+                            if (typeof valor === 'object') {
+                                const keysChildren = Object.keys(valor);
+                                return (
+                                    <td key={idx}>{valor[keysChildren[1]]}</td>
+                                )
+                            }
+                            if (typeof valor !== "boolean") {
+                                return <td key={idx}>{valor}</td>
+                            } else {
+                                return null;
+                            }
 
-                        return (
-                            <td key={idx}>{valor}</td>
-                        )
 
-                    })
-                }
-                <td>
-                    <EditIcon 
-                        style={{color: '#FFC107', cursor: 'pointer'}}
-                        onClick={() => {
+                        })
+                    }
+                    <td>
+                        <EditIcon
+                            style={{ color: '#FFC107', cursor: 'pointer' }}
+                            onClick={() => {
                                 handleShowModalEdit();
                                 resetStatesInputs();
                                 selectItem(item);
                             }
-                        }
-                    /> 
-                    <DeleteIcon 
-                        style={{color: 'red', cursor: 'pointer'}}
-                        onClick={() => { 
-                                handleShowModalDelete(); 
+                            }
+                        />
+                        <DeleteIcon
+                            style={{ color: 'red', cursor: 'pointer' }}
+                            onClick={() => {
+                                handleShowModalDelete();
                                 selectItem(item);
                             }
-                        }
-                    />
-                </td>
-            </tr>
+                            }
+                        />
+                    </td>
+                </tr>
             )
         })
-        
+
         return bodyResult;
     };
 
 
 
 
-    
-//Return padre
+
+    //Return padre
     return (
         <>
             <Container>
@@ -182,19 +230,19 @@ export const CrudTable = ({ body, header, title, url, nameId, inputs }) => {
                             <thead>
                                 <tr>
                                     <th></th>
-                                    { header ? <PrintHeader /> : <PrintHeaderByKey />}
+                                    {header ? <PrintHeader /> : <PrintHeaderByKey />}
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                { body ? <PrintBody /> : null }
+                                {body ? <PrintBody /> : null}
                             </tbody>
                         </Table>
                     </div>
                 </div>
             </Container>
-            <ModalEdit show={showModalEdit} setShow={setShowModalEdit} title={title} inputs={inputs} item={item} nameId={nameId} editObject={editObject}  />
-            <ModalAdd show={showModalAdd} setShow={setShowModalAdd} title={title} inputs={inputs} />
+            <ModalEdit show={showModalEdit} setShow={setShowModalEdit} title={title} inputs={inputs} item={item} nameId={nameId} editObject={editObject} clearValues={clearValues} />
+            <ModalAdd show={showModalAdd} setShow={setShowModalAdd} title={title} inputs={inputs} clearValues={clearValues} addObject={addObject} nameId={nameId} item={item} />
             <ModalDelete show={showModalDelete} setShow={setShowModalDelete} title={title} deleteItem={deleteItem} item={item} />
         </>
     )

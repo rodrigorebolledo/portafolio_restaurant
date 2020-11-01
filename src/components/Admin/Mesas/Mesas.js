@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import  { LayoutCrud, Layout } from '../Layout/Layout';
+import { LayoutCrud, Layout } from '../Layout/Layout';
 import CrudTable from '../CrudTable';
 import { apiSetStateFromUrl } from '../Api';
 
@@ -20,7 +20,7 @@ const Mesas = () => {
             placeholder: 'Ingrese el numero de la mesa',
             column: 'numeroMesa',
             value: numeroMesa,
-            setValue: setNumeroMesa,  
+            setValue: setNumeroMesa,
         },
         {
             label: 'Capacidad mesa',
@@ -28,7 +28,7 @@ const Mesas = () => {
             placeholder: 'Ingrese la capacidad de la mesa',
             column: 'capacidadMesa',
             value: capacidadMesa,
-            setValue: setCapacidadMesa,  
+            setValue: setCapacidadMesa,
         },
         {
             label: 'Estado',
@@ -36,7 +36,7 @@ const Mesas = () => {
             column: 'estado',
             subcolumn: 'idEstadoMesa',
             value: estadoMesa,
-            setValue: setEstadoMesa,               
+            setValue: setEstadoMesa,
             options: [
                 {
                     nombre: 'Disponible',
@@ -56,7 +56,7 @@ const Mesas = () => {
     return (
         <Layout>
             <LayoutCrud>
-                { mesas.length && <CrudTable body={mesas}  header={header} title="Mesas" inputs={INPUTS} />}
+                {mesas.length ? <CrudTable body={mesas} header={header} title="Mesas" inputs={INPUTS} /> : null}
             </LayoutCrud>
         </Layout>
     )

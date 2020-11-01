@@ -1,2 +1,2 @@
-import { apiSetStateFromUrl, deleteById, editById } from './Api';
-export { apiSetStateFromUrl, deleteById, editById };
+import { apiSetStateFromUrl, deleteById, editById, addElment } from './Api';
+export { apiSetStateFromUrl, deleteById, editById, addElment };

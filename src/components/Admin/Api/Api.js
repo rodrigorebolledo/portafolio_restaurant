@@ -19,7 +19,7 @@ const apiSetStateFromUrl = (url, setState) => {
     });
 
 
-    
+
 
 }
 
@@ -35,16 +35,29 @@ const deleteById = (url, id) => {
 
 
 
-const editById = (url, id,  objeto) => {
+const editById = (url, id, objeto) => {
     console.log(objeto)
     return api.put(`${url}/${id}`, objeto)
-    .then((res) => {
-        return true;
-    }).catch((err) => {
-        console.log(err);
-        return false;
-    })
+        .then((res) => {
+            return true;
+        }).catch((err) => {
+            console.log(id);
+            console.log(err);
+            return false;
+        })
 }
 
 
-export { apiSetStateFromUrl, deleteById, editById };
+const addElment = (url, objeto) => {
+    console.log(objeto)
+    return api.post(`${url}`, objeto)
+        .then((res) => {
+            return true;
+        }).catch((err) => {
+            console.log(err);
+            return false;
+        })
+}
+
+
+export { apiSetStateFromUrl, deleteById, editById, addElment };

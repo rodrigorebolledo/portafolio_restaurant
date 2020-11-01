@@ -12,8 +12,8 @@ const Usuarios = () => {
     const [users, setUsers] = useState([]);
     const [email, setEmail] = useState(undefined);
     const [password, setPassword] = useState(undefined);
-    const [estado, setEstado] = useState(undefined);
-    const [perfil, setPerfil] = useState(undefined);
+    const [estado, setEstado] = useState('t');
+    const [perfil, setPerfil] = useState(6);
     const [editPerfil, setEditPerfil] = useState(undefined);
 
     const INPUTS = [
@@ -23,7 +23,7 @@ const Usuarios = () => {
             placeholder: 'Ingrese su email',
             column: 'emailUsuario',
             value: email,
-            setValue: setEmail,        
+            setValue: setEmail,
         },
         {
             label: 'Contraseña',
@@ -38,7 +38,7 @@ const Usuarios = () => {
             type: 'select',
             column: 'estadoUsuario',
             value: estado,
-            setValue: setEstado,          
+            setValue: setEstado,
             options: [
                 {
                     nombre: 'Habilitado',
@@ -82,7 +82,7 @@ const Usuarios = () => {
             value: perfil,
             setValue: setPerfil,
             editValue: editPerfil,
-            setEditValue: setEditPerfil,        
+            setEditValue: setEditPerfil,
             options: [
                 {
                     nombre: 'Administrador',
@@ -109,17 +109,17 @@ const Usuarios = () => {
     ];
 
 
-    
+
 
     useEffect(() => {
         apiSetStateFromUrl("/usuarios", setUsers);
-    },[]);
+    }, []);
 
     return (
         <Layout>
             <LayoutCrud>
-                { users.length && (<CrudTable body={users}  header={HEADER} title="Usuarios" inputs={INPUTS} url="/usuarios" nameId="idUsuario"/>) }
-           </LayoutCrud>
+                {users.length ? <CrudTable body={users} header={HEADER} title="Usuarios" inputs={INPUTS} url="/usuarios" nameId="idUsuario" /> : null}
+            </LayoutCrud>
         </Layout>
     )
 }
