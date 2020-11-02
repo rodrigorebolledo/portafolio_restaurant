@@ -1,9 +1,17 @@
 import React from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
-export const ModalDelete = ({ show, setShow, title, deleteItem, item }) => {
+export const ModalDelete = ({ show, setShow, title, deleteItem, deleteItems, item, items }) => {
     const handleClose = () => setShow(false);
-
+    const handleDelete = () => {
+        if (JSON.stringify(item) === "{}") {
+            deleteItems(items)
+            handleClose();
+        } else {
+            deleteItem(item);
+            handleClose();
+        }
+    }
     return (
         <Modal
             show={show}
@@ -21,7 +29,7 @@ export const ModalDelete = ({ show, setShow, title, deleteItem, item }) => {
                 <Button variant="secondary" onClick={handleClose}>
                     Cancelar
             </Button>
-                <Button variant="danger" onClick={() => deleteItem(item)}>Borrar</Button>
+                <Button variant="danger" onClick={() => handleDelete()}>Borrar</Button>
             </Modal.Footer>
         </Modal>
     );

@@ -56,7 +56,7 @@ const Mesas = () => {
     return (
         <Layout>
             <LayoutCrud>
-                {mesas.length ? <CrudTable body={mesas} header={header} title="Mesas" inputs={INPUTS} /> : null}
+                avance                {mesas.length ? <CrudTable items={mesas} setItems={setMesas} header={header} title="Mesas" inputs={INPUTS} url="/mesas" nameId="idMesa" /> : null}
             </LayoutCrud>
         </Layout>
     )

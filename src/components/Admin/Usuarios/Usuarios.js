@@ -118,7 +118,7 @@ const Usuarios = () => {
     return (
         <Layout>
             <LayoutCrud>
-                {users.length ? <CrudTable body={users} header={HEADER} title="Usuarios" inputs={INPUTS} url="/usuarios" nameId="idUsuario" /> : null}
+                {users.length ? <CrudTable items={users} setItems={setUsers} header={HEADER} title="Usuarios" inputs={INPUTS} url="/usuarios" nameId="idUsuario" /> : null}
             </LayoutCrud>
         </Layout>
     )

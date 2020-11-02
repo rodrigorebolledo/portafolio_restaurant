@@ -6,24 +6,29 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { deleteById, editById, addElment } from '../Api'
 import { ModalDelete, ModalEdit, ModalAdd } from './ModalTable';
 
-export const CrudTable = ({ body, header, title, url, nameId, inputs }) => {
+export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs }) => {
 
     const [showModalEdit, setShowModalEdit] = useState(false);
     const [showModalDelete, setShowModalDelete] = useState(false);
     const [showModalAdd, setShowModalAdd] = useState(false);
     const [item, setItem] = useState({});
-    const [items, setItems] = useState([]);
     const [itemsLoading, setItemsLoading] = useState(true);
-    let itemsSeleccionados = []
     const handleShowModalEdit = () => setShowModalEdit(true);
     const handleShowModalDelete = () => setShowModalDelete(true);
     const handleShowModalAdd = () => setShowModalAdd(true);
 
-    const handleLoadItems = (item) => {
-        item["selected"] = false;
-        const itemModificado = item;
-        itemsSeleccionados.push(itemModificado);
+    const handleLoadItems = () => {
+        items.map((item) => {
+            item.selected = false;
+        })
+
+        setItemsLoading(false);
     }
+
+
+    useEffect(() => {
+        handleLoadItems();
+    }, [])
 
     const selectItem = async (item) => {
         setItem(item);
@@ -31,8 +36,7 @@ export const CrudTable = ({ body, header, title, url, nameId, inputs }) => {
 
     const handleCheckItem = (idx) => {
         if (itemsLoading === false) {
-            itemsSeleccionados[idx].selected = !itemsSeleccionados[idx].selected;
-            console.log(itemsSeleccionados);
+            items[idx].selected = !items[idx].selected;
 
         } else {
             console.log('cargando');
@@ -43,10 +47,35 @@ export const CrudTable = ({ body, header, title, url, nameId, inputs }) => {
         const valid = await deleteById(url, item[nameId]);
         if (valid) {
             console.log('El item fue eliminado exitosamente');
+            const itemFiltrado = items.filter(i => i[nameId] != item[nameId])
+            setItems(itemFiltrado);
+            setItem({})
         } else {
             console.log('Ocurrió un error');
         }
     }
+
+    const deleteItems = (items) => {
+        let idsEliminados = []
+        Promise.all(items.map(async (item) => {
+            if (item.selected === true) {
+                const valid = await deleteById(url, item[nameId]);
+                if (valid) {
+                    console.log('El item fue eliminado exitosamente');
+                    idsEliminados.push(item[nameId])
+                } else {
+                    console.log('Ocurrió un error');
+                }
+            }
+
+        })).then(() => {
+            const itemsFiltrados = items.filter(i => !idsEliminados.includes(i[nameId]))
+            setItems(itemsFiltrados);
+        })
+
+
+    }
+
 
     const getResultsInputs = (inputs, nameId, item, notRequired = 0) => {
         let countEdit = 0;
@@ -103,6 +132,9 @@ export const CrudTable = ({ body, header, title, url, nameId, inputs }) => {
         }
         if (valid) {
             console.log('Editado correctamente');
+            // clearValues();
+            // setShowModalEdit(false);
+            window.location.reload(false);
         } else {
             console.log('Ha ocurrido un error')
         }
@@ -118,8 +150,12 @@ export const CrudTable = ({ body, header, title, url, nameId, inputs }) => {
             alert('Para agregar es necesario modificar al menos un parametro');
             return;
         }
-        if (valid) {
+        if (valid !== false) {
             console.log('Agregado correctamente');
+            // setItems([...items, valid])
+            // console.log(valid);
+            // clearValues();
+            window.location.reload(false);
         } else {
             console.log('Ha ocurrido un error')
         }
@@ -140,7 +176,7 @@ export const CrudTable = ({ body, header, title, url, nameId, inputs }) => {
     }
 
     const PrintHeaderByKey = () => {
-        const keys = Object.keys(body[0]);
+        const keys = Object.keys(items[0]);
         return keys.map((key, idx) => (
             <th key={idx}>{key}</th>
         ));
@@ -155,9 +191,8 @@ export const CrudTable = ({ body, header, title, url, nameId, inputs }) => {
 
 
     const PrintBody = () => {
-        const keys = Object.keys(body[0]);
-        const bodyResult = body.map((item, idx) => {
-            handleLoadItems(item);
+        const keys = Object.keys(items[0]);
+        return items.map((item, idx) => {
             return (
                 <tr key={idx}>
                     <td><Form.Check onChange={() => handleCheckItem(idx)} /></td>
@@ -201,8 +236,6 @@ export const CrudTable = ({ body, header, title, url, nameId, inputs }) => {
                 </tr>
             )
         })
-
-        return bodyResult;
     };
 
 
@@ -235,15 +268,15 @@ export const CrudTable = ({ body, header, title, url, nameId, inputs }) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {body ? <PrintBody /> : null}
+                                {items ? <PrintBody /> : null}
                             </tbody>
                         </Table>
                     </div>
                 </div>
             </Container>
             <ModalEdit show={showModalEdit} setShow={setShowModalEdit} title={title} inputs={inputs} item={item} nameId={nameId} editObject={editObject} clearValues={clearValues} />
-            <ModalAdd show={showModalAdd} setShow={setShowModalAdd} title={title} inputs={inputs} clearValues={clearValues} addObject={addObject} nameId={nameId} item={item} />
-            <ModalDelete show={showModalDelete} setShow={setShowModalDelete} title={title} deleteItem={deleteItem} item={item} />
+            <ModalAdd show={showModalAdd} setShow={setShowModalAdd} title={title} inputs={inputs} clearValues={clearValues} addObject={addObject} nameId={nameId} item={item} clearValues={clearValues} />
+            <ModalDelete show={showModalDelete} setShow={setShowModalDelete} title={title} deleteItem={deleteItem} deleteItems={deleteItems} item={item} items={items} clearValues={clearValues} />
         </>
     )
 }
