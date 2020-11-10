@@ -6,7 +6,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { deleteById, editById, addElment } from '../Api'
 import { ModalDelete, ModalEdit, ModalAdd } from './ModalTable';
 
-export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs }) => {
+export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs, apiSetStateFromUrl, handleReset }) => {
 
     const [showModalEdit, setShowModalEdit] = useState(false);
     const [showModalDelete, setShowModalDelete] = useState(false);
@@ -47,21 +47,24 @@ export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs 
         const valid = await deleteById(url, item[nameId]);
         if (valid) {
             console.log('El item fue eliminado exitosamente');
-            const itemFiltrado = items.filter(i => i[nameId] != item[nameId])
+            const itemFiltrado = items.filter(i => i[nameId] !== item[nameId])
             setItems(itemFiltrado);
-            setItem({})
+            setItem({});
         } else {
             console.log('Ocurrió un error');
+            setItem({});
         }
     }
 
     const deleteItems = (items) => {
         let idsEliminados = []
+        let countDeletes = 0;
         Promise.all(items.map(async (item) => {
             if (item.selected === true) {
                 const valid = await deleteById(url, item[nameId]);
                 if (valid) {
-                    console.log('El item fue eliminado exitosamente');
+                    console.log('El item fue eliminado exitosamente.');
+                    countDeletes += 1;
                     idsEliminados.push(item[nameId])
                 } else {
                     console.log('Ocurrió un error');
@@ -71,9 +74,10 @@ export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs 
         })).then(() => {
             const itemsFiltrados = items.filter(i => !idsEliminados.includes(i[nameId]))
             setItems(itemsFiltrados);
+            if (countDeletes === 0) {
+                alert('Debes seleccionar al menos un item para eliminar.')
+            }
         })
-
-
     }
 
 
@@ -114,6 +118,9 @@ export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs 
             if (countInputsWithValue === (inputs.length - notRequired)) {
                 return objeto;
             } else {
+                console.log('no es = al input.length - notRequired')
+                console.log(countInputsWithValue);
+                console.log(inputs.length - notRequired)
                 return undefined;
 
             }
@@ -132,9 +139,10 @@ export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs 
         }
         if (valid) {
             console.log('Editado correctamente');
-            // clearValues();
-            // setShowModalEdit(false);
-            window.location.reload(false);
+            handleReset();
+            setShowModalEdit(false);
+            // window.location.reload(false);
+            apiSetStateFromUrl(url, setItems);
         } else {
             console.log('Ha ocurrido un error')
         }
@@ -152,22 +160,14 @@ export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs 
         }
         if (valid !== false) {
             console.log('Agregado correctamente');
-            // setItems([...items, valid])
-            // console.log(valid);
-            // clearValues();
-            window.location.reload(false);
+            handleReset();
+            setShowModalAdd(false);
+            // window.location.reload(false);
+            apiSetStateFromUrl(url, setItems);
         } else {
             console.log('Ha ocurrido un error')
         }
     }
-
-    const clearValues = () => {
-        inputs.map((input) => {
-            input.setValue(undefined);
-        })
-    }
-
-
 
     const resetStatesInputs = () => {
         inputs.map((input) => {
@@ -205,7 +205,7 @@ export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs 
                                     <td key={idx}>{valor[keysChildren[1]]}</td>
                                 )
                             }
-                            if (typeof valor !== "boolean") {
+                            if (typeof valor !== "boolean" && valor !== undefined) {
                                 return <td key={idx}>{valor}</td>
                             } else {
                                 return null;
@@ -273,10 +273,11 @@ export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs 
                         </Table>
                     </div>
                 </div>
+                <ModalEdit show={showModalEdit} setShow={setShowModalEdit} title={title} inputs={inputs} item={item} nameId={nameId} editObject={editObject} handleReset={handleReset} />
+                <ModalAdd show={showModalAdd} setShow={setShowModalAdd} title={title} inputs={inputs} handleReset={handleReset} addObject={addObject} nameId={nameId} item={item} handleReset={handleReset} />
+                <ModalDelete show={showModalDelete} setShow={setShowModalDelete} title={title} deleteItem={deleteItem} deleteItems={deleteItems} item={item} setItem={setItem} items={items} handleReset={handleReset} />
             </Container>
-            <ModalEdit show={showModalEdit} setShow={setShowModalEdit} title={title} inputs={inputs} item={item} nameId={nameId} editObject={editObject} clearValues={clearValues} />
-            <ModalAdd show={showModalAdd} setShow={setShowModalAdd} title={title} inputs={inputs} clearValues={clearValues} addObject={addObject} nameId={nameId} item={item} clearValues={clearValues} />
-            <ModalDelete show={showModalDelete} setShow={setShowModalDelete} title={title} deleteItem={deleteItem} deleteItems={deleteItems} item={item} items={items} clearValues={clearValues} />
+
         </>
     )
 }

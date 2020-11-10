@@ -9,21 +9,6 @@ const api = axios.create({
     // }
 });
 
-const apiSetStateFromUrl = (url, setState) => {
-
-    return api.get(url).then(res => {
-        setState(res.data);
-    }).catch((err) => {
-        console.log(err);
-        return;
-    });
-
-
-
-
-}
-
-
 const deleteById = (url, id) => {
     return api.delete(`${url}/${id}`).then(res => {
         return true;
@@ -58,4 +43,4 @@ const addElment = (url, objeto) => {
 }
 
 
-export { apiSetStateFromUrl, deleteById, editById, addElment };
+export { deleteById, editById, addElment };

@@ -1,10 +1,90 @@
-import React from 'react'
-import { Layout } from '../Layout';
+import React, { useState, useEffect } from 'react';
+import { LayoutCrud, Layout } from '../Layout/Layout';
+import CrudTable from '../CrudTable';
+import { apiSetStateFromUrl } from '../../Comunes/Api';
+import { CustomSpinner } from '../../Comunes/CustomSpinner';
+const header = ['ID', 'Nombre producto', 'Stock', 'Stock Mínimo', 'Unidad'];
 
+//DEFAULT
 const Productos = () => {
+
+    const [productos, setProductos] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [nombreProducto, setNombreProducto] = useState('');
+    const [stockProducto, setStockProducto] = useState(1);
+    const [stockMinimo, setStockMinimo] = useState(0);
+    const [unidad, setUnidad] = useState(1);
+
+    const INPUTS = [
+        {
+            label: 'Nombre del producto',
+            type: 'text',
+            placeholder: 'Ingrese el nombre del producto',
+            column: 'nombreProducto',
+            value: nombreProducto,
+            setValue: setNombreProducto,
+        },
+        {
+            label: 'Stock',
+            type: 'number',
+            min: 1,
+            placeholder: 'Ingrese el stock del producto',
+            column: 'stockProducto',
+            value: stockProducto,
+            setValue: setStockProducto,
+        },
+        {
+            label: 'Stock Mínimo',
+            type: 'number',
+            min: 0,
+            placeholder: 'Ingrese el stock mínimo del producto',
+            column: 'stockMinimo',
+            value: stockMinimo,
+            setValue: setStockMinimo,
+        },
+        {
+            label: 'Unidad de Medida',
+            type: 'select',
+            column: 'unidad',
+            subcolumn: 'idUnidadMedida',
+            value: unidad,
+            setValue: setUnidad,
+            options: [
+                {
+                    nombre: 'Gramos',
+                    value: 1
+                },
+                {
+                    nombre: 'Litros',
+                    value: 2
+                },
+                {
+                    nombre: 'Unidad',
+                    value: 3
+                }
+            ]
+        }
+    ]
+
+
+    const handleReset = _ => {
+        setNombreProducto('');
+        setStockProducto(1);
+        setStockMinimo(0);
+        setUnidad(1);
+    }
+
+
+
+    useEffect(() => {
+        apiSetStateFromUrl("/productos", setProductos, setLoading);
+    }, [])
+
     return (
         <Layout>
-            Productos
+            <LayoutCrud>
+                {!loading ? <CrudTable items={productos} setItems={setProductos} header={header} title="Productos" inputs={INPUTS} url="/productos" nameId="idProducto" apiSetStateFromUrl={apiSetStateFromUrl} handleReset={handleReset} /> : <CustomSpinner />}
+            </LayoutCrud>
         </Layout>
     )
 }

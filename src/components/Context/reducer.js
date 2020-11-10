@@ -1,6 +1,6 @@
 import React, { useState, useReducer } from 'react';
 
-let user = localStorage.getItem('currentUser') 
+let user = localStorage.getItem('currentUser')
     ? JSON.parse(localStorage.getItem('currentUser')).user
     : '';
 let token = localStorage.getItem('currentUser')
@@ -15,7 +15,7 @@ export const initialState = {
 };
 
 export const AuthReducer = (initialState, action) => {
-    switch(action.type){
+    switch (action.type) {
         case 'REQUEST_LOGIN':
             return {
                 ...initialState,
@@ -45,6 +45,24 @@ export const AuthReducer = (initialState, action) => {
                 ...initialState,
                 user: action.payload.user,
                 token: action.payload.token,
+            }
+        case 'REQUEST_REGISTER':
+            return {
+                ...initialState,
+                loading: true,
+            }
+        case 'REGISTER_SUCCESS':
+            return {
+                ...initialState,
+                user: action.payload.user,
+                token: action.payload.token,
+                loading: false,
+            }
+        case 'REGISTER_ERROR':
+            return {
+                ...initialState,
+                loading: false,
+                errorMessage: action.error,
             }
         default:
             throw new Error(`Acción del tipo ${action.type} no manejada`);

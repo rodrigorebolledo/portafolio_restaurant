@@ -3,11 +3,11 @@ import { Container, Col, Row } from 'react-bootstrap';
 import './Footer.scss';
 const Footer = () => {
     return (
-        <div className="footer">
+        <div className="footer mt-3">
             <Container>
                 <Row className="pt-3">
                     <Col className="col-12 col-sm-4">
-                        
+
                         <ul>
                             <h3>Servicios</h3>
                             <li><a href="#">Lorem ipsum dolor sit amet</a></li>
@@ -39,7 +39,7 @@ const Footer = () => {
                     </Col>
                 </Row>
                 <hr />
-                <Row className="justify-content-center"> 
+                <Row className="justify-content-center">
                     <p>Derechos reservados Restaurant Siglo XXI - 2020</p>
                 </Row>
             </Container>

@@ -1,2 +1,2 @@
-import { api } from './Api';
-export { api };
+import { api, apiSetStateFromUrl } from './Api';
+export { api, apiSetStateFromUrl };

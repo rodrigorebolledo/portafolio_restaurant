@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Layout, LayoutCrud } from '../Layout';
 import CrudTable from '../CrudTable';
-import { apiSimpleLoad, apiSetStateFromUrl } from '../Api'
-
-
+import { apiSetStateFromUrl } from '../../Comunes/Api';
+import { CustomSpinner } from '../../Comunes/CustomSpinner';
 const HEADER = ['ID', 'Email', 'Password', 'Estado', 'Perfil'];
 
 //DEFAULT
 const Usuarios = () => {
 
     const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [email, setEmail] = useState(undefined);
     const [password, setPassword] = useState(undefined);
     const [estado, setEstado] = useState('t');
@@ -81,8 +81,6 @@ const Usuarios = () => {
             subcolumn: 'idPerfil',
             value: perfil,
             setValue: setPerfil,
-            editValue: editPerfil,
-            setEditValue: setEditPerfil,
             options: [
                 {
                     nombre: 'Administrador',
@@ -109,16 +107,22 @@ const Usuarios = () => {
     ];
 
 
-
+    const handleReset = _ => {
+        setEmail(undefined);
+        setPassword(undefined);
+        setEstado('t');
+        setPerfil(6)
+        setEditPerfil(undefined);
+    }
 
     useEffect(() => {
-        apiSetStateFromUrl("/usuarios", setUsers);
+        apiSetStateFromUrl("/usuarios", setUsers, setLoading);
     }, []);
 
     return (
         <Layout>
             <LayoutCrud>
-                {users.length ? <CrudTable items={users} setItems={setUsers} header={HEADER} title="Usuarios" inputs={INPUTS} url="/usuarios" nameId="idUsuario" /> : null}
+                {!loading ? <CrudTable items={users} setItems={setUsers} header={HEADER} title="Usuarios" inputs={INPUTS} url="/usuarios" nameId="idUsuario" apiSetStateFromUrl={apiSetStateFromUrl} handleReset={handleReset} /> : <CustomSpinner />}
             </LayoutCrud>
         </Layout>
     )

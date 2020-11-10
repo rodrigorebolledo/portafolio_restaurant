@@ -9,4 +9,20 @@ const api = axios.create({
     // }
 });
 
-export { api };
+
+const apiSetStateFromUrl = (url, setState, setLoading) => {
+
+    return api.get(url).then(res => {
+        setState(res.data);
+        setLoading(false);
+    }).catch((err) => {
+        console.log(err);
+        return;
+    });
+
+
+
+
+}
+
+export { api, apiSetStateFromUrl };

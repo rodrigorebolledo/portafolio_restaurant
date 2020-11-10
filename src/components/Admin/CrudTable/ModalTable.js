@@ -1,9 +1,12 @@
 import React from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
-export const ModalDelete = ({ show, setShow, title, deleteItem, deleteItems, item, items }) => {
-    const handleClose = () => setShow(false);
-    const handleDelete = () => {
+export const ModalDelete = ({ show, setShow, title, deleteItem, deleteItems, item, setItem, items }) => {
+    const handleClose = _ => {
+        setShow(false);
+        setItem({});
+    }
+    const handleDelete = _ => {
         if (JSON.stringify(item) === "{}") {
             deleteItems(items)
             handleClose();
@@ -54,10 +57,10 @@ export const ModalDelete = ({ show, setShow, title, deleteItem, deleteItems, ite
 
 
 
-export const ModalEdit = ({ show, setShow, title, inputs, item, nameId, editObject, clearValues }) => {
+export const ModalEdit = ({ show, setShow, title, inputs, item, nameId, editObject, handleReset }) => {
     const handleClose = () => {
         setShow(false);
-        clearValues();
+        handleReset();
     }
 
     const handleSubmit = (e) => {
@@ -90,12 +93,12 @@ export const ModalEdit = ({ show, setShow, title, inputs, item, nameId, editObje
     );
 }
 
-export const ModalAdd = ({ show, setShow, title, inputs, clearValues, addObject, item, nameId }) => {
+export const ModalAdd = ({ show, setShow, title, inputs, handleReset, addObject, item, nameId }) => {
 
 
     const handleClose = () => {
         setShow(false);
-        clearValues();
+        handleReset();
     }
 
     const handleSubmit = (e) => {
@@ -145,7 +148,7 @@ const PrintInputsAdd = ({ inputs }) => {
             return (
                 <Form.Group key={idx}>
                     <Form.Label>{input.label}</Form.Label>
-                    <Form.Control type={input.type} placeholder={input.placeholder} value={input.value} onChange={(e) => { input.setValue(e.target.value) }} />
+                    <Form.Control type={input.type} placeholder={input.placeholder} min={input.min} value={input.value} onChange={(e) => { input.setValue(e.target.value) }} />
                 </Form.Group>
             )
         }
@@ -158,7 +161,7 @@ const PrintInputsEdit = ({ inputs, item }) => {
             return (
                 <Form.Group key={idx}>
                     <Form.Label>{input.label}</Form.Label>
-                    <Form.Control as="select" value={input.value === undefined ? item[input.column] : input.value} onChange={(e) => input.setValue(e.target.value)}>
+                    <Form.Control as="select" value={input.value === undefined ? item[input.column][input.subcolumn] : input.value} onChange={(e) => input.setValue(e.target.value)}>
                         {input.options.map((option, idx) => (<option key={idx} value={option.value}>{option.nombre}</option>))}
                     </Form.Control>
                 </Form.Group>
@@ -167,7 +170,7 @@ const PrintInputsEdit = ({ inputs, item }) => {
             return (
                 <Form.Group key={idx}>
                     <Form.Label>{input.label}</Form.Label>
-                    <Form.Control type={input.type} placeholder={input.placeholder} value={input.value === undefined ? item[input.column] : input.value} onChange={(e) => input.setValue(e.target.value)} />
+                    <Form.Control type={input.type} placeholder={input.placeholder} min={input.min} value={input.value === undefined ? item[input.column] : input.value} onChange={(e) => input.setValue(e.target.value)} />
                 </Form.Group>
             )
         }

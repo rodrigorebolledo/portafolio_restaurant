@@ -1,0 +1,14 @@
+.bloqueMesa {
+    cursor: pointer;
+    margin: 10px;
+    width: 30%;
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border: 1px solid red;
+    &:before {
+        content: "";
+        float: left;
+        padding-top: 100%;
+    }
+}

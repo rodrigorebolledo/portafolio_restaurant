@@ -16,7 +16,7 @@ const MenuAdmin = () => {
                             <Nav.Link as={NavLink} to="/admin/mesas" activeClassName="active">Mesas</Nav.Link>
                             <Nav.Link as={NavLink} to="/admin/usuarios" activeClassName="active">Usuarios</Nav.Link>
                             <Nav.Link as={NavLink} to="/admin/productos" activeClassName="active">Productos</Nav.Link>
-                            <NavDropdown title="Reportes" id="collasible-nav-dropdown">
+                            <NavDropdown title="Reportes " id="collasible-nav-dropdown">
                                 <NavDropdown.Item as={NavLink} to="/admin/generar_reportes">Generar Reportes</NavDropdown.Item>
                                 <NavDropdown.Item as={NavLink} to="/admin/reportes_historicos">Reportes Históricos</NavDropdown.Item>
                             </NavDropdown>
