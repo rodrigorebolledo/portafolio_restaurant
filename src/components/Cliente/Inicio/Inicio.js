@@ -13,8 +13,8 @@ const Inicio = () => {
     const [loading, setLoading] = useState(true);
 
     const PrintPlatos = () => (
-        platos.map((plato) => (
-            <Col xs={12} md={4} className="mt-3">
+        platos.map((plato, idx) => (
+            <Col key={idx} xs={12} md={4} className="mt-3">
                 <Card>
                     <Card.Img variant="top" src={ExampleImage} />
                     <Card.Body>
@@ -32,7 +32,7 @@ const Inicio = () => {
     )
 
     useEffect(_ => {
-        apiSetStateFromUrl('/platos', setPlatos, setLoading);
+        apiSetStateFromUrl('/api/platos', setPlatos, setLoading);
     }, [])
 
     return (

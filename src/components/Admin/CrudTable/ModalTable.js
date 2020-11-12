@@ -161,7 +161,7 @@ const PrintInputsEdit = ({ inputs, item }) => {
             return (
                 <Form.Group key={idx}>
                     <Form.Label>{input.label}</Form.Label>
-                    <Form.Control as="select" value={input.value === undefined ? item[input.column][input.subcolumn] : input.value} onChange={(e) => input.setValue(e.target.value)}>
+                    <Form.Control as="select" value={input.value === undefined ? item[input.column][input.subcolumn] !== undefined ? item[input.column][input.subcolumn] : item[input.column] : input.value} onChange={(e) => input.setValue(e.target.value)}>
                         {input.options.map((option, idx) => (<option key={idx} value={option.value}>{option.nombre}</option>))}
                     </Form.Control>
                 </Form.Group>

@@ -30,17 +30,4 @@ const editById = (url, id, objeto) => {
         })
 }
 
-
-const addElment = (url, objeto) => {
-    console.log(objeto)
-    return api.post(`${url}`, objeto)
-        .then((res) => {
-            return res.data;
-        }).catch((err) => {
-            console.log(err);
-            return false;
-        })
-}
-
-
-export { deleteById, editById, addElment };
+export { deleteById, editById };

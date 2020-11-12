@@ -22,9 +22,15 @@ const Login = (props) => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            let response = await loginUser(dispatch, { email, password });
-            if (!response.user) return;
-            props.history.push('/');
+            let data = await loginUser(dispatch, { emailUsuario: email, passUsuario: password });
+            console.log(data)
+            if (!data) return;
+            console.log(data)
+            if (data.perfil.idPerfil === 2) {
+                window.location.replace("/admin");
+            } else if (data.perfil.idPerfil === 1) {
+                window.location.replace("/");
+            }
         } catch (error) {
             console.log(error);
         }
@@ -43,9 +49,9 @@ const Login = (props) => {
 
     const handleRegister = async (obj) => {
         try {
-            let response = await registerUser(dispatch, obj);
-            if (!response.user) return;
-            props.history.push('/');
+            let data = await registerUser(dispatch, obj);
+            if (!data) return;
+            window.location.replace("/");
         } catch (error) {
             console.log(error);
         }
@@ -74,6 +80,10 @@ const Login = (props) => {
                                 <Form.Label>Contraseña</Form.Label>
                                 <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Contraseña" required />
                             </Form.Group>
+                            {errorMessage ?
+                                <Row className="justify-content-center">
+                                    <p>{errorMessage}</p>
+                                </Row> : null}
                             <Row>
                                 <Col xs={6} md={6} className="mt-3">
                                     <Button variant="primary" type="submit" className="button">

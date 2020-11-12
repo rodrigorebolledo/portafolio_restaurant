@@ -3,7 +3,8 @@ import { Table, Button, Row, Col, Container, Form } from 'react-bootstrap';
 import './CrudTable.scss';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { deleteById, editById, addElment } from '../Api'
+import { deleteById, editById } from '../Api'
+import { addElment } from '../../Comunes/Api';
 import { ModalDelete, ModalEdit, ModalAdd } from './ModalTable';
 
 export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs, apiSetStateFromUrl, handleReset }) => {
@@ -27,7 +28,10 @@ export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs,
 
 
     useEffect(() => {
-        handleLoadItems();
+        if (items.length) {
+            handleLoadItems();
+        }
+        return;
     }, [])
 
     const selectItem = async (item) => {
@@ -268,7 +272,7 @@ export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs,
                                 </tr>
                             </thead>
                             <tbody>
-                                {items ? <PrintBody /> : null}
+                                {items.length ? <PrintBody /> : null}
                             </tbody>
                         </Table>
                     </div>

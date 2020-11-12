@@ -61,13 +61,13 @@ const Mesas = () => {
 
 
     useEffect(() => {
-        apiSetStateFromUrl("/mesas", setMesas, setLoading);
+        apiSetStateFromUrl("/api/mesas", setMesas, setLoading);
     }, [])
 
     return (
         <Layout>
             <LayoutCrud>
-                {!loading ? <CrudTable items={mesas} setItems={setMesas} header={header} title="Mesas" inputs={INPUTS} url="/mesas" nameId="idMesa" apiSetStateFromUrl={apiSetStateFromUrl} handleReset={handleReset} /> : <CustomSpinner />}
+                {!loading ? <CrudTable items={mesas} setItems={setMesas} header={header} title="Mesas" inputs={INPUTS} url="/api/mesas" nameId="idMesa" apiSetStateFromUrl={apiSetStateFromUrl} handleReset={handleReset} /> : <CustomSpinner />}
             </LayoutCrud>
         </Layout>
     )

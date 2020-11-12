@@ -6,15 +6,15 @@ import { useAuthState } from '../Context';
 const AppRoutes = ({ component: Component, path, isPrivate, ...rest }) => {
 	const userDetails = useAuthState();
 	return (
-        
+
 		<Route
 			path={path}
 			render={(props) =>
-				isPrivate && (!Boolean(userDetails.token) && (!Boolean(userDetails.user) || !(userDetails.user === 'INVITADO') )) ? (
+				isPrivate && (!Boolean(userDetails.user)) ? (
 					<Redirect to={{ pathname: '/login' }} />
 				) : (
-					<Component {...props} />
-				)
+						<Component {...props} />
+					)
 			}
 			{...rest}
 		/>

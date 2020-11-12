@@ -32,7 +32,8 @@ export default function ModalRegister({ show, setShow, handleRegister, loading, 
             const registerData = {
                 nombre: nombre,
                 apellido: apellido,
-                rut: rut,
+                // rut: rut,
+                rut: '19.816100-4',
                 email: email,
                 password: password,
             }

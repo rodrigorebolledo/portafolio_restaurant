@@ -77,13 +77,13 @@ const Productos = () => {
 
 
     useEffect(() => {
-        apiSetStateFromUrl("/productos", setProductos, setLoading);
+        apiSetStateFromUrl("/api/productos", setProductos, setLoading);
     }, [])
 
     return (
         <Layout>
             <LayoutCrud>
-                {!loading ? <CrudTable items={productos} setItems={setProductos} header={header} title="Productos" inputs={INPUTS} url="/productos" nameId="idProducto" apiSetStateFromUrl={apiSetStateFromUrl} handleReset={handleReset} /> : <CustomSpinner />}
+                {!loading ? <CrudTable items={productos} setItems={setProductos} header={header} title="Productos" inputs={INPUTS} url="/api/productos" nameId="idProducto" apiSetStateFromUrl={apiSetStateFromUrl} handleReset={handleReset} /> : <CustomSpinner />}
             </LayoutCrud>
         </Layout>
     )

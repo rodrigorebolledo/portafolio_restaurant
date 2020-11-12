@@ -14,6 +14,7 @@ const apiSetStateFromUrl = (url, setState, setLoading) => {
 
     return api.get(url).then(res => {
         setState(res.data);
+        console.log(res);
         setLoading(false);
     }).catch((err) => {
         console.log(err);
@@ -25,4 +26,13 @@ const apiSetStateFromUrl = (url, setState, setLoading) => {
 
 }
 
-export { api, apiSetStateFromUrl };
+const addElment = (url, objeto) => {
+    return api.post(`${url}`, objeto)
+        .then((res) => {
+            return res.data;
+        }).catch((err) => {
+            console.log(err);
+            return false;
+        })
+}
+export { api, apiSetStateFromUrl, addElment };

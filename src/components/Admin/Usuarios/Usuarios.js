@@ -83,25 +83,29 @@ const Usuarios = () => {
             setValue: setPerfil,
             options: [
                 {
-                    nombre: 'Administrador',
+                    nombre: 'Cliente',
                     value: 1
+                },
+                {
+                    nombre: 'Administrador',
+                    value: 2
                 },
                 {
                     nombre: 'Contador',
                     value: 3
                 },
                 {
-                    nombre: 'Bodeguero',
-                    value: 6
+                    nombre: 'Garzón',
+                    value: 4
                 },
                 {
                     nombre: 'Cocinero',
                     value: 5
                 },
                 {
-                    nombre: 'Garzón',
-                    value: 4
-                }
+                    nombre: 'Bodeguero',
+                    value: 6
+                },
             ]
         }
     ];
@@ -116,13 +120,13 @@ const Usuarios = () => {
     }
 
     useEffect(() => {
-        apiSetStateFromUrl("/usuarios", setUsers, setLoading);
+        apiSetStateFromUrl("/api/usuarios", setUsers, setLoading);
     }, []);
 
     return (
         <Layout>
             <LayoutCrud>
-                {!loading ? <CrudTable items={users} setItems={setUsers} header={HEADER} title="Usuarios" inputs={INPUTS} url="/usuarios" nameId="idUsuario" apiSetStateFromUrl={apiSetStateFromUrl} handleReset={handleReset} /> : <CustomSpinner />}
+                {!loading ? <CrudTable items={users} setItems={setUsers} header={HEADER} title="Usuarios" inputs={INPUTS} url="/api/usuarios" nameId="idUsuario" apiSetStateFromUrl={apiSetStateFromUrl} handleReset={handleReset} /> : <CustomSpinner />}
             </LayoutCrud>
         </Layout>
     )

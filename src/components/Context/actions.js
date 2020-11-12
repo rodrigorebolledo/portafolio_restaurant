@@ -1,4 +1,7 @@
-const ROOT_URL = '';
+
+import { addElment } from '../Comunes/Api';
+
+const ROOT_URL = 'http://localhost:80';
 
 const INVITADO = {
     user: 'INVITADO',
@@ -6,19 +9,11 @@ const INVITADO = {
 }
 export async function loginUser(dispatch, loginPayload) {
 
-    const requestOption = {
-        method: 'POST',
-        header: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(loginPayload),
-    };
-
     try {
         dispatch({ type: 'REQUEST_LOGIN' });
-        let response = await fetch(`${ROOT_URL}/login`, requestOption);
-        let data = await response.json();
-
-        if (data.user) {
-            dispatch({ type: 'LOGIN_SUCCESS', payload: data });
+        let data = await addElment("/api/usuarios/authenticate", loginPayload)
+        if (data) {
+            dispatch({ type: 'LOGIN_SUCCESS', payload: { user: data } });
             localStorage.setItem('currentUser', JSON.stringify(data));
             return data;
         }
@@ -27,8 +22,8 @@ export async function loginUser(dispatch, loginPayload) {
         console.log(data.errors[0]);
         return;
     } catch (error) {
-        dispatch({ type: 'LOGIN_ERROR', error: error });
-        console.log(error);
+        dispatch({ type: 'LOGIN_ERROR', error: "Contraseña/Usuario Incorrect@" });
+        console.log("Contraseña Incorrecta");
     }
 }
 
@@ -53,19 +48,13 @@ export async function loginInvitado(dispatch) {
 
 export async function registerUser(dispatch, registerPayload) {
 
-    const requestOption = {
-        method: 'POST',
-        header: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(registerPayload),
-    };
-
     try {
         dispatch({ type: 'REQUEST_REGISTER' });
-        let response = await fetch(`${ROOT_URL}/registrar`, requestOption);
-        let data = await response.json();
+        let data = await addElment("/api/clientes", registerPayload)
 
-        if (data.user) {
-            dispatch({ type: 'REGISTER_SUCCESS', payload: data });
+        if (data) {
+            console.log(data)
+            dispatch({ type: 'REGISTER_SUCCESS', payload: { user: data } });
             localStorage.setItem('currentUser', JSON.stringify(data));
             return data;
         }

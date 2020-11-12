@@ -1,6 +1,7 @@
 import Reservar from '../Reservar';
 import VerReservas from '../VerReservas';
 import Inicio from '../Inicio';
+import InicioAdmin from '../../Admin/Inicio';
 import Login from '../../Comunes/Login';
 
 const routes = [
@@ -8,7 +9,7 @@ const routes = [
         path: '/reservar',
         component: Reservar,
         exact: true,
-        isPrivate: false,
+        isPrivate: true,
     },
     {
         path: '/ver_reservas',

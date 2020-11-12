@@ -10,44 +10,45 @@ const routes = [
         path: '/admin/reportes_historicos',
         component: ReportesHistoricos,
         exact: true,
-        isPrivate: false,
+        isPrivate: true,
     },
     {
         path: '/admin/generar_reportes',
         component: GeneradorReportes,
         exact: true,
-        isPrivate: false,
+        isPrivate: true,
     },
     {
         path: '/admin/productos',
         component: Productos,
         exact: true,
-        isPrivate: false,
+        isPrivate: true,
     },
     {
         path: '/admin/usuarios',
         component: Usuarios,
         exact: true,
-        isPrivate: false,
+        isPrivate: true,
     },
     {
         path: '/admin/mesas',
         component: Mesas,
         exact: true,
-        isPrivate: false,
+        isPrivate: true,
     },
     {
         path: '/admin',
         component: Inicio,
         exact: true,
-        isPrivate: false,
+        isPrivate: true,
     },
     {
         path: '/login',
         component: Login,
         exact: true,
         isPrivate: false,
-    }
+    },
+
 ]
 
 export default routes;

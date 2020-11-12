@@ -30,15 +30,15 @@ const Header = (props) => {
     const handleLogout = () => {
         logout(dispatch);
     }
-    
-    
+
+
     const PrintAcceso = () => (
         <Col className="text-center boton-ico-text" as={Link} to="/login">
             <AccountCircleIcon />
             <p>Acceso</p>
         </Col>
     );
-    
+
     const PrintLogout = () => (
         <Col className="text-center boton-ico-text" onClick={() => handleLogout()}>
             <AccountCircleIcon />
@@ -56,12 +56,13 @@ const Header = (props) => {
                     <Col>
                         <img src={Logo} className="image-responsive" alt="Logo" />
                     </Col>
-                    <Row className="mt-3" style={{margin: 0}}>
+                    <Row className="mt-3" style={{ margin: 0 }}>
                         {!Boolean(userDetails.user) ? <PrintAcceso /> : <PrintLogout />}
+
                         {/* {!isAdmin && <PrintCarrito itemCount={itemCount} />} */}
                     </Row>
-                </Row> 
-            </Container>    
+                </Row>
+            </Container>
         </div>
     )
 }

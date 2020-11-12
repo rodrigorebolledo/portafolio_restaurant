@@ -1,2 +1,2 @@
-import { deleteById, editById, addElment } from './Api';
-export { deleteById, editById, addElment };
+import { deleteById, editById } from './Api';
+export { deleteById, editById };
