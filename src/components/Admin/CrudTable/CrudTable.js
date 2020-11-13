@@ -7,7 +7,7 @@ import { deleteById, editById } from '../Api'
 import { addElment } from '../../Comunes/Api';
 import { ModalDelete, ModalEdit, ModalAdd } from './ModalTable';
 
-export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs, apiSetStateFromUrl, handleReset }) => {
+export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs, apiSetStateFromUrl, handleReset, eliminar, agregar }) => {
 
     const [showModalEdit, setShowModalEdit] = useState(false);
     const [showModalDelete, setShowModalDelete] = useState(false);
@@ -199,18 +199,39 @@ export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs,
         return items.map((item, idx) => {
             return (
                 <tr key={idx}>
-                    <td><Form.Check onChange={() => handleCheckItem(idx)} /></td>
+                    {eliminar !== false ? (
+                        <td><Form.Check onChange={() => handleCheckItem(idx)} /></td>
+                    ) : null}
                     {
                         keys.map((key, idx) => {
                             const valor = item[key];
                             if (typeof valor === 'object') {
                                 const keysChildren = Object.keys(valor);
-                                return (
-                                    <td key={idx}>{valor[keysChildren[1]]}</td>
-                                )
+                                if (key !== 'usuario') {
+                                    return (
+                                        <td key={idx}>{valor[keysChildren[1]]}</td>
+                                    )
+                                } else {
+                                    return null
+                                }
+
                             }
+
                             if (typeof valor !== "boolean" && valor !== undefined) {
-                                return <td key={idx}>{valor}</td>
+
+                                if (key === "passUsuario") {
+                                    return <td key={idx}>********</td>
+                                } else {
+                                    //SOLUCIÓN TEMPORAL
+                                    if (valor === 't') {
+                                        return <td key={idx}>Habilitado</td>
+                                    } else if (valor === 'f') {
+                                        return <td key={idx}>Deshabilitado</td>
+                                    } else {
+                                        return <td key={idx}>{valor}</td>
+                                    }
+                                }
+
                             } else {
                                 return null;
                             }
@@ -228,14 +249,14 @@ export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs,
                             }
                             }
                         />
-                        <DeleteIcon
+                        {eliminar !== false ? (<DeleteIcon
                             style={{ color: 'red', cursor: 'pointer' }}
                             onClick={() => {
                                 handleShowModalDelete();
                                 selectItem(item);
                             }
                             }
-                        />
+                        />) : null}
                     </td>
                 </tr>
             )
@@ -258,15 +279,21 @@ export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs,
                                     <h2 className="title"> Administrar <b>{title}</b></h2>
                                 </Col>
                                 <Col xs={6}>
-                                    <Button className="button" variant="success" onClick={() => handleShowModalAdd()}>Agregar</Button>
-                                    <Button className="button" variant="danger" onClick={() => handleShowModalDelete()}>Eliminar</Button>
+                                    {agregar !== false ? (
+                                        <Button className="button" variant="success" onClick={() => handleShowModalAdd()}>Agregar</Button>
+                                    ) : null}
+                                    {eliminar !== false ? (
+                                        <Button className="button" variant="danger" onClick={() => handleShowModalDelete()}>Eliminar</Button>
+                                    ) : null}
                                 </Col>
                             </Row>
                         </div>
                         <Table striped bordered hover size="sm">
                             <thead>
                                 <tr>
-                                    <th></th>
+                                    {eliminar !== false ? (
+                                        <th></th>
+                                    ) : null}
                                     {header ? <PrintHeader /> : <PrintHeaderByKey />}
                                     <th>Acciones</th>
                                 </tr>

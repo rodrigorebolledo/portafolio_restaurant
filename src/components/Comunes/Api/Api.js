@@ -10,16 +10,28 @@ const api = axios.create({
 });
 
 
-const apiSetStateFromUrl = (url, setState, setLoading) => {
+const apiSetStateFromUrl = (url, setState, setLoading, id = undefined) => {
 
-    return api.get(url).then(res => {
-        setState(res.data);
-        console.log(res);
-        setLoading(false);
-    }).catch((err) => {
-        console.log(err);
-        return;
-    });
+    if (id !== undefined) {
+        return api.get(url + id).then(res => {
+            setState(res.data);
+            console.log(res);
+            setLoading(false);
+        }).catch((err) => {
+            console.log(err);
+            return;
+        });
+    } else {
+        return api.get(url).then(res => {
+            setState(res.data);
+            console.log(res);
+            setLoading(false);
+        }).catch((err) => {
+            console.log(err);
+            return;
+        });
+    }
+
 
 
 

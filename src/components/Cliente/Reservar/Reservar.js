@@ -14,9 +14,10 @@ const Reservar = () => {
     const [fechaReserva, setFechaReserva] = useState();
     const [reservada, setReservada] = useState();
     const [paso, setPaso] = useState(1);
-    // useEffect(_ => {
-    //     apiSetStateFromUrl("/api/mesas", setMesas, setIsLoading);
-    // }, [])
+
+    useEffect(_ => {
+        document.title = 'Reservar';
+    }, [])
 
     const handleBuscarMesas = () => {
         // let flagPosiblesMesas = [];
@@ -191,8 +192,7 @@ const Reservar = () => {
         <Layout>
             <Col>
                 <h3 className="mt-3">Reservas</h3>
-                {reservada === undefined ? <PrintReservar /> : <Reserva />
-                }
+                {reservada === undefined ? <PrintReservar /> : <Reserva />}
             </Col>
         </Layout>
     )

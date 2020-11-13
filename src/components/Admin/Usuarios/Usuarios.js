@@ -121,12 +121,13 @@ const Usuarios = () => {
 
     useEffect(() => {
         apiSetStateFromUrl("/api/usuarios", setUsers, setLoading);
+        document.title = 'Admin Usuarios';
     }, []);
 
     return (
         <Layout>
             <LayoutCrud>
-                {!loading ? <CrudTable items={users} setItems={setUsers} header={HEADER} title="Usuarios" inputs={INPUTS} url="/api/usuarios" nameId="idUsuario" apiSetStateFromUrl={apiSetStateFromUrl} handleReset={handleReset} /> : <CustomSpinner />}
+                {!loading ? <CrudTable items={users} setItems={setUsers} header={HEADER} title="Usuarios" inputs={INPUTS} url="/api/usuarios" nameId="idUsuario" apiSetStateFromUrl={apiSetStateFromUrl} handleReset={handleReset} eliminar={false} /> : <CustomSpinner />}
             </LayoutCrud>
         </Layout>
     )

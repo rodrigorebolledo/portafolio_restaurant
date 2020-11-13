@@ -6,23 +6,27 @@ import Login from '../../Comunes/Login';
 
 const routes = [
     {
+        path: '/',
+        component: Inicio,
+        exact: true,
+        isPrivate: false,
+        name: 'Inicio'
+    },
+    {
         path: '/reservar',
         component: Reservar,
         exact: true,
         isPrivate: true,
+        name: 'Reservar',
     },
     {
         path: '/ver_reservas',
         component: VerReservas,
         exact: true,
         isPrivate: true,
+        name: 'Ver Reservas',
     },
-    {
-        path: '/',
-        component: Inicio,
-        exact: true,
-        isPrivate: false,
-    },
+
     {
         path: '/login',
         component: Login,

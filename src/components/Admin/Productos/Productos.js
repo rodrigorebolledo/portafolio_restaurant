@@ -78,6 +78,7 @@ const Productos = () => {
 
     useEffect(() => {
         apiSetStateFromUrl("/api/productos", setProductos, setLoading);
+        document.title = 'Admin Productos';
     }, [])
 
     return (

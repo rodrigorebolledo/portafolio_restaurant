@@ -4,44 +4,60 @@ import Usuarios from '../Usuarios';
 import Productos from '../Productos';
 import GeneradorReportes from '../GeneradorReportes';
 import ReportesHistoricos from '../ReportesHistoricos';
+import Personas from '../Personas';
 import Login from '../../Comunes/Login';
 const routes = [
     {
-        path: '/admin/reportes_historicos',
-        component: ReportesHistoricos,
+        path: '/admin',
+        component: Inicio,
         exact: true,
         isPrivate: true,
-    },
-    {
-        path: '/admin/generar_reportes',
-        component: GeneradorReportes,
-        exact: true,
-        isPrivate: true,
+        name: 'Inicio'
     },
     {
         path: '/admin/productos',
         component: Productos,
         exact: true,
         isPrivate: true,
+        name: 'Productos'
     },
+
     {
         path: '/admin/usuarios',
         component: Usuarios,
         exact: true,
         isPrivate: true,
+        name: 'Usuarios'
     },
     {
         path: '/admin/mesas',
         component: Mesas,
         exact: true,
         isPrivate: true,
+        name: 'Mesas'
     },
     {
-        path: '/admin',
-        component: Inicio,
+        path: '/admin/personas',
+        component: Personas,
         exact: true,
         isPrivate: true,
+        name: 'Personas'
     },
+    {
+        path: '/admin/reportes_historicos',
+        component: ReportesHistoricos,
+        exact: true,
+        isPrivate: true,
+        name: 'Reportes Históricos'
+    },
+    {
+        path: '/admin/generar_reportes',
+        component: GeneradorReportes,
+        exact: true,
+        isPrivate: true,
+        name: 'Generar Reportes'
+    },
+
     {
         path: '/login',
         component: Login,

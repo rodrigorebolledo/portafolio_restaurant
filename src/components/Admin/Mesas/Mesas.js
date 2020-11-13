@@ -62,6 +62,7 @@ const Mesas = () => {
 
     useEffect(() => {
         apiSetStateFromUrl("/api/mesas", setMesas, setLoading);
+        document.title = 'Admin Mesas';
     }, [])
 
     return (
