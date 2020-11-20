@@ -41,7 +41,7 @@ const Inicio = () => {
             <Col>
                 <h3 className="mt-3">Platos</h3>
                 <Row>
-                    {!loading ? <PrintPlatos /> : <CustomSpinner />}
+                    {!loading && platos.length > 0 ? <PrintPlatos /> : <CustomSpinner />}
                 </Row>
             </Col>
         </Layout>
