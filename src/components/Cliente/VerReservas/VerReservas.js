@@ -4,6 +4,9 @@ import { Col, Row } from 'react-bootstrap';
 import Layout from '../LayoutCliente/';
 import { apiSetStateFromUrl } from '../../Comunes/Api';
 import { loginUser, loginInvitado, useAuthState, useAuthDispatch, registerUser } from '../../Context';
+import { BorderColor, CropOriginal, CropOriginalOutlined } from '@material-ui/icons';
+
+
 
 const VerReservas = () => {
 
@@ -24,13 +27,18 @@ const VerReservas = () => {
             let diaInicio = fechaInicioMoment.format("DD/MM/YYYY");
             let horaInicio = fechaInicioMoment.format("hh:mm")
             return (
-                <Row className="justify-content-center mt-5">
-                    <div>
-                        <Row>Dirección: {DIRECCION}</Row>
-                        <Row>Número de mesa: {reserva.mesa.numeroMesa}</Row>
-                        <Row>El día {diaInicio} a las: {horaInicio}</Row>
-                    </div>
-                </Row>
+                <div class="w3-card-4 w3-white" >
+                     <Row className="justify-content-center mt-5">
+                        <div>
+                            <Row>Dirección: {DIRECCION}</Row>
+                            <Row>Número de mesa: {reserva.mesa.numeroMesa}</Row>
+                            <Row>El día {diaInicio} a las: {horaInicio}</Row>
+                        </div>
+                    </Row>
+                </div>
+                   
+                  
+                
             )
         })
     }

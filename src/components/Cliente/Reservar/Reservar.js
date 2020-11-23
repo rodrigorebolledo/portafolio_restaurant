@@ -149,17 +149,20 @@ const Reservar = () => {
 
     const PrintSeleccionarFecha = _ => {
         return (
-            <Row className="mt-3 justify-content-center">
-                <Col xs={12} md={6}>
-                    <Form.Label>Seleccione una fecha para la reserva</Form.Label>
-                    <InputGroup>
-                        <Form.Control type="datetime-local"
-                            value={fechaReserva} onChange={(e) => setFechaReserva(e.target.value)} />
-                        <InputGroup.Append><Button onClick={_ => handleBuscarMesas()}>Buscar Mesa</Button></InputGroup.Append>
-                    </InputGroup>
-                    <p style={{ color: 'red' }}>La reserva tendrá una validez de 15 minutos. Sea puntual por favor.</p>
-                </Col>
-            </Row>    
+                <form>
+                    <Row className="mt-3 justify-content-center">
+                        <Col xs={12} md={6}>
+                         
+                            <Form.Label>Seleccione una fecha y hora para la reserva</Form.Label>
+                            <InputGroup>
+                                <Form.Control type="datetime-local" required
+                                value={fechaReserva} onChange={(e) => setFechaReserva(e.target.value)} />
+                            <InputGroup.Append><Button onClick={_ => handleBuscarMesas()}>Buscar Mesa</Button></InputGroup.Append>
+                        </InputGroup>
+                        <p style={{ color: 'red' }}>La reserva tendrá una validez de 15 minutos. Sea puntual por favor.</p>
+                    </Col>
+                </Row>   
+                </form>             
         )
     }
 
