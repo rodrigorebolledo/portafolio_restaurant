@@ -7,34 +7,29 @@ const Footer = () => {
             <Container>
                 <Row className="pt-3">
                     <Col className="col-12 col-sm-4">
+                        <ul>
+                            <h3>Conócenos</h3>
+                            <li><a class="fa fa-map" href="https://www.google.cl/maps"> Colo-Colo 120, Concepción</a></li>
+                            <li><a  class="fa fa-location-arrow" href="https://www.google.cl/maps"> Zona de despacho</a></li>
+                        </ul>
+                    </Col>
+                    <Col className="col-12 col-sm-4">
+                        <ul>
+                            <h3>Redes Sociales</h3>
+                            <li><a class="fa fa-facebook" href="https://web.facebook.com/?_rdc=1&_rdr"> Facebook</a></li>
+                            <li><a class="fa fa-instagram" href="https://www.instagram.com/"> Instagram</a></li>
+                            <li><a class="fa fa-twitter" href="https://twitter.com/?lang=es"> Twitter</a></li>
+                        </ul>
+                    </Col>
+                    <Col className="col-12 col-sm-4">
+                        <ul>
+                            <h3>Contacto</h3>
+                            <div class="icon-bar">
+                                
 
-                        <ul>
-                            <h3>Servicios</h3>
-                            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-                            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-                            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-                            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-                            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-                        </ul>
-                    </Col>
-                    <Col className="col-12 col-sm-4">
-                        <ul>
-                            <h3>Empresa</h3>
-                            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-                            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-                            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-                            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-                            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-                        </ul>
-                    </Col>
-                    <Col className="col-12 col-sm-4">
-                        <ul>
-                            <h3>Cartas</h3>
-                            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-                            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-                            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-                            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-                            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+                                <li><a href="https://web.whatsapp.com/" class="fa fa-whatsapp"> WhatsApp: +56957933117</a></li>
+                                <li><a class="fa fa-phone-square"> Teléfono Fijo: 0412352544</a></li>
+                            </div>                          
                         </ul>
                     </Col>
                 </Row>
