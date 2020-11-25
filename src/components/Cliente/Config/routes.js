@@ -3,6 +3,7 @@ import VerReservas from '../VerReservas';
 import Inicio from '../Inicio';
 import InicioAdmin from '../../Admin/Inicio';
 import Login from '../../Comunes/Login';
+import Pago from '../Pago';
 
 
 const routes = [
@@ -35,6 +36,13 @@ const routes = [
         isPrivate: false,
     },
 
+
+    {
+        path: '/pago',
+        component: Pago,
+        exact: true,
+        isPrivate: false,
+    },
 ];
 
 export default routes;

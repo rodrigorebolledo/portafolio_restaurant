@@ -11,12 +11,12 @@ const Inicio = () => {
 
     const [platos, setPlatos] = useState([])
     const [loading, setLoading] = useState(true);
-
+ 
     const PrintPlatos = () => (
         platos.map((plato, idx) => (
             <Col key={idx} xs={12} md={4} className="mt-3">
                 <Card>
-                    <Card.Img variant="top" src={ExampleImage} />
+                    {plato.fotoPlato ? <Card.Img variant="top" src={plato.fotoPlato} /> : <Card.Img variant="top" src={ExampleImage} />}
                     <Card.Body>
                         <Card.Title>{plato.nombrePlato}</Card.Title>
                         <Card.Text>
