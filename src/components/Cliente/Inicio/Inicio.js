@@ -11,7 +11,7 @@ const Inicio = () => {
 
     const [platos, setPlatos] = useState([])
     const [loading, setLoading] = useState(true);
-
+ 
     const PrintPlatos = () => (
         platos.map((plato, idx) => (
             <Col key={idx} xs={12} md={4} className="mt-3">
