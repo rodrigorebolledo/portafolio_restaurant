@@ -4,6 +4,7 @@ import Inicio from '../Inicio';
 import InicioAdmin from '../../Admin/Inicio';
 import Login from '../../Comunes/Login';
 
+
 const routes = [
     {
         path: '/',
@@ -33,6 +34,7 @@ const routes = [
         exact: true,
         isPrivate: false,
     },
+
 ];
 
 export default routes;
