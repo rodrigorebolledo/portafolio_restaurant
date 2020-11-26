@@ -5,26 +5,25 @@ import CocineroRouter from '../components/Cocinero/CocineroRouter';
 
 const routes = [
     {
-        path:'/admin',
-        component:AdministradorRouter,
+        path: '/admin',
+        component: AdministradorRouter,
         exact: false
     },
     {
-        path:'/login',
-        component:Login,
+        path: '/login',
+        component: Login,
         exact: false
     },
     {
-        path:'/',
-        component:ClienteRouter,
+        path: '/cocinero',
+        component: CocineroRouter,
         exact: false
     },
     {
-        path:'/cocinero',
-        component:CocineroRouter,
+        path: '/',
+        component: ClienteRouter,
         exact: false
     }
-
 ];
 
 export default routes;
