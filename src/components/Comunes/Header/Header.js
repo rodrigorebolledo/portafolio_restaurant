@@ -56,7 +56,10 @@ const Header = (props) => {
                         <img src={Logo} className="image-responsive" alt="Logo" />
                     </Col>
                     <Row className="mt-3" style={{ margin: 0 }}>
-                        <p className="nombre-usuario">Hola {userDetails.user.perfil.nombrePerfil}</p>
+                        {userDetails.user !== undefined ? (
+                            <p className="nombre-usuario">Hola {userDetails.user.perfil.nombrePerfil}</p>
+                        ) : null}
+
                         {!Boolean(userDetails.user) ? <PrintAcceso /> : <PrintLogout />}
 
                         {/* {!isAdmin && <PrintCarrito itemCount={itemCount} />} */}
