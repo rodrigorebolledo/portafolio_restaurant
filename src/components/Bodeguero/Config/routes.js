@@ -1,32 +1,36 @@
-import Pedidos from '../Pedidos';
-import Platos from '../Platos';
-import Recetas from '../Recetas';
+import Pedidos from '../Productos';
+import Recetas from '../Pedidos';
 import Inicio from '../Inicio';
 import Login from '../../Comunes/Login';
+import Productos from '../Productos';
 
 
 
 const routes = [
     {
-        path: '/cocinero',
+        path: '/bodeguero',
         component: Inicio,
         exact: true,
         isPrivate: false,
-        name: 'Inicio'
+        name: 'Inicio',
+        needLogin: false,
+        
     },
     {
-        path: '/cocinero/pedidos',
+        path: '/bodeguero/pedidos',
         component: Pedidos,
         exact: true,
         isPrivate: true,
         name: 'Pedidos',
+        needLogin: true,
     },
     {
-        path: '/cocinero/platos',
-        component: Platos,
+        path: '/bodeguero/productos',
+        component: Productos,
         exact: true,
         isPrivate: true,
-        name: 'Platos',
+        name: 'Productos',
+        needLogin: true,
         
     },
 
@@ -35,6 +39,7 @@ const routes = [
         component: Login,
         exact: true,
         isPrivate: false,
+        needLogin: false,
     },
 
 
@@ -44,6 +49,7 @@ const routes = [
         exact: true,
         isPrivate: false,
         name: 'Recetas',
+        needLogin: true,
        
     },
 ];

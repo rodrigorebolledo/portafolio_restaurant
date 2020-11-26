@@ -32,6 +32,8 @@ const Login = (props) => {
                 window.location.replace("/");
             }else if (data.perfil.idPerfil === 4) {
                 window.location.replace("/cocinero");
+            }else if (data.perfil.idPerfil === 8) {
+                window.location.replace("/bodeguero");
             }
         } catch (error) {
             console.log(error);
