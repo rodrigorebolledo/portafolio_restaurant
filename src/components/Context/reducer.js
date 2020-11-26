@@ -2,13 +2,13 @@ import React, { useState, useReducer } from 'react';
 
 let user = localStorage.getItem('currentUser')
     ? JSON.parse(localStorage.getItem('currentUser'))
-    : '';
+    : undefined;
 let token = localStorage.getItem('currentUser')
     ? JSON.parse(localStorage.getItem('currentUser')).auth_token
     : '';
 
 export const initialState = {
-    user: '' || user,
+    user: undefined || user,
     token: '' || token,
     loading: false,
     errorMessage: null,

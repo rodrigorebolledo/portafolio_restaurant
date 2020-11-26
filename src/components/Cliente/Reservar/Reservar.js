@@ -14,9 +14,12 @@ const Reservar = () => {
     const [fechaReserva, setFechaReserva] = useState();
     const [reservada, setReservada] = useState();
     const [paso, setPaso] = useState(1);
+    const [fechaMinima, setFechaMinima] = useState(undefined);
 
     useEffect(_ => {
         document.title = 'Reservar';
+        setFechaReserva(moment().format('YYYY-MM-DDTHH:mm'));
+        setFechaMinima(moment().format('YYYY-MM-DDTHH:mm'));
     }, [])
 
     const handleBuscarMesas = () => {
@@ -148,21 +151,31 @@ const Reservar = () => {
     );
 
     const PrintSeleccionarFecha = _ => {
+        const fechaFinal = moment().add(1, 'months').format('YYYY-MM-DDTHH:mm')
         return (
-                <form>
-                    <Row className="mt-3 justify-content-center">
-                        <Col xs={12} md={6}>
-                         
-                            <Form.Label>Seleccione una fecha y hora para la reserva</Form.Label>
+            <form>
+                <Row className="mt-3 justify-content-center">
+                    <Col xs={12} md={6}>
+
+                        <Form.Label>Seleccione una fecha y hora para la reserva</Form.Label>
+
+                        {fechaMinima != undefined ? (
                             <InputGroup>
                                 <Form.Control type="datetime-local" required
-                                value={fechaReserva} onChange={(e) => setFechaReserva(e.target.value)} />
-                            <InputGroup.Append><Button onClick={_ => handleBuscarMesas()}>Buscar Mesa</Button></InputGroup.Append>
-                        </InputGroup>
+                                    value={fechaReserva} onChange={(e) => {
+                                        console.log(e.target.value);
+                                        setFechaReserva(e.target.value)
+                                    }}
+                                    min={fechaMinima} max={fechaFinal}
+                                />
+                                <InputGroup.Append><Button onClick={_ => handleBuscarMesas()}>Buscar Mesa</Button></InputGroup.Append>
+                            </InputGroup>
+                        ) : null}
+
                         <p style={{ color: 'red' }}>La reserva tendrá una validez de 15 minutos. Sea puntual por favor.</p>
                     </Col>
-                </Row>   
-                </form>             
+                </Row>
+            </form>
         )
     }
 

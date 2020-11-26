@@ -4,7 +4,9 @@ import { NavLink } from "react-router-dom";
 import { Container } from 'react-bootstrap';
 import routes from '../Config/routes';
 import './Layout.scss';
+import { useAuthState } from '../../Context';
 const MenuCliente = () => {
+    const userDetails = useAuthState();
     return (
         <>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -16,14 +18,26 @@ const MenuCliente = () => {
                             <Nav.Link as={NavLink} to="/reservar" activeClassName="active" exact>Reservar</Nav.Link>
                             <Nav.Link as={NavLink} to="/ver_reservas" activeClassName="active">Ver Reservas</Nav.Link> */}
                             {routes.map((route => {
-                                console.log(route);
-                                if (route.name != undefined && route.needLogin !== true) {
-                                    return (
-                                        <Nav.Link as={NavLink} to={route.path} activeClassName="active">{route.name}</Nav.Link>
-                                    )
+                                if (route.name != undefined) {
+                                    if (route.needLogin === true) {
+                                        if (userDetails.user !== undefined) {
+                                            return (
+                                                <Nav.Link as={NavLink} to={route.path} activeClassName="active">{route.name}</Nav.Link>
+                                            )
+                                        } else {
+                                            return null;
+                                        }
+
+                                    } else {
+
+                                        return (
+                                            <Nav.Link as={NavLink} to={route.path} activeClassName="active">{route.name}</Nav.Link>
+                                        )
+                                    }
                                 } else {
                                     return null;
                                 }
+
                             }))}
                         </Nav>
                     </Navbar.Collapse>

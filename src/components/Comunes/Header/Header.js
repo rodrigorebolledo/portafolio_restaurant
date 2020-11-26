@@ -47,8 +47,7 @@ const Header = (props) => {
     );
     const userDetails = useAuthState();
     const { statusObject } = props;
-    const { isLogin, isAdmin = false, itemCount } = statusObject;
-
+    // const { isLogin, isAdmin = false, itemCount } = statusObject;
     return (
         <div className="header">
             <Container>
@@ -57,6 +56,7 @@ const Header = (props) => {
                         <img src={Logo} className="image-responsive" alt="Logo" />
                     </Col>
                     <Row className="mt-3" style={{ margin: 0 }}>
+                        <p className="nombre-usuario">Hola {userDetails.user.perfil.nombrePerfil}</p>
                         {!Boolean(userDetails.user) ? <PrintAcceso /> : <PrintLogout />}
 
                         {/* {!isAdmin && <PrintCarrito itemCount={itemCount} />} */}

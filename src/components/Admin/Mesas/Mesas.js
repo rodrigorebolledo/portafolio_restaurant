@@ -13,16 +13,15 @@ const Mesas = () => {
     const [numeroMesa, setNumeroMesa] = useState(1);
     const [capacidadMesa, setCapacidadMesa] = useState(1);
     const [estadoMesa, setEstadoMesa] = useState(1);
-
     const INPUTS = [
         {
             label: 'Número mesa',
-            type: 'number',           
+            type: 'number',
             placeholder: 'Ingrese el numero de la mesa',
             column: 'numeroMesa',
             value: numeroMesa,
             setValue: setNumeroMesa,
-            min:"1",
+            min: "1",
         },
         {
             label: 'Capacidad mesa',
@@ -31,7 +30,7 @@ const Mesas = () => {
             column: 'capacidadMesa',
             value: capacidadMesa,
             setValue: setCapacidadMesa,
-            min:"1",
+            min: "1",
         },
         {
             label: 'Estado',

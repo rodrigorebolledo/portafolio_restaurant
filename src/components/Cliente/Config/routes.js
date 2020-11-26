@@ -12,13 +12,15 @@ const routes = [
         component: Inicio,
         exact: true,
         isPrivate: false,
-        name: 'Inicio'
+        name: 'Inicio',
+        needLogin: false,
     },
     {
         path: '/reservar',
         component: Reservar,
         exact: true,
         isPrivate: true,
+        needLogin: false,
         name: 'Reservar',
     },
     {
@@ -34,6 +36,7 @@ const routes = [
         path: '/login',
         component: Login,
         exact: true,
+        needLogin: false,
         isPrivate: false,
     },
 
