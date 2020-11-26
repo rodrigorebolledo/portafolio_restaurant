@@ -27,6 +27,7 @@ const routes = [
         exact: true,
         isPrivate: true,
         name: 'Ver Reservas',
+        needLogin: true,
     },
 
     {
@@ -43,6 +44,7 @@ const routes = [
         exact: true,
         isPrivate: false,
         name: 'Pago',
+        needLogin: true,
     },
 ];
 
