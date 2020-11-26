@@ -5,6 +5,7 @@ import InicioAdmin from '../../Admin/Inicio';
 import Login from '../../Comunes/Login';
 import Pago from '../Pago';
 
+
 const routes = [
     {
         path: '/',
@@ -34,6 +35,7 @@ const routes = [
         exact: true,
         isPrivate: false,
     },
+
 
     {
         path: '/pago',
