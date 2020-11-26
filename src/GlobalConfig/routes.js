@@ -1,6 +1,7 @@
 import AdministradorRouter from '../components/Admin/AdministradorRouter';
 import ClienteRouter from '../components/Cliente/ClienteRouter';
 import Login from '../components/Comunes/Login';
+import CocineroRouter from '../components/Cocinero/CocineroRouter';
 
 const routes = [
     {
@@ -17,7 +18,13 @@ const routes = [
         path:'/',
         component:ClienteRouter,
         exact: false
+    },
+    {
+        path:'/cocinero',
+        component:CocineroRouter,
+        exact: false
     }
+
 ];
 
 export default routes;
