@@ -40,6 +40,7 @@ const routes = [
         component: Pago,
         exact: true,
         isPrivate: false,
+        name: 'Pago',
     },
 ];
 
