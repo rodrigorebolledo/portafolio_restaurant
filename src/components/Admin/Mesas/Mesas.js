@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { LayoutCrud, Layout } from '../Layout/Layout';
-import CrudTable from '../CrudTable';
+import CrudTable from '../../Comunes/CrudTable';
 import { apiSetStateFromUrl } from '../../Comunes/Api';
 import { CustomSpinner } from '../../Comunes/CustomSpinner';
 const header = ['ID', 'Numero de Mesa', 'Capacidad', 'Estado']

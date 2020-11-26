@@ -47,4 +47,27 @@ const addElment = (url, objeto) => {
             return false;
         })
 }
-export { api, apiSetStateFromUrl, addElment };
+
+const deleteById = (url, id) => {
+    return api.delete(`${url}/${id}`).then(res => {
+        return true;
+    }).catch((err) => {
+        console.log(err);
+        return false;
+    })
+}
+
+
+
+const editById = (url, id, objeto) => {
+    console.log(objeto)
+    return api.put(`${url}/${id}`, objeto)
+        .then((res) => {
+            return true;
+        }).catch((err) => {
+            return false;
+        })
+}
+
+
+export { api, apiSetStateFromUrl, addElment, deleteById, editById };

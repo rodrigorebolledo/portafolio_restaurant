@@ -3,8 +3,7 @@ import { Table, Button, Row, Col, Container, Form } from 'react-bootstrap';
 import './CrudTable.scss';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { deleteById, editById } from '../Api'
-import { addElment } from '../../Comunes/Api';
+import { addElment, deleteById, editById } from '../../Comunes/Api';
 import { ModalDelete, ModalEdit, ModalAdd } from './ModalTable';
 
 export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs, apiSetStateFromUrl, handleReset, eliminar, agregar }) => {

@@ -56,7 +56,7 @@ const Header = (props) => {
                         <img src={Logo} className="image-responsive" alt="Logo" />
                     </Col>
                     <Row className="mt-3" style={{ margin: 0 }}>
-                        {userDetails.user !== undefined ? (
+                        {userDetails.user !== undefined && userDetails.user.perfil !== undefined ? (
                             <p className="nombre-usuario">Hola {userDetails.user.perfil.nombrePerfil}</p>
                         ) : null}
 
