@@ -1,8 +1,7 @@
-import Pedidos from '../Productos';
-import Recetas from '../Pedidos';
+import Pedidos from '../Pedidos';
+import Productos from '../Productos';
 import Inicio from '../Inicio';
 import Login from '../../Comunes/Login';
-import Productos from '../Productos';
 
 
 
@@ -21,16 +20,18 @@ const routes = [
         component: Pedidos,
         exact: true,
         isPrivate: true,
-        name: 'Pedidos',
         needLogin: true,
+        name: 'Pedidos',
+        
     },
     {
         path: '/bodeguero/productos',
         component: Productos,
         exact: true,
         isPrivate: true,
-        name: 'Productos',
         needLogin: true,
+        name: 'Productos',
+        
         
     },
 
@@ -43,15 +44,7 @@ const routes = [
     },
 
 
-    {
-        path: '/cocinero/recetas',
-        component: Recetas,
-        exact: true,
-        isPrivate: false,
-        name: 'Recetas',
-        needLogin: true,
-       
-    },
+    
 ];
 
 export default routes;
