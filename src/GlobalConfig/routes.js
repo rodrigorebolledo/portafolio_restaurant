@@ -3,6 +3,7 @@ import ClienteRouter from '../components/Cliente/ClienteRouter';
 import Login from '../components/Comunes/Login';
 import CocineroRouter from '../components/Cocinero/CocineroRouter';
 import BodegueroRouter from '../components/Bodeguero/BodegueroRouter';
+import GarzonRouter from '../components/Garzon/GarzonRouter';
 
 const routes = [
     {
@@ -23,6 +24,11 @@ const routes = [
     {
         path: '/bodeguero',
         component: BodegueroRouter,
+        exact: false
+    },
+    {
+        path: '/garzon',
+        component: GarzonRouter,
         exact: false
     },
     {

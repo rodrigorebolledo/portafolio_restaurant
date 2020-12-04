@@ -29,6 +29,7 @@ const Header = (props) => {
 
     const handleLogout = () => {
         logout(dispatch);
+        window.location.reload(false);
     }
 
 
@@ -38,6 +39,7 @@ const Header = (props) => {
             <p>Acceso</p>
         </Col>
     );
+
 
     const PrintLogout = () => (
         <Col className="text-center boton-ico-text" onClick={() => handleLogout()}>
