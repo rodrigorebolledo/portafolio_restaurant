@@ -7,6 +7,25 @@ const INVITADO = {
     user: 'INVITADO',
     token: '',
 }
+
+
+
+export function addPlate(dispatch, carroPayload) {
+    dispatch({ type: 'ADD_PLATE', payload: { platosSeleccionados: carroPayload.platosSeleccionados, totalPago: carroPayload.totalPago} });
+    localStorage.setItem('platosCarro', carroPayload.platosSeleccionados);
+    let totalPago = localStorage.getItem('totalCarro')
+    ? JSON.parse(localStorage.getItem('totalCarro'))
+    : 0;
+    console.log('tyoeoftotalPago');
+    console.log(typeof totalPago);
+    console.log('totalPago');
+    console.log(totalPago);
+    console.log('carroPayload.totalPago')
+    console.log(carroPayload.totalPago)
+    localStorage.setItem('totalCarro', totalPago+carroPayload.totalPago);
+    return {platosSeleccionados: carroPayload.platosSeleccionados, totalPago: carroPayload.totalPago}
+}
+
 export async function loginUser(dispatch, loginPayload) {
 
     try {
@@ -26,7 +45,6 @@ export async function loginUser(dispatch, loginPayload) {
         console.log("Contraseña Incorrecta");
     }
 }
-
 
 export async function logout(dispatch) {
     dispatch({ type: 'LOGOUT' });

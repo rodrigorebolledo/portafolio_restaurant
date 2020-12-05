@@ -7,9 +7,10 @@ import {
 
 import routes from './GlobalConfig/routes';
 import NotFound from './components/Comunes/NotFound';
-import { AuthProvider } from './components/Context';
+import { AuthProvider, CarroProvider } from './components/Context';
 function App() {
     return (
+        <CarroProvider>
         <AuthProvider>
             <Router>
                 <Switch>
@@ -29,6 +30,7 @@ function App() {
                 </Switch>
             </Router>
          </AuthProvider>
+        </CarroProvider>
     );
 }
 
