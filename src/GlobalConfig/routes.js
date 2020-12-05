@@ -4,6 +4,7 @@ import Login from '../components/Comunes/Login';
 import CocineroRouter from '../components/Cocinero/CocineroRouter';
 import BodegueroRouter from '../components/Bodeguero/BodegueroRouter';
 import GarzonRouter from '../components/Garzon/GarzonRouter';
+import FinanzasRouter from '../components/Finanzas/FinanzasRouter';
 
 const routes = [
     {
@@ -29,6 +30,11 @@ const routes = [
     {
         path: '/garzon',
         component: GarzonRouter,
+        exact: false
+    },
+    {
+        path: '/finanzas',
+        component: FinanzasRouter,
         exact: false
     },
     {

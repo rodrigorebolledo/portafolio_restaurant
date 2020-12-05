@@ -1,5 +1,5 @@
 import React,{ useState, useEffect , Component} from 'react';
-import Layout from '../LayoutCliente/';
+import Layout from '../LayoutCliente';
 import CrudTable from '../../Comunes/CrudTable';
 import { Row, Col, Card, CardGroup, Button} from 'react-bootstrap';
 import { apiSetStateFromUrl } from '../../Comunes/Api';
@@ -7,7 +7,7 @@ import { CustomSpinner } from '../../Comunes/CustomSpinner';
 import ExampleImage from '../../../assets/img/exampleImage.png'
 import { addPlate, useCarroState, useCarroDispatch } from '../../Context';
 
-const Pago = () => {
+const Orden = () => {
 
     const [platos, setPlatos] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -55,15 +55,15 @@ const Pago = () => {
             <Col>
                 <h3 className="mt-3">Ordenar</h3>
                 <Row className="justify-content-center">
-                    {!loading && platos.length > 0 ? <Row> 
+                    {!loading && platos.length > 0 ? 
                         <PrintPlatos/>
-                    </Row> : <CustomSpinner />}
+                     : <CustomSpinner />}
                 </Row>
                 
             </Col>
         </Layout>
     )
 }
-export default Pago;
+export default Orden;
 
 

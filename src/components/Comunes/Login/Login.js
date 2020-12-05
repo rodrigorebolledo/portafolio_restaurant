@@ -36,6 +36,8 @@ const Login = (props) => {
                 window.location.replace("/bodeguero");
             }else if (data.perfil.idPerfil === 5) {
                 window.location.replace("/garzon");
+            }else if (data.perfil.idPerfil === 3) {
+                window.location.replace("/finanzas");
             }
             
         } catch (error) {
