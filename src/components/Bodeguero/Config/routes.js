@@ -11,16 +11,13 @@ const routes = [
         component: Inicio,
         exact: true,
         isPrivate: false,
-        name: 'Inicio',
-        needLogin: false,
-        
+        name: 'Inicio',       
     },
     {
         path: '/bodeguero/pedidos',
         component: Pedidos,
         exact: true,
         isPrivate: true,
-        needLogin: true,
         name: 'Pedidos',
         
     },
@@ -29,22 +26,16 @@ const routes = [
         component: Productos,
         exact: true,
         isPrivate: true,
-        needLogin: true,
         name: 'Productos',
         
         
     },
-
     {
         path: '/login',
         component: Login,
         exact: true,
         isPrivate: false,
-        needLogin: false,
-    },
-
-
-    
+    },   
 ];
 
 export default routes;

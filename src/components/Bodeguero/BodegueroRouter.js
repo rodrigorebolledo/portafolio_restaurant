@@ -9,7 +9,7 @@ import AppRoutes from './AppRoutes';
 import NotFound from '../Comunes/NotFound';
 import routes from './Config/routes';
 
-const Cliente = () => {
+const Bodeguero = () => {
     return (
         <Router>
             <Switch>
@@ -29,4 +29,4 @@ const Cliente = () => {
         </Router>
     );
 }
-export default Cliente;
+export default Bodeguero;

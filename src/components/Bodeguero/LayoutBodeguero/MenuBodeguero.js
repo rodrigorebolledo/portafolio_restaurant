@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { Container } from 'react-bootstrap';
 import routes from '../Config/routes';
 import './Layout.scss';
-const MenuCocinero = () => {
+const MenuBodeguero = () => {
     return (
         <>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -33,4 +33,4 @@ const MenuCocinero = () => {
     )
 }
 
-export default MenuCocinero;
+export default MenuBodeguero;

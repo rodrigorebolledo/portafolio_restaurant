@@ -4,7 +4,7 @@ import Layout from '../LayoutCocinero/';
 export default function Inicio(){
     return(
         <Layout>
-            <h1>Test cocina</h1>
+            <h1>INICIO COCINERO</h1>
         </Layout>
     )
 }

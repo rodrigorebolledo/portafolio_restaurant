@@ -13,6 +13,7 @@ const routes = [
         exact: true,
         isPrivate: false,
         name: 'Inicio'
+        
     },
     {
         path: '/cocinero/pedidos',

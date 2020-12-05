@@ -4,7 +4,7 @@ import Layout from '../LayoutCocinero';
 export default function Platos(){
     return(
         <Layout>
-            <h1>Test cocina</h1>
+            <h1>PLATOS COCINERO</h1>
         </Layout>
     )
 }
