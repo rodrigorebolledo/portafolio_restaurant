@@ -4,7 +4,7 @@ import Layout from '../LayoutBodeguero';
 export default function Pedidos(){
     return(
         <Layout>
-            <h1>Test cocina</h1>
+            <h1>Test Bodega Pedidos</h1>
         </Layout>
     )
 }
