@@ -12,7 +12,8 @@ const routes = [
         component: Inicio,
         exact: true,
         isPrivate: true,
-        name: 'Inicio'
+        name: 'Inicio',
+        needlogin: true,
 
     },
     {
@@ -21,6 +22,7 @@ const routes = [
         exact: true,
         isPrivate: true,
         name: 'Pedidos',
+        needlogin: true,
     },
     {
         path: '/cocinero/platos',
@@ -28,6 +30,7 @@ const routes = [
         exact: true,
         isPrivate: true,
         name: 'Platos',
+        needlogin: true,
 
     },
 
