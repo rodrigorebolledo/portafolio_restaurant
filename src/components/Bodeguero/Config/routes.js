@@ -10,8 +10,8 @@ const routes = [
         path: '/bodeguero',
         component: Inicio,
         exact: true,
-        isPrivate: false,
-        name: 'Inicio',       
+        isPrivate: true,
+        name: 'Inicio',
     },
     {
         path: '/bodeguero/pedidos',
@@ -19,7 +19,7 @@ const routes = [
         exact: true,
         isPrivate: true,
         name: 'Pedidos',
-        
+
     },
     {
         path: '/bodeguero/productos',
@@ -27,15 +27,15 @@ const routes = [
         exact: true,
         isPrivate: true,
         name: 'Productos',
-        
-        
+
+
     },
     {
         path: '/login',
         component: Login,
         exact: true,
         isPrivate: false,
-    },   
+    },
 ];
 
 export default routes;

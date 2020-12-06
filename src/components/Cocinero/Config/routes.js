@@ -11,9 +11,9 @@ const routes = [
         path: '/cocinero',
         component: Inicio,
         exact: true,
-        isPrivate: false,
+        isPrivate: true,
         name: 'Inicio'
-        
+
     },
     {
         path: '/cocinero/pedidos',
@@ -28,7 +28,7 @@ const routes = [
         exact: true,
         isPrivate: true,
         name: 'Platos',
-        
+
     },
 
     {
@@ -43,9 +43,9 @@ const routes = [
         path: '/cocinero/recetas',
         component: Recetas,
         exact: true,
-        isPrivate: false,
+        isPrivate: true,
         name: 'Recetas',
-       
+
     },
 ];
 

@@ -8,10 +8,10 @@ const routes = [
         path: '/garzon',
         component: Inicio,
         exact: true,
-        isPrivate: false,
+        isPrivate: true,
         name: 'Inicio',
-        needLogin: false,
-        
+        needLogin: true,
+
     },
     {
         path: '/login',
@@ -22,7 +22,7 @@ const routes = [
     },
 
 
-    
+
 ];
 
 export default routes;

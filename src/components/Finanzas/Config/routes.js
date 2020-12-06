@@ -9,9 +9,9 @@ const routes = [
         path: '/finanzas',
         component: Inicio,
         exact: true,
-        isPrivate: false,
+        isPrivate: true,
         name: 'Inicio'
-        
+
     },
     {
         path: '/finanzas/reportes',
