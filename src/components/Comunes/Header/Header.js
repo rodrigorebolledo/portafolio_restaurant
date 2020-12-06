@@ -48,7 +48,7 @@ const Header = (props) => {
         </Col>
     );
     const userDetails = useAuthState();
-    const { statusObject, isAdmin, itemCount } = props;
+    const { isAdmin, itemCount, show } = props.statusObject;
     // const { isLogin, isAdmin = false, itemCount } = statusObject;
     return (
         <div className="header">
@@ -61,7 +61,7 @@ const Header = (props) => {
                         {userDetails.user !== undefined && userDetails.user.perfil !== undefined ? (
                             <p className="nombre-usuario">Hola {userDetails.user.perfil.nombrePerfil}</p>
                         ) : null}
-                        {!isAdmin && <PrintCarrito itemCount={itemCount} />} 
+                        {!isAdmin === true && show === true && <PrintCarrito itemCount={itemCount} />}
                         {!Boolean(userDetails.user) ? <PrintAcceso /> : <PrintLogout />}
                     </Row>
                 </Row>
