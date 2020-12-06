@@ -3,8 +3,10 @@ import { Navbar, Nav } from 'react-bootstrap';
 import { NavLink } from "react-router-dom";
 import { Container } from 'react-bootstrap';
 import routes from '../Config/routes';
+import './Layout.scss';
 
-const MenuGarzon = () => {
+
+const MenuMesero = () => {
     return (
         <>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -33,4 +35,4 @@ const MenuGarzon = () => {
     )
 }
 
-export default MenuGarzon;
+export default MenuMesero;

@@ -2,7 +2,7 @@ import React from 'react'
 import { Container } from 'react-bootstrap';
 import Header from '../../Comunes/Header/Header';
 import Footer from '../../Comunes/Footer';
-import MenuGarzon from './MenuGarzon';
+import MenuMesero from './MenuMesero';
 import './Layout.scss';
 
 
@@ -18,7 +18,7 @@ const Layout = (props) => {
     return (
         <>
             <Header statusObject={statusObject} />
-            <MenuGarzon />
+            <MenuMesero />
             <Container className="container-client">
                 {children}
             </Container>

@@ -9,7 +9,7 @@ import AppRoutes from './AppRoutes';
 import NotFound from '../Comunes/NotFound';
 import routes from './Config/routes';
 
-const GarzonRouter = () => {
+const Mesero = () => {
     return (
         <Router>
             <Switch>
@@ -29,4 +29,4 @@ const GarzonRouter = () => {
         </Router>
     );
 }
-export default GarzonRouter;
+export default Mesero;

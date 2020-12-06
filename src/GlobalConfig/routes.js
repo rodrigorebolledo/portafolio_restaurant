@@ -3,7 +3,7 @@ import ClienteRouter from '../components/Cliente/ClienteRouter';
 import Login from '../components/Comunes/Login';
 import CocineroRouter from '../components/Cocinero/CocineroRouter';
 import BodegueroRouter from '../components/Bodeguero/BodegueroRouter';
-import GarzonRouter from '../components/Garzon/GarzonRouter';
+import MeseroRouter from '../components/Mesero/MeseroRouter';
 import FinanzasRouter from '../components/Finanzas/FinanzasRouter';
 
 const routes = [
@@ -28,13 +28,13 @@ const routes = [
         exact: false
     },
     {
-        path: '/garzon',
-        component: GarzonRouter,
+        path: '/finanzas',
+        component: FinanzasRouter,
         exact: false
     },
     {
-        path: '/finanzas',
-        component: FinanzasRouter,
+        path: '/mesero',
+        component: MeseroRouter,
         exact: false
     },
     {
