@@ -1,1 +1,1 @@
-//export { default } from './Pedidos';
+export { default } from './Pedidos';

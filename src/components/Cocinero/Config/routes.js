@@ -1,13 +1,13 @@
 import Pedidos from '../Pedidos';
 import Platos from '../Platos';
 import Recetas from '../Recetas';
-
+import Inicio from '../Inicio';
 import Login from '../../Comunes/Login';
 
 
 
 const routes = [
-   /* {
+    {
         path: '/cocinero',
         component: Inicio,
         exact: true,
@@ -15,7 +15,7 @@ const routes = [
         name: 'Inicio',
         needlogin: true,
 
-    },*/
+    },
     {
         path: '/cocinero/pedidos',
         component: Pedidos,

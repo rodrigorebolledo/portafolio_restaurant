@@ -31,7 +31,7 @@ const Login = (props) => {
             } else if (data.perfil.idPerfil === 1) {
                 window.location.replace("/");
             }else if (data.perfil.idPerfil === 4) {
-                window.location.replace("/cocinero/platos");
+                window.location.replace("/cocinero");
             }else if (data.perfil.idPerfil === 8) {
                 window.location.replace("/bodeguero");
             }else if (data.perfil.idPerfil === 5) {

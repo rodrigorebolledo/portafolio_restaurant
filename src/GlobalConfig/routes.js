@@ -18,7 +18,7 @@ const routes = [
         exact: false
     },
     {
-        path: '/cocinero/platos',
+        path: '/cocinero',
         component: CocineroRouter,
         exact: false
     },
