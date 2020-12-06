@@ -1,10 +1,19 @@
-import React from 'react';
-import Layout from '../LayoutBodeguero';
+import React, { useEffect } from 'react'
+import { Col, Row } from 'react-bootstrap';
+import { Layout } from '../LayoutBodeguero';
+//import '../Inicio/DivCard.scss'
 
-export default function Pedidos(){
-    return(
+
+const Pedidos = () => {
+    useEffect(_ => {
+        document.title = 'Pedidos';
+    }, [])
+
+    return (
         <Layout>
-            <h1>Test Bodega Pedidos</h1>
+            <div>Pedidos</div>
         </Layout>
     )
 }
+
+export default Pedidos;

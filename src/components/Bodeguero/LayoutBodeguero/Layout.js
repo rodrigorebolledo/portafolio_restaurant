@@ -1,8 +1,8 @@
 import React from 'react'
-import { Container } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
+import MenuBodeguero from './MenuBodeguero';
 import Header from '../../Comunes/Header/Header';
 import Footer from '../../Comunes/Footer';
-import MenuBodeguero from './MenuBodeguero';
 import './Layout.scss';
 
 
@@ -11,14 +11,14 @@ const statusObject = {
     itemCount: 1
 }
 
-const Layout = (props) => {
+export const Layout = (props) => {
 
     const { children } = props;
     
     return (
         <>
             <Header statusObject={statusObject} />
-            <MenuBodeguero />
+            <MenuBodeguero/>
             <Container className="container-client">
                 {children}
             </Container>
@@ -27,4 +27,13 @@ const Layout = (props) => {
     )
 }
 
-export default Layout;
+    export const LayoutCrud = (props) => {
+        const { children } = props;
+        return (
+            <Row className="mt-5 layout-crud">
+                {children}
+            </Row>
+        )
+    
+    };
+

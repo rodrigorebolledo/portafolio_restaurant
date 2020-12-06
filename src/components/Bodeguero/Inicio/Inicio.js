@@ -1,10 +1,19 @@
-import React from 'react';
-import Layout from '../LayoutBodeguero/';
+import React, { useEffect } from 'react'
+import { Col, Row } from 'react-bootstrap';
+import { Layout } from '../LayoutBodeguero';
+//import '../Inicio/DivCard.scss'
 
-export default function Inicio(){
-    return(
+
+const Inicio = () => {
+    useEffect(_ => {
+        document.title = 'Inicio';
+    }, [])
+
+    return (
         <Layout>
-            <h1>Test Finanzas</h1>
+            <div>Inicio</div>
         </Layout>
     )
 }
+
+export default Inicio;
