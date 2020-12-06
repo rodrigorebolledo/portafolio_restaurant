@@ -1,1 +1,2 @@
-export { default} from './Layout';
+import { Layout, LayoutCrud } from './Layout'
+export { Layout, LayoutCrud };
