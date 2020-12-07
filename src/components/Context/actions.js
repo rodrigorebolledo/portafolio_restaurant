@@ -16,14 +16,14 @@ export function addPlate(dispatch, carroPayload) {
     let totalPago = localStorage.getItem('totalCarro')
     ? JSON.parse(localStorage.getItem('totalCarro'))
     : 0;
+    localStorage.setItem('totalCarro', totalPago=totalPago+carroPayload.totalPago);
     console.log('tyoeoftotalPago');
     console.log(typeof totalPago);
     console.log('totalPago');
     console.log(totalPago);
     console.log('carroPayload.totalPago')
     console.log(carroPayload.totalPago)
-    localStorage.setItem('totalCarro', totalPago+carroPayload.totalPago);
-    return {platosSeleccionados: carroPayload.platosSeleccionados, totalPago: carroPayload.totalPago}
+    return {platosSeleccionados: carroPayload.platosSeleccionados, totalPago: totalPago}
 }
 
 export async function loginUser(dispatch, loginPayload) {
