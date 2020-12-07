@@ -65,6 +65,7 @@ export const ModalEdit = ({ show, setShow, title, inputs, item, nameId, editObje
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log(item);
         editObject(inputs, nameId, item);
     }
 
