@@ -61,16 +61,17 @@ const Ordenes = () => {
             ]
             
         },
-        /*{
+        {
             label: 'Número orden',
             type: 'number',
             placeholder: 'Número de la orden',
             column: 'orden',
+            subcolumn: 'idOrden',
             value: numeroOrden,
             setValue: setNumeroOrden,
             
         },
-        {
+        /*{
             label: 'Mesa',
             type: 'text',
             placeholder: 'numero de mesa',
@@ -80,41 +81,7 @@ const Ordenes = () => {
             setValue: setMesa,
             
         },*/
-        /*{
-            label: 'Categoria',
-            type: 'select',
-            column: 'categoria',
-            subcolumn: 'idCategoria' ,
-            value: categoria,
-            setValue: setCategoria,
-            options: [
-                {
-                    nombre: 'BEBIDAS',
-                    value: 1
-                    
-                },
-                {
-                    nombre: 'CARNES',
-                    value: 2
-                },
-                {
-                    nombre: 'PESCADOS',
-                    value: 3
-                },
-                {
-                    nombre: 'PASTAS',
-                    value: 4
-                },
-                {
-                    nombre: 'VEGETARIANO',
-                    value: 5
-                },
-                {
-                    nombre: 'POSTRES',
-                    value: 6
-                }
-            ]
-        }*/
+        
     
     ]
     const handleReset = _ => {

@@ -196,6 +196,7 @@ export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs,
     const PrintBody = () => {
         const keys = Object.keys(items[0]);
         return items.map((item, idx) => {
+            console.log(item);
             return (
                 <tr key={idx}>
                     {eliminar !== false ? (
