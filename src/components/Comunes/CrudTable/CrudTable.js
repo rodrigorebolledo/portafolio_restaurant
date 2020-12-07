@@ -208,9 +208,15 @@ export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs,
                             if (typeof valor === 'object') {
                                 const keysChildren = Object.keys(valor);
                                 if (key !== 'usuario') {
-                                    return (
-                                        <td key={idx}>{valor[keysChildren[1]]}</td>
-                                    )
+                                    if (key === 'orden') {
+                                        return (
+                                            <td key={idx}>{valor[keysChildren[0]]}</td>
+                                        )
+                                    } else {
+                                        return (
+                                            <td key={idx}>{valor[keysChildren[1]]}</td>
+                                        )
+                                    }
                                 } else {
                                     return null
                                 }
