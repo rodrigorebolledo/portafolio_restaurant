@@ -9,7 +9,7 @@ import './Layout.scss';
 const statusObject = {
     isLogin: false,
     itemCount: 0,
-    show: true
+    show: false
 }
 
 const Layout = (props) => {

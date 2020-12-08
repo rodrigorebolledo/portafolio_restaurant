@@ -1,6 +1,7 @@
 import Inicio from '../Inicio';
 import Login from '../../Comunes/Login';
 import Ordenes from '../Ordenes';
+import Orden from '../Orden'
 
 
 
@@ -12,6 +13,14 @@ const routes = [
         isPrivate: true,
         name: 'Inicio'
 
+    },
+    {
+        path: '/mesero/orden',
+        component: Orden,
+        exact: true,
+        isPrivate: true,
+        name: 'Realizar Orden',
+        needLogin: true,
     },
     {
         path: '/mesero/ordenes',
@@ -27,6 +36,7 @@ const routes = [
         exact: true,
         isPrivate: false,
     },
+
 
 ];
 

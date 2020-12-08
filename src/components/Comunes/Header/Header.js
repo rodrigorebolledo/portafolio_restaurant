@@ -30,7 +30,7 @@ const PrintCarrito = (props) => {
 
             <Modal show={show} onHide={handleClose} backdrop="static">
                 <Modal.Header closeButton>
-                    <Modal.Title>Resumen Pago</Modal.Title>
+                    <Modal.Title>Resumen Orden</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <h5>
@@ -46,7 +46,7 @@ const PrintCarrito = (props) => {
                         }) : null}
                     </ul>
                     <h2>
-                        Total a pagar: ${plateDetails.totalPago}
+                        Total orden: ${plateDetails.totalPago}
                     </h2>
 
                 </Modal.Body>
@@ -55,7 +55,7 @@ const PrintCarrito = (props) => {
                         Salir
                     </Button>
                     <Button variant="primary" onClick={handleClose}>
-                        Pagar
+                        Ordenar
                     </Button>
                 </Modal.Footer>
             </Modal>
