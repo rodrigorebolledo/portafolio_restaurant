@@ -7,11 +7,11 @@ let token = localStorage.getItem('currentUser')
     ? JSON.parse(localStorage.getItem('currentUser')).auth_token
     : '';
 let platosSeleccionados = localStorage.getItem('platosCarro')
-    ? localStorage.getItem('platosCarro')
-    : [];
+    ? JSON.parse(localStorage.getItem('platosCarro'))
+    : undefined;
 
 let totalPago = localStorage.getItem('totalCarro')
-    ? localStorage.getItem('totalCarro')
+    ? JSON.parse(localStorage.getItem('totalCarro'))
     : 0;
 
 export const initialState = {
@@ -22,7 +22,7 @@ export const initialState = {
 };
 
 export const initialStateCarro = {
-    platosSeleccionados: [] || platosSeleccionados,
+    platosSeleccionados: undefined || platosSeleccionados,
     totalPago: 0 || totalPago,
 };
 
@@ -37,7 +37,7 @@ export const CarroReducer = (initialStateCarro, action) => {
         default:
             throw new Error(`Acción del tipo ${action.type} no manejada`);
     }
-}; 
+};
 
 export const AuthReducer = (initialState, action) => {
     switch (action.type) {

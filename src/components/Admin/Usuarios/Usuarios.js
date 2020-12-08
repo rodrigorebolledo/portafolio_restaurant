@@ -14,7 +14,6 @@ const Usuarios = () => {
     const [password, setPassword] = useState(undefined);
     const [estado, setEstado] = useState('t');
     const [perfil, setPerfil] = useState(6);
-    const [editPerfil, setEditPerfil] = useState(undefined);
 
     const INPUTS = [
         {
@@ -116,7 +115,6 @@ const Usuarios = () => {
         setPassword(undefined);
         setEstado('t');
         setPerfil(6)
-        setEditPerfil(undefined);
     }
 
     useEffect(() => {

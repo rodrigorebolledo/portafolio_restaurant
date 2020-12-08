@@ -27,11 +27,11 @@ export const ModalDelete = ({ show, setShow, title, deleteItem, deleteItems, ite
             </Modal.Header>
             <Modal.Body>
                 ¿Estás seguro?
-        </Modal.Body>
+            </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
                     Cancelar
-            </Button>
+                </Button>
                 <Button variant="danger" onClick={() => handleDelete()}>Borrar</Button>
             </Modal.Footer>
         </Modal>

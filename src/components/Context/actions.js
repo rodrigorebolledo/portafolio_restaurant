@@ -1,29 +1,15 @@
 
 import { addElment } from '../Comunes/Api';
-
-const ROOT_URL = 'http://localhost:80';
-
 const INVITADO = {
     user: 'INVITADO',
     token: '',
 }
 
-
-
 export function addPlate(dispatch, carroPayload) {
-    dispatch({ type: 'ADD_PLATE', payload: { platosSeleccionados: carroPayload.platosSeleccionados, totalPago: carroPayload.totalPago} });
+    dispatch({ type: 'ADD_PLATE', payload: { platosSeleccionados: carroPayload.platosSeleccionados, totalPago: carroPayload.totalPago } });
     localStorage.setItem('platosCarro', JSON.stringify(carroPayload.platosSeleccionados));
-    let totalPago = localStorage.getItem('totalCarro')
-    ? JSON.parse(localStorage.getItem('totalCarro'))
-    : 0;
-    localStorage.setItem('totalCarro', totalPago=totalPago+carroPayload.totalPago);
-    /*console.log('tyoeoftotalPago');
-    console.log(typeof totalPago);
-    console.log('totalPago');
-    console.log(totalPago);
-    console.log('carroPayload.totalPago')
-    console.log(carroPayload.totalPago)*/
-    return {platosSeleccionados: carroPayload.platosSeleccionados, totalPago: totalPago}
+    localStorage.setItem('totalCarro', JSON.stringify(carroPayload.totalPago));
+    return { platosSeleccionados: carroPayload.platosSeleccionados, totalPago: carroPayload.totalPago }
 }
 
 export async function loginUser(dispatch, loginPayload) {

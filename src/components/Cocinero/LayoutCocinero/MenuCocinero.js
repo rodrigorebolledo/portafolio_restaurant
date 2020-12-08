@@ -16,7 +16,7 @@ const MenuCocinero = () => {
                             <Nav.Link as={NavLink} to="/reservar" activeClassName="active" exact>Reservar</Nav.Link>
                             <Nav.Link as={NavLink} to="/ver_reservas" activeClassName="active">Ver Reservas</Nav.Link> */}
                             {routes.map((route => {
-                                if (route.name != undefined && route.needLogin !== true) {
+                                if (route.name !== undefined && route.needLogin !== true) {
                                     return (
                                         <Nav.Link as={NavLink} to={route.path} activeClassName="active">{route.name}</Nav.Link>
                                     )

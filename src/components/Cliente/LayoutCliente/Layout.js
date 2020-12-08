@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Container, Button } from 'react-bootstrap';
+import { Container, Button, Modal } from 'react-bootstrap';
 import Header from '../../Comunes/Header/Header';
 import Footer from '../../Comunes/Footer';
 import MenuCliente from './MenuCliente';
@@ -24,6 +24,7 @@ const Layout = (props) => {
             <Container className="container-client">
                 {children}
             </Container>
+
             <Footer />
         </>
     )

@@ -1,6 +1,6 @@
-import React,{ useState, useEffect , Component} from 'react';
+import React, { useState, useEffect, Component } from 'react';
 import Layout from '../LayoutCliente';
-import { Row, Col, Card, CardGroup, Button} from 'react-bootstrap';
+import { Row, Col, Card, CardGroup, Button } from 'react-bootstrap';
 import { apiSetStateFromUrl } from '../../Comunes/Api';
 import { CustomSpinner } from '../../Comunes/CustomSpinner';
 import ExampleImage from '../../../assets/img/exampleImage.png'
@@ -13,18 +13,19 @@ const Orden = () => {
     const [platos, setPlatos] = useState([]);
     const [loading, setLoading] = useState(true);
     const [listaPlatosSeleccionados, setListaPlatosSeleccionados] = useState([]);
+    const [totalOrden, setTotalOrden] = useState(0);
     const dispatch = useCarroDispatch();
     const { platosSeleccionados, totalPago } = useCarroState();
     //let listaPlatosSeleccionados = []
 
-    const agregarCarro = (plato, valorPlato) =>{
+    const agregarCarro = (plato) => {
         listaPlatosSeleccionados.push(plato)
-        console.log(listaPlatosSeleccionados);
-        const platoAgregado = addPlate(dispatch, {platosSeleccionados: listaPlatosSeleccionados, totalPago: valorPlato});
-        console.log(platoAgregado);
+        const sumaPago = totalOrden + plato.valorPlato;
+        setTotalOrden(sumaPago);
+        addPlate(dispatch, { platosSeleccionados: listaPlatosSeleccionados, totalPago: sumaPago });
         alert(plato.nombrePlato + " se ha añadido al carrito.")
     }
- 
+
     const PrintPlatos = () => (
         platos.map((plato, idx) => (
             <Col key={idx} xs={12} md={4} className="mt-3 tarjetaPago">
@@ -49,6 +50,13 @@ const Orden = () => {
 
     useEffect(_ => {
         apiSetStateFromUrl('/api/platos', setPlatos, setLoading);
+        if (localStorage.getItem('platosCarro')) {
+            setListaPlatosSeleccionados(JSON.parse(localStorage.getItem('platosCarro')));
+        }
+
+        if (localStorage.getItem('totalCarro')) {
+            setTotalOrden(JSON.parse(localStorage.getItem('totalCarro')));
+        }
         document.title = 'Inicio';
     }, [])
 
@@ -57,11 +65,11 @@ const Orden = () => {
             <Col>
                 <h3 className="mt-3">Ordenar</h3>
                 <Row className="justify-content-center">
-                    {!loading && platos.length > 0 ? 
-                        <PrintPlatos/>
-                     : <CustomSpinner />}
+                    {!loading && platos.length > 0 ?
+                        <PrintPlatos />
+                        : <CustomSpinner />}
                 </Row>
-                
+
             </Col>
         </Layout>
     )

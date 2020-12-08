@@ -8,38 +8,47 @@ import { Link } from 'react-router-dom';
 import { useAuthState } from '../../Context';
 import { logout, useAuthDispatch, useCarroState, useCarroDispatch } from '../../Context';
 import Modal from 'react-bootstrap/Modal';
-import { PlaceTwoTone } from '@material-ui/icons';
 
 
 
 const PrintCarrito = (props) => {
-    //const [listaPlatosSeleccionados, setListaPlatosSeleccionados] = useState([]);
     const plateDetails = useCarroState();
-    const { itemCount = 2 } = props;
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    //console.log(plateDetails);
+    const itemCount = plateDetails.platosSeleccionados ? plateDetails.platosSeleccionados.length : 0
 
     return (
-        <Col className="text-center boton-ico-text">
-            <ShoppingCartIcon variant="primary" onClick={handleShow}/>
-            
-            <Badge variant="light" className="badge-notify">{itemCount}</Badge>
-            <p>Carrito</p>
+        <>
+            <Col className="text-center boton-ico-text">
+                <div onClick={handleShow}>
+                    <ShoppingCartIcon variant="primary" />
+                    <Badge variant="light" className="badge-notify">{itemCount}</Badge>
+                    <p>Carrito</p>
+                </div>
+            </Col>
 
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose} backdrop="static">
                 <Modal.Header closeButton>
                     <Modal.Title>Resumen Pago</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <h5>
-                        Lista de pedidos: {}
+                        Lista de pedidos:
                     </h5>
+                    <ul>
+                        {plateDetails.platosSeleccionados ? plateDetails.platosSeleccionados.map((plato, idx) => {
+                            return (
+                                <li key={idx}>
+                                    {plato.nombrePlato}
+                                </li>
+                            )
+                        }) : null}
+                    </ul>
                     <h2>
-                        Total a pagar: $10000
+                        Total a pagar: ${plateDetails.totalPago}
                     </h2>
-                    
+
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
@@ -50,7 +59,7 @@ const PrintCarrito = (props) => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-        </Col>
+        </>
     )
 }
 
@@ -90,14 +99,15 @@ const Header = (props) => {
                         <img src={Logo} className="image-responsive" alt="Logo" />
                     </Col>
                     <Row className="mt-3" style={{ margin: 0 }}>
-                        {userDetails.user !== undefined && userDetails.user.perfil !== undefined ? (
+                        {/* {userDetails.user !== undefined && userDetails.user.perfil !== undefined ? (
                             <p className="nombre-usuario">Hola {userDetails.user.perfil.nombrePerfil}</p>
-                        ) : null}
-                        {!isAdmin === true && show === true && <PrintCarrito itemCount={itemCount} />}
+                        ) : null} */}
+                        {!isAdmin === true && show === true && Boolean(userDetails.user) === true && <PrintCarrito />}
                         {!Boolean(userDetails.user) ? <PrintAcceso /> : <PrintLogout />}
                     </Row>
                 </Row>
             </Container>
+
         </div>
     )
 }
