@@ -27,8 +27,8 @@ const VerReservas = () => {
             let diaInicio = fechaInicioMoment.format("DD/MM/YYYY");
             let horaInicio = fechaInicioMoment.format("hh:mm")
             return (
-                <div class="w3-card-4 w3-white" >
-                     <Row className="justify-content-center mt-5">
+                <div className="w3-card-4 w3-white" >
+                    <Row className="justify-content-center mt-5">
                         <div>
                             <Row>Dirección: {DIRECCION}</Row>
                             <Row>Número de mesa: {reserva.mesa.numeroMesa}</Row>
@@ -36,9 +36,9 @@ const VerReservas = () => {
                         </div>
                     </Row>
                 </div>
-                   
-                  
-                
+
+
+
             )
         })
     }
