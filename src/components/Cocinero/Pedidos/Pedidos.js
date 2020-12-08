@@ -2,34 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { LayoutCrud, Layout } from '../LayoutCocinero';
 import { Row, Col, Button } from 'react-bootstrap';
 import CrudTable from '../../Comunes/CrudTable';
-import { apiSetStateFromUrl } from '../../Comunes/Api';
+import { apiSetStateFromUrl, editById } from '../../Comunes/Api';
 import { CustomSpinner } from '../../Comunes/CustomSpinner';
-import { VerOrdenes } from '../../Comunes/VerOrdenes/VerOrdenes';
+import { VerPlatos } from '../../Comunes/VerPlatos/VerPlatos';
 import './Pedidos.scss';
-const header = ['ID', 'Cantidad de platos', 'Nombre del plato', 'Estado del plato', 'Número de orden'/*,'Número de mesa'*/]
-
-
-const EJEMPLO_PEDIDOS = [
-    { numeroPedido: 3, numeroMesa: 1 },
-    { numeroPedido: 3, numeroMesa: 1 },
-    { numeroPedido: 3, numeroMesa: 1 },
-    { numeroPedido: 3, numeroMesa: 1 },
-    { numeroPedido: 3, numeroMesa: 1 }
-]
-
-
-
 
 const Ordenes = () => {
 
     const [ordenes, setOrdenes] = useState([]);
     const [loading, setLoading] = useState(true);
     const [isPreparing, setIsPreparing] = useState(false);
+    const [currentOrden, setCurrentOrden] = useState({})
     const [cantidad, setCantidad] = useState(undefined);
     const [nombrePlato, setNombrePlato] = useState(undefined);
     const [estadoPlato, setEstadoPlato] = useState(undefined);
     const [numeroOrden, setNumeroOrden] = useState(undefined);
-    // const [mesa, setMesa] = useState(undefined);
 
     const PrintPedidos = () => {
 
@@ -38,10 +25,13 @@ const Ordenes = () => {
             return (
                 <div>
                     <Row className="justify-content-start mt-3" style={{ marginLeft: '20px' }}>
-                        <Button variant="success" className="buttonOrden" onClick={() => { setIsPreparing(false) }}>Retroceder</Button>
+                        <Button variant="success" className="buttonOrden" onClick={() => {
+                            setIsPreparing(false);
+                            handleRefreshApi();
+                        }}>Retroceder</Button>
                     </Row>
                     <Row className="justify-content-center" style={{ marginTop: '-45px' }}>
-                        <h1>Pedido: 3 - Mesa: 2</h1>
+                        <h1>Pedido: {currentOrden.idOr} - Mesa: {currentOrden.numeroMesa}</h1>
                     </Row>
                     <PrintOrdenes />
                 </div>
@@ -49,12 +39,15 @@ const Ordenes = () => {
         } else {
             return (
                 <div className="container">
-                    <Row className=" mt-3">
-                        {EJEMPLO_PEDIDOS.map((pedido => {
+                    <Row className=" justify-content-center mt-3">
+                        {ordenes.map(((orden, idx) => {
                             return (
-                                <Col className="tarjetaPedido" xs={12} md={3} onClick={() => { setIsPreparing(true) }}>
-                                    <h3>Número pedido: {pedido.numeroPedido}</h3>
-                                    <h4>Número mesa: {pedido.numeroMesa}</h4>
+                                <Col key={idx} className="tarjetaPedido" xs={12} md={3} onClick={() => {
+                                    setIsPreparing(true)
+                                    setCurrentOrden(orden)
+                                }}>
+                                    <h3>Número pedido: {orden.idOr}</h3>
+                                    <h4>Número mesa: {orden.numeroMesa}</h4>
                                 </Col>
                             )
                         }))}
@@ -64,11 +57,23 @@ const Ordenes = () => {
         }
 
     }
+
+    const handleEstadoPedido = async (idDetOr, estadoPlato) => {
+        console.log(`idDetOr: ${idDetOr} || estadoPlato: ${estadoPlato}`);
+        const objPlato = {
+            'idDetOr': idDetOr,
+            'estadoPlato': { 'idEstadoPlato': estadoPlato }
+        }
+        const result = await editById('/api/detalleordenes/estadoplato/', idDetOr, objPlato);
+        return result;
+
+    }
+
     const PrintOrdenes = _ => {
         return (
-            ordenes.map((orden) => {
+            ordenes.map((orden, idx) => {
                 return (
-                    <VerOrdenes orden={orden} />
+                    <VerPlatos key={idx} orden={orden} handleEstadoPedido={handleEstadoPedido} indexOrden={idx} />
                 )
             })
         )
@@ -85,9 +90,14 @@ const Ordenes = () => {
     }
 
     useEffect(() => {
-        apiSetStateFromUrl("/api/detalleordenes", setOrdenes, setLoading);
+        apiSetStateFromUrl("/api/ordenes/ordenadas/cocina", setOrdenes, setLoading);
         document.title = 'Admin ordenes';
     }, [])
+
+
+    const handleRefreshApi = _ => {
+        apiSetStateFromUrl("/api/ordenes/ordenadas/cocina", setOrdenes, setLoading);
+    }
 
     return (
         <Layout>

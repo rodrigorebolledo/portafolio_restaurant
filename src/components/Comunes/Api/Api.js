@@ -60,7 +60,6 @@ const deleteById = (url, id) => {
 
 
 const editById = (url, id, objeto) => {
-    console.log(objeto)
     return api.put(`${url}/${id}`, objeto)
         .then((res) => {
             return true;

@@ -17,12 +17,12 @@ const MenuCliente = () => {
                             {/* <Nav.Link as={NavLink} to="/" activeClassName="active" exact>Inicio</Nav.Link>
                             <Nav.Link as={NavLink} to="/reservar" activeClassName="active" exact>Reservar</Nav.Link>
                             <Nav.Link as={NavLink} to="/ver_reservas" activeClassName="active">Ver Reservas</Nav.Link> */}
-                            {routes.map((route => {
+                            {routes.map(((route, idx) => {
                                 if (route.name != undefined) {
                                     if (route.needLogin === true) {
                                         if (userDetails.user !== undefined) {
                                             return (
-                                                <Nav.Link as={NavLink} to={route.path} activeClassName="active">{route.name}</Nav.Link>
+                                                <Nav.Link key={idx} as={NavLink} to={route.path} activeClassName="active">{route.name}</Nav.Link>
                                             )
                                         } else {
                                             return null;
@@ -31,7 +31,7 @@ const MenuCliente = () => {
                                     } else {
 
                                         return (
-                                            <Nav.Link as={NavLink} to={route.path} activeClassName="active">{route.name}</Nav.Link>
+                                            <Nav.Link key={idx} as={NavLink} to={route.path} activeClassName="active">{route.name}</Nav.Link>
                                         )
                                     }
                                 } else {
