@@ -1,5 +1,5 @@
-import React from 'react'
-import { Container } from 'react-bootstrap';
+import React, { useState } from 'react'
+import { Container, Button } from 'react-bootstrap';
 import Header from '../../Comunes/Header/Header';
 import Footer from '../../Comunes/Footer';
 import MenuCliente from './MenuCliente';
@@ -15,6 +15,7 @@ const statusObject = {
 const Layout = (props) => {
 
     const { children } = props;
+
 
     return (
         <>

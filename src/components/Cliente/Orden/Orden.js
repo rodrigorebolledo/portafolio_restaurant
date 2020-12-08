@@ -1,11 +1,12 @@
 import React,{ useState, useEffect , Component} from 'react';
 import Layout from '../LayoutCliente';
-import CrudTable from '../../Comunes/CrudTable';
 import { Row, Col, Card, CardGroup, Button} from 'react-bootstrap';
 import { apiSetStateFromUrl } from '../../Comunes/Api';
 import { CustomSpinner } from '../../Comunes/CustomSpinner';
 import ExampleImage from '../../../assets/img/exampleImage.png'
 import { addPlate, useCarroState, useCarroDispatch } from '../../Context';
+
+
 
 const Orden = () => {
 
@@ -21,6 +22,7 @@ const Orden = () => {
         console.log(listaPlatosSeleccionados);
         const platoAgregado = addPlate(dispatch, {platosSeleccionados: listaPlatosSeleccionados, totalPago: valorPlato});
         console.log(platoAgregado);
+        alert(plato.nombrePlato + " se ha añadido al carrito.")
     }
  
     const PrintPlatos = () => (

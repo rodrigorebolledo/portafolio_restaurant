@@ -1,25 +1,57 @@
-import React from 'react';
-import { Container, Row, Col, Badge } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Container, Row, Col, Badge, Button } from 'react-bootstrap';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Logo from '../../../assets/img/logo.svg';
 import './Header.scss';
 import { Link } from 'react-router-dom';
 import { useAuthState } from '../../Context';
-import { logout, useAuthDispatch } from '../../Context';
+import { logout, useAuthDispatch, useCarroState, useCarroDispatch } from '../../Context';
+import Modal from 'react-bootstrap/Modal';
+import { PlaceTwoTone } from '@material-ui/icons';
 
 
 
 const PrintCarrito = (props) => {
-    const { itemCount = 0 } = props;
+    //const [listaPlatosSeleccionados, setListaPlatosSeleccionados] = useState([]);
+    const plateDetails = useCarroState();
+    const { itemCount = 2 } = props;
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    //console.log(plateDetails);
+
     return (
-        <Col className="text-center boton-ico-text" >
-            <ShoppingCartIcon />
+        <Col className="text-center boton-ico-text">
+            <ShoppingCartIcon variant="primary" onClick={handleShow}/>
+            
             <Badge variant="light" className="badge-notify">{itemCount}</Badge>
             <p>Carrito</p>
+
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Resumen Pago</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <h5>
+                        Lista de pedidos: {}
+                    </h5>
+                    <h2>
+                        Total a pagar: $10000
+                    </h2>
+                    
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Salir
+                    </Button>
+                    <Button variant="primary" onClick={handleClose}>
+                        Pagar
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </Col>
     )
-
 }
 
 
