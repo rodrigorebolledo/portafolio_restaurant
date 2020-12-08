@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Component } from 'react';
-import Layout from '../LayoutCliente';
+import Layout from '../LayoutMesero';
 import { Row, Col, Card, CardGroup, Button } from 'react-bootstrap';
 import { apiSetStateFromUrl } from '../../Comunes/Api';
 import { CustomSpinner } from '../../Comunes/CustomSpinner';
@@ -39,7 +39,7 @@ const Orden = () => {
                         <Card.Text>
                             Tiempo estimado: {plato.tiempoPlato} minutos
                         </Card.Text>
-                        <Button variant="primary" onClick={() => agregarCarro(plato, plato.valorPlato)}>Agregar al carro</Button>
+                        <Button variant="primary" onClick={() => agregarCarro(plato, plato.valorPlato)}>Agregar a la orden</Button>
                     </Card.Body>
                 </Card>
             </Col>

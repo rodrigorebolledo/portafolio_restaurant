@@ -8,13 +8,14 @@ import './Layout.scss';
 
 const statusObject = {
     isLogin: false,
-    itemCount: 1
+    itemCount: 1,
+    show: true,
 }
 
 const Layout = (props) => {
 
     const { children } = props;
-    
+
     return (
         <>
             <Header statusObject={statusObject} />

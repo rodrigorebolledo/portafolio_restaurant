@@ -3,7 +3,6 @@ import VerReservas from '../VerReservas';
 import Inicio from '../Inicio';
 import InicioAdmin from '../../Admin/Inicio';
 import Login from '../../Comunes/Login';
-import Orden from '../Orden';
 
 
 const routes = [
@@ -38,16 +37,6 @@ const routes = [
         exact: true,
         needLogin: false,
         isPrivate: false,
-    },
-
-
-    {
-        path: '/orden',
-        component: Orden,
-        exact: true,
-        isPrivate: false,
-        name: 'Realizar Orden',
-        needLogin: true,
     },
 ];
 
