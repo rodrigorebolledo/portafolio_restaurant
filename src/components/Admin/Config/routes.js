@@ -6,6 +6,7 @@ import GeneradorReportes from '../GeneradorReportes';
 import ReportesHistoricos from '../ReportesHistoricos';
 import Personas from '../Personas';
 import Login from '../../Comunes/Login';
+import Proveedores from '../Proveedores';
 const routes = [
     {
         path: '/admin',
@@ -56,6 +57,13 @@ const routes = [
         exact: true,
         isPrivate: true,
         name: 'Generar Reportes'
+    },
+    {
+        path: '/admin/proveedores',
+        component: Proveedores,
+        exact: true,
+        isPrivate: true,
+        name: 'Proveedores',
     },
 
     {
