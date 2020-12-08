@@ -30,7 +30,7 @@ const Ordenes = () => {
                             handleRefreshApi();
                         }}>Retroceder</Button>
                     </Row>
-                    <Row className="justify-content-center" style={{ marginTop: '-45px' }}>
+                    <Row className="justify-content-center titlePedido">
                         <h1>Pedido: {currentOrden.idOr} - Mesa: {currentOrden.numeroMesa}</h1>
                     </Row>
                     <PrintOrdenes />

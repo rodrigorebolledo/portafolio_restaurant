@@ -39,7 +39,7 @@ export const VerPlatos = ({ orden, setOrdenes, handleEstadoPedido, indexOrden })
 
         return (
             <Col xs={12} md={6}>
-                <div className="tarjetaOrden" ref={tarjetaRef} style={{ backgroundColor: colorOrden }}>
+                <div className="tarjetaOrden mt-3" ref={tarjetaRef} style={{ backgroundColor: colorOrden }}>
                     <Row className="justify-content-center mt-3">
                         <h3>Plato: {detalle.plato.nombrePlato} </h3>
                     </Row>

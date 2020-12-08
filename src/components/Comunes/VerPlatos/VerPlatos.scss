@@ -27,3 +27,14 @@
     }
 }
 
+
+.titlePedido {
+    margin-top: -45px;
+}
+
+$breakpoint-mobile-1: 768px;
+@media (max-width: $breakpoint-mobile-1) {
+    .titlePedido {
+        margin-top: 10px;
+    }
+}
