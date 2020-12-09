@@ -229,9 +229,9 @@ export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs,
                                 return excepciones.map((excepcion) => {
                                     if (excepcion === 'SP') {
                                         if (typeof valor === 'string') {
-                                            if (valor.includes('-')) {
-                                                let listaValores = valor.split('-');
-                                                return <td key={idx}>{<ul style={{ overflow: 'hidden', overflowY: 'scroll' }}>{listaValores.map((valorL) => {
+                                            if (valor.includes('*')) {
+                                                let listaValores = valor.split('*');
+                                                return <td key={idx}>{<ul style={{ overflow: 'hidden', overflowY: 'scroll', maxHeight: '50px' }}>{listaValores.map((valorL) => {
                                                     return (
 
                                                         <li>{valorL}</li>
