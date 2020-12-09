@@ -16,6 +16,8 @@ const Platos = () => {
     const [foto, setFoto] = useState(undefined);
     const [categoria, setCategoria] = useState(1);
     const [apiCategoria, setApiCategoria] = useState([]);
+
+
     const INPUTS = [
         {
             label: 'Nombre Plato',
@@ -75,6 +77,9 @@ const Platos = () => {
         }
 
     ]
+
+    const EXCEPCIONES = ['SP']
+
     const handleReset = _ => {
         setNombrePlato('');
         setValorPlato(1);
@@ -94,7 +99,7 @@ const Platos = () => {
     return (
         <Layout>
             <LayoutCrud>
-                {!loading ? <CrudTable items={platos} setItems={setPlatos} header={header} title="Platos" inputs={INPUTS} url="/api/platos" nameId="idPlato" apiSetStateFromUrl={apiSetStateFromUrl} handleReset={handleReset} /> : <CustomSpinner />}
+                {!loading ? <CrudTable excepciones={EXCEPCIONES} items={platos} setItems={setPlatos} header={header} title="Platos" inputs={INPUTS} url="/api/platos" nameId="idPlato" apiSetStateFromUrl={apiSetStateFromUrl} handleReset={handleReset} /> : <CustomSpinner />}
             </LayoutCrud>
         </Layout>
     )

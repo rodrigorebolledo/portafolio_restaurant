@@ -6,7 +6,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { addElment, deleteById, editById, apiGetElements } from '../../Comunes/Api';
 import { ModalDelete, ModalEdit, ModalAdd } from './ModalTable';
 
-export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs, apiSetStateFromUrl, handleReset, eliminar, agregar }) => {
+export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs, apiSetStateFromUrl, handleReset, eliminar, agregar, excepciones }) => {
 
     const [showModalEdit, setShowModalEdit] = useState(false);
     const [showModalDelete, setShowModalDelete] = useState(false);
@@ -225,6 +225,28 @@ export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs,
                             }
 
                             if (typeof valor !== "boolean" && valor !== undefined) {
+
+                                return excepciones.map((excepcion) => {
+                                    if (excepcion === 'SP') {
+                                        if (typeof valor === 'string') {
+                                            if (valor.includes('-')) {
+                                                let listaValores = valor.split('-');
+                                                return <td key={idx}>{<ul style={{ overflow: 'hidden', overflowY: 'scroll' }}>{listaValores.map((valorL) => {
+                                                    return (
+
+                                                        <li>{valorL}</li>
+
+                                                    )
+                                                })}</ul>}</td>
+                                            } {
+                                                return <td key={idx}>{valor}</td>
+                                            }
+                                        } else {
+                                            return <td key={idx}>{valor}</td>
+                                        }
+                                    }
+                                })
+
 
                                 if (key === "passUsuario") {
                                     return <td key={idx}>********</td>
