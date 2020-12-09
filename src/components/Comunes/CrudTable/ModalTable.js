@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-
+import { apiGetElements } from '../Api'
 export const ModalDelete = ({ show, setShow, title, deleteItem, deleteItems, item, setItem, items }) => {
     const handleClose = _ => {
         setShow(false);
@@ -107,6 +107,8 @@ export const ModalAdd = ({ show, setShow, title, inputs, handleReset, addObject,
         addObject(inputs, nameId, item);
     }
 
+
+
     return (
         <Modal
             show={show}
@@ -135,6 +137,7 @@ export const ModalAdd = ({ show, setShow, title, inputs, handleReset, addObject,
 
 
 const PrintInputsAdd = ({ inputs }) => {
+
     return inputs.map((input, idx) => {
         if (input.type === 'select') {
             return (
@@ -145,6 +148,17 @@ const PrintInputsAdd = ({ inputs }) => {
                     </Form.Control>
                 </Form.Group>
             )
+        } else if (input.type === 'select-bd') {
+
+            return (
+                <Form.Group key={idx}>
+                    <Form.Label>{input.label}</Form.Label>
+                    <Form.Control as="select" value={input.value} onChange={(e) => input.setValue(e.target.value)}>
+                        {input.apiResult.map((option, idx) => (<option key={idx} value={option[input.idSelect]}>{option[input.nameSelect]}</option>))}
+                    </Form.Control>
+                </Form.Group>
+            )
+
         } else {
             return (
                 <Form.Group key={idx}>
@@ -164,6 +178,15 @@ const PrintInputsEdit = ({ inputs, item }) => {
                     <Form.Label>{input.label}</Form.Label>
                     <Form.Control as="select" value={input.value === undefined ? item[input.column][input.subcolumn] !== undefined ? item[input.column][input.subcolumn] : item[input.column] : input.value} onChange={(e) => input.setValue(e.target.value)}>
                         {input.options.map((option, idx) => (<option key={idx} value={option.value}>{option.nombre}</option>))}
+                    </Form.Control>
+                </Form.Group>
+            )
+        } else if (input.type === 'select-bd') {
+            return (
+                <Form.Group key={idx}>
+                    <Form.Label>{input.label}</Form.Label>
+                    <Form.Control as="select" value={input.value === undefined ? item[input.column][input.subcolumn] !== undefined ? item[input.column][input.subcolumn] : item[input.column] : input.value} onChange={(e) => input.setValue(e.target.value)}>
+                        {input.apiResult.map((option, idx) => (<option key={idx} value={option[input.idSelect]}>{option[input.nameSelect]}</option>))}
                     </Form.Control>
                 </Form.Group>
             )

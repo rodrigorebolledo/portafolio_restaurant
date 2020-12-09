@@ -3,8 +3,7 @@ import { LayoutCrud, Layout } from '../LayoutCocinero';
 import CrudTable from '../../Comunes/CrudTable';
 import { apiSetStateFromUrl } from '../../Comunes/Api';
 import { CustomSpinner } from '../../Comunes/CustomSpinner';
-const header = ['ID', 'Nombre_Plato', 'Valor_Plato', 'Tiempo_Preparación','Preparación','Foto','Categoria']
-
+const header = ['ID', 'Nombre_Plato', 'Valor_Plato', 'Tiempo_Preparación', 'Preparación', 'Foto', 'Categoria']
 
 const Platos = () => {
 
@@ -16,6 +15,7 @@ const Platos = () => {
     const [preparacion, setPrepación] = useState(undefined);
     const [foto, setFoto] = useState(undefined);
     const [categoria, setCategoria] = useState(1);
+    const [apiCategoria, setApiCategoria] = useState([]);
     const INPUTS = [
         {
             label: 'Nombre Plato',
@@ -24,7 +24,7 @@ const Platos = () => {
             column: 'nombrePlato',
             value: nombrePlato,
             setValue: setNombrePlato,
-            
+
         },
         {
             label: 'Valor Plato',
@@ -51,7 +51,7 @@ const Platos = () => {
             column: 'prepPlato',
             value: preparacion,
             setValue: setPrepación,
-            
+
         },
         {
             label: 'Foto del Plato',
@@ -60,44 +60,20 @@ const Platos = () => {
             column: 'fotoPlato',
             value: foto,
             setValue: setFoto,
-            
+
         },
         {
             label: 'Categoria',
-            type: 'select',
+            type: 'select-bd',
             column: 'categoria',
-            subcolumn: 'idCategoria' ,
+            subcolumn: 'idCategoria',
             value: categoria,
             setValue: setCategoria,
-            options: [
-                {
-                    nombre: 'BEBIDAS',
-                    value: 1
-                    
-                },
-                {
-                    nombre: 'CARNES',
-                    value: 2
-                },
-                {
-                    nombre: 'PESCADOS',
-                    value: 3
-                },
-                {
-                    nombre: 'PASTAS',
-                    value: 4
-                },
-                {
-                    nombre: 'VEGETARIANO',
-                    value: 5
-                },
-                {
-                    nombre: 'POSTRES',
-                    value: 6
-                }
-            ]
+            apiResult: apiCategoria,
+            idSelect: 'idCategoria',
+            nameSelect: 'nombreCategoria'
         }
-    
+
     ]
     const handleReset = _ => {
         setNombrePlato('');
@@ -111,6 +87,7 @@ const Platos = () => {
 
     useEffect(() => {
         apiSetStateFromUrl("/api/platos", setPlatos, setLoading);
+        apiSetStateFromUrl("/api/categorias/", setApiCategoria);
         document.title = 'Admin Platos';
     }, [])
 
