@@ -19,6 +19,11 @@ const PrintCarrito = (props) => {
     const itemCount = plateDetails.platosSeleccionados ? plateDetails.platosSeleccionados.length : 0
     //const propina = plateDetails.totalPago*0.1;
 
+    const handleDeleteProduct = (id) => {
+        console.log(id)
+    }
+
+
     return (
         <>
             <Col className="text-center boton-ico-text">
@@ -40,8 +45,9 @@ const PrintCarrito = (props) => {
                     <ul>
                         {plateDetails.platosSeleccionados ? plateDetails.platosSeleccionados.map((plato, idx) => {
                             return (
-                                <li key={idx}>
+                                <li key={idx} style={{ marginBottom: '10px' }}>
                                     {plato.nombrePlato}
+                                    <span style={{ marginLeft: '10px' }}><button onClick={() => handleDeleteProduct(plato.idPlato)}>X</button></span>
                                 </li>
                             )
                         }) : null}

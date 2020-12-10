@@ -19,12 +19,18 @@ const Orden = () => {
     //let listaPlatosSeleccionados = []
 
     const agregarCarro = (plato) => {
-        listaPlatosSeleccionados.push(plato)
-        const sumaPago = totalOrden + plato.valorPlato;
+        const platoCopy = plato
+        platoCopy['idRandom'] = Math.random();
+        console.log(platoCopy)
+        listaPlatosSeleccionados.push(platoCopy)
+        const sumaPago = totalOrden + platoCopy.valorPlato;
         setTotalOrden(sumaPago);
         addPlate(dispatch, { platosSeleccionados: listaPlatosSeleccionados, totalPago: sumaPago });
         alert(plato.nombrePlato + " se ha añadido al carrito.")
     }
+
+
+
 
     const PrintPlatos = () => (
         platos.map((plato, idx) => (
