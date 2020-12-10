@@ -1,11 +1,28 @@
-import React from 'react';
-import {Layout} from '../LayoutFinanzas';
+import React, { useEffect, useState } from 'react';
+import {Layout, LayoutCrud} from '../LayoutFinanzas';
 import { Col, Row, Card, Button } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
+import CrudTable from '../../Comunes/CrudTable';
+import { apiSetStateFromUrl } from '../../Comunes/Api';
+import { CustomSpinner } from '../../Comunes/CustomSpinner';
+import moment from 'moment';
 //import '../Inicio/DivCard.scss'
 import { MDBIcon } from "mdbreact";
 
+const HEADER = ['Fecha del Movimiento','Tipo',  'Descripción del movimiento', 'Monto Movimiento'];
 export default function Inicio() {
+    const[detalleMovimiento, setDetalleMovimiento]=useState([]);
+    const[loading, setLoading]=useState([]);
+    
+
+    useEffect(()=>{
+        
+        apiSetStateFromUrl("/api/movimientos/reportedineromes", setDetalleMovimiento, setLoading);
+        
+    },[])
+    
+    
+
     return (
         <Layout>
             <Container>
@@ -34,8 +51,9 @@ export default function Inicio() {
                 </Card>
                 <br></br>
                
-                    <br></br>
-                
+                <LayoutCrud>
+                {!loading ? <CrudTable items={detalleMovimiento} setItems={setDetalleMovimiento} header={HEADER} title="Detalle de movimiento de dinero "  url="/api/movimientos/reportedineromes" nameId="fechaMov" apiSetStateFromUrl={apiSetStateFromUrl} eliminar={false} agregar={false} editar={false} /> : <CustomSpinner />}
+                </LayoutCrud>
                 <br></br>
                 <h2>Consejos</h2>
                 <br></br>
