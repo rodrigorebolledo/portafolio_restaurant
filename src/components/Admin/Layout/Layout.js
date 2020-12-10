@@ -35,4 +35,5 @@ export const LayoutCrud = (props) => {
         </Row>
     )
 
-};
+    
+    };

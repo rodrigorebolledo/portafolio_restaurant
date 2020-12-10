@@ -7,6 +7,7 @@ import ReportesHistoricos from '../ReportesHistoricos';
 import Personas from '../Personas';
 import Login from '../../Comunes/Login';
 import Proveedores from '../Proveedores';
+import PedidoProveedor from '../PedidoProveedor';
 const routes = [
     {
         path: '/admin',
@@ -65,6 +66,14 @@ const routes = [
         isPrivate: true,
         name: 'Proveedores',
     },
+    {
+        path: '/admin/pedido_proveedor',
+        component: PedidoProveedor,
+        exact: true,
+        isPrivate: true,
+        name: 'Pedido'
+    },
+
 
     {
         path: '/login',
