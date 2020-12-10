@@ -7,7 +7,7 @@ import { apiSetStateFromUrl } from '../../Comunes/Api';
 import { CustomSpinner } from '../../Comunes/CustomSpinner';
 import {Layout, LayoutCrud} from '../LayoutFinanzas';
 
-const HEADER = ['Nombre del cliente', 'Rut Cliente', 'Cantidad de reservas'];
+const HEADER = ['Rut Cliente','Nombre del cliente',  'Cantidad de reservas'];
 const ReporteReserva =() =>{
     //Constantes Tablas
     const[reservas, setReservas]=useState([]);
@@ -71,7 +71,7 @@ const ReporteReserva =() =>{
     return(
     <Layout>
         <LayoutCrud>
-        {!loading ? <CrudTable items={reservas} setItems={setReservas} header={HEADER} title="Reservas por clientes del último mes"  url="/api/reservas/reportereservas" nameId="nombrePerson" apiSetStateFromUrl={apiSetStateFromUrl} eliminar={false} agregar={false}  /> : <CustomSpinner />}
+        {!loading ? <CrudTable items={reservas} setItems={setReservas} header={HEADER} title="Reservas por clientes del último mes"  url="/api/reservas/reportereservas" nameId="nombrePerson" apiSetStateFromUrl={apiSetStateFromUrl} eliminar={false} agregar={false} editar={false} /> : <CustomSpinner />}
         </LayoutCrud>
       <div className= "ReporteReservas" style={{width: "80%", height: "90%"}}>
           <h2>Reserva por rut</h2>

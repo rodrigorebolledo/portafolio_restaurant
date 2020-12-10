@@ -73,7 +73,7 @@ const ProductosProveedor = () => {
     return (
         <Layout>
             <LayoutCrud>
-                {!loading ? <CrudTable items={provProd} setItems={setProvProd} header={header} title="Productos de Proveedor" inputs={INPUTS} url="/api/proveedorproductos" nameId="idProvProd" apiSetStateFromUrl={apiSetStateFromUrl} handleReset={handleReset} eliminar={false} /> : <CustomSpinner />}
+                {!loading ? <CrudTable items={provProd} setItems={setProvProd} header={header} title="Productos de Proveedor" inputs={INPUTS} url="/api/proveedorproductos" nameId="idProvProd" apiSetStateFromUrl={apiSetStateFromUrl} handleReset={handleReset} eliminar={false}  /> : <CustomSpinner />}
             </LayoutCrud>
         </Layout>
     )

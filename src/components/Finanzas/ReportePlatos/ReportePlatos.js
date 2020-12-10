@@ -8,7 +8,7 @@ import { apiSetStateFromUrl } from '../../Comunes/Api';
 import { CustomSpinner } from '../../Comunes/CustomSpinner';
 
 
-const HEADER = ['Cantidad vendida','Nombre del plato' ];
+const HEADER = ['Nombre del plato', 'Cantidad vendida'];
 const ReportePlatos =() =>{
     //Constante tabla
     const[platos, setPlatos]=useState([]);
@@ -65,7 +65,7 @@ const ReportePlatos =() =>{
     return(
     <Layout>
         <LayoutCrud>
-        {!loading ? <CrudTable items={platos} setItems={setPlatos} header={HEADER} title="Cantidad de platos vendidos del último mes"  url="/api/platos/reporteplatos" nameId="nombrePlato" apiSetStateFromUrl={apiSetStateFromUrl} eliminar={false} agregar={false}  /> : <CustomSpinner />}
+        {!loading ? <CrudTable items={platos} setItems={setPlatos} header={HEADER} title="Cantidad de platos vendidos del último mes"  url="/api/platos/reporteplatos" nameId="nombrePlato" apiSetStateFromUrl={apiSetStateFromUrl} eliminar={false} agregar={false} editar={false} /> : <CustomSpinner />}
         </LayoutCrud>
       <div className= "ReportePlatos" style={{width: "90%", height: "90%"}}>
           <h2>Cantidad de Platos vendidos</h2>

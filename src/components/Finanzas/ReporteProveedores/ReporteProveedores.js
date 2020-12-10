@@ -6,7 +6,7 @@ import CrudTable from '../../Comunes/CrudTable';
 import { apiSetStateFromUrl } from '../../Comunes/Api';
 import { CustomSpinner } from '../../Comunes/CustomSpinner';
 
-const HEADER = ['Cantidad de pedidos', 'Nombre del proveedor'];
+const HEADER = ['Nombre del proveedor','Cantidad de pedidos' ];
 //DEFAULT
 const ReporteProveedor = () => {
 
@@ -68,7 +68,7 @@ const ReporteProveedor = () => {
     return (
         <Layout>
             <LayoutCrud>
-                {!loading ? <CrudTable items={pedido} setItems={setPedido} header={HEADER} title="Cantidad de pedidos a Proveedores"  url="/api/proveedores/reporteproveedores" nameId="nombreProveedor" apiSetStateFromUrl={apiSetStateFromUrl}  eliminar={false} agregar={false}  /> : <CustomSpinner />}
+                {!loading ? <CrudTable items={pedido} setItems={setPedido} header={HEADER} title="Cantidad de pedidos a Proveedores"  url="/api/proveedores/reporteproveedores" nameId="nombreProveedor" apiSetStateFromUrl={apiSetStateFromUrl}  eliminar={false} editar={false} agregar={false}  /> : <CustomSpinner />}
             </LayoutCrud>
             <div className= "ReportePlatos" style={{width: "90%", height: "90%"}}>
           <h2>Pedidos a proveedores del último mes</h2>
