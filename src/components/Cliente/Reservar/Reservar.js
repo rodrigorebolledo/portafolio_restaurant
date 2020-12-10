@@ -6,7 +6,10 @@ import { addElment } from '../../Comunes/Api';
 import './Reservar.scss';
 import moment from 'moment';
 const Reservar = () => {
-
+    
+    const IDUSUARIOPERSONA = localStorage.getItem('currentUser')
+            ? JSON.parse(localStorage.getItem('currentUser')).idUsuario
+            : 6;
     const [personasPorMesa, setPersonasPorMesa] = useState(4);
     const [mesas, setMesas] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -14,13 +17,19 @@ const Reservar = () => {
     const [fechaReserva, setFechaReserva] = useState();
     const [reservada, setReservada] = useState();
     const [paso, setPaso] = useState(1);
+    const [rutPersona, setRutPersona] = useState(IDUSUARIOPERSONA);
+ 
     const [fechaMinima, setFechaMinima] = useState(undefined);
 
     useEffect(_ => {
         document.title = 'Reservar';
         setFechaReserva(moment().format('YYYY-MM-DDTHH:mm'));
         setFechaMinima(moment().format('YYYY-MM-DDTHH:mm'));
+        apiSetStateFromUrl("/api/rut/usuario/", setRutPersona, undefined, IDUSUARIOPERSONA);
+        console.log(IDUSUARIOPERSONA);
     }, [])
+
+   
 
     const handleBuscarMesas = () => {
         // let flagPosiblesMesas = [];
@@ -51,7 +60,7 @@ const Reservar = () => {
         const fechaInicio = moment(fechaReserva).format("YYYY-MM-DDTHH:mm:ss.SSS[Z]");
         const fechaTermino = moment(fechaReserva).add(15, 'minutes').format("YYYY-MM-DDTHH:mm:ss.SSS[Z]");
         const idMesa = mesaSeleccionada.idMesa;
-        const rutReserva = "19816100-4";
+        const rutReserva = rutPersona;
         // const rutReserva = localStorage.getItem('currentUser')
         //     ? JSON.parse(localStorage.getItem('currentUser')).rut
         //     : '19816100-4';
