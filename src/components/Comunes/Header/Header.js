@@ -17,6 +17,7 @@ const PrintCarrito = (props) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const itemCount = plateDetails.platosSeleccionados ? plateDetails.platosSeleccionados.length : 0
+    //const propina = plateDetails.totalPago*0.1;
 
     return (
         <>
@@ -48,7 +49,6 @@ const PrintCarrito = (props) => {
                     <h2>
                         Total orden: ${plateDetails.totalPago}
                     </h2>
-
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
