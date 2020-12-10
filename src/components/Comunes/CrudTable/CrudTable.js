@@ -6,7 +6,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { addElment, deleteById, editById, apiGetElements } from '../../Comunes/Api';
 import { ModalDelete, ModalEdit, ModalAdd } from './ModalTable';
 
-export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs, apiSetStateFromUrl, handleReset, eliminar, agregar, excepciones }) => {
+export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs, apiSetStateFromUrl, handleReset, editar, eliminar, agregar, excepciones }) => {
 
     const [showModalEdit, setShowModalEdit] = useState(false);
     const [showModalDelete, setShowModalDelete] = useState(false);
@@ -269,7 +269,7 @@ export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs,
                         })
                     }
                     <td>
-                        <EditIcon
+                    {editar !== false ? ( <EditIcon
                             style={{ color: '#FFC107', cursor: 'pointer' }}
                             onClick={() => {
                                 handleShowModalEdit();
@@ -277,7 +277,7 @@ export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs,
                                 selectItem(item);
                             }
                             }
-                        />
+                        />) : null}
                         {eliminar !== false ? (<DeleteIcon
                             style={{ color: 'red', cursor: 'pointer' }}
                             onClick={() => {
