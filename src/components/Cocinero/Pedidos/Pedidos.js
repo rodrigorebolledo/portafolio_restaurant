@@ -104,10 +104,10 @@ const Ordenes = () => {
             <Col>
                 <h3 className="mt-3">Ordenes</h3>
                 <Row>
-                    {!loading && ordenes.length > 0 ? <PrintOrdenes /> : <CustomSpinner />}
+                    {!loading && ordenes.length > 0 ? <PrintPedidos /> : <CustomSpinner />}
                 </Row>
             </Col>
-           
+
         </Layout>
     )
 }

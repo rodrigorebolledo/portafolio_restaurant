@@ -4,7 +4,7 @@ import { Layout, LayoutCrud } from '../Layout';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import CrudTable from '../../Comunes/CrudTable';
-import { apiSetStateFromUrl } from '../../Comunes/Api';
+import { apiSetStateFromUrl, addElment } from '../../Comunes/Api';
 import { CustomSpinner } from '../../Comunes/CustomSpinner';
 import { List } from '@material-ui/core';
 import { useAuthState } from '../../Context';
@@ -19,25 +19,26 @@ const PedidoProveedor = () => {
     const userDetails = useAuthState();
     const [proveedor, setProveedor] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [idProveedor, setIdProveedor] = useState(PROVEEDOR_ID);
+    const [idProveedor, setIdProveedor] = useState('msg');
     const [idProvProd, setIdProvProd] = useState('msg');
     const [cantidad, setCantidad] = useState(1);
     const [proveProductos, setProveProductos] = useState([]);
     const [idUsuario, setIdUsuario] = useState(undefined);
     const [provProdSelected, setProvProdSelected] = useState([]);
-    const [nombreProducto, setNombreProducto] = useState(undefined)
 
 
     useEffect(() => {
         apiSetStateFromUrl("/api/proveedores", setProveedor, setLoading);
-        apiSetStateFromUrl("api/proveedorproductos/prov/", setProveProductos, undefined, PROVEEDOR_ID);
+        // apiSetStateFromUrl("api/proveedorproductos/prov/", setProveProductos, undefined, PROVEEDOR_ID);
         document.title = 'Admin Pedidos';
         setIdUsuario(userDetails.user.idUsuario);
 
     }, [])
     useEffect(() => {
-        if (proveProductos.length) {
-            apiSetStateFromUrl("api/proveedorproductos/prov/", setProveProductos, undefined, idProveedor);
+        if (idProveedor !== 'msg') {
+            const provSplit = idProveedor.split('|');
+            apiSetStateFromUrl("api/proveedorproductos/prov/", setProveProductos, undefined, provSplit[0]);
+            setIdProvProd('msg')
         } else {
             return;
         }
@@ -51,19 +52,59 @@ const PedidoProveedor = () => {
             const numberRandom = Math.random();
 
             const prodSplit = idProvProd.split('|');
-
+            const provSplit = idProveedor.split('|');
             const product = {
                 idFlag: numberRandom,
-                cantidadDetPed: cantidad,
-                provProd: {
-                    idProvProd: prodSplit[0],
-                    producto: {
-                        nombreProducto: prodSplit[1]
+                nombreProveedor: provSplit[1],
+                detalle: {
+                    cantidadDetPed: cantidad,
+                    provProd: {
+                        idProvProd: prodSplit[0],
+                        producto: {
+                            nombreProducto: prodSplit[1]
+                        }
                     }
                 }
+
             }
             setProvProdSelected([...provProdSelected, product])
         }
+    }
+
+
+    const handleRealizarPedido = () => {
+        const arregloObjeto = []
+        provProdSelected.map((producto) => {
+            arregloObjeto.push(producto.detalle)
+        });
+        const objeto = {
+            idUsuario: idUsuario,
+            detalle: arregloObjeto
+        }
+
+        let valid = false;
+        if (objeto !== undefined && objeto !== {}) {
+            valid = addElment('/api/pedidos/full', objeto)
+        } else {
+            alert('Es imposible realizar el pedido, favor intentar más tarde');
+            return;
+        }
+        if (valid !== false) {
+            alert('El pedido ha sido realizado correctamente');
+            handleResetValues();
+        } else {
+            console.log('Ha ocurrido un error');
+        }
+
+    }
+
+    const handleResetValues = () => {
+        setIdProveedor('msg');
+        setIdProvProd('msg');
+        setCantidad(1);
+        setProvProdSelected([]);
+
+
     }
 
     const handleDeleteProduct = (idFlag) => {
@@ -82,9 +123,10 @@ const PedidoProveedor = () => {
                             <Form.Control as="select" value={idProveedor} onChange={(e) => {
                                 setIdProveedor(e.target.value)
                             }}>
+                                <option selected disabled hidden value='msg'>Selecciona un proveedor</option>
                                 {
                                     proveedor.map((prov, index) => {
-                                        return (<option key={index} value={prov.idProveedor}>{prov.nombreProveedor}</option>)
+                                        return (<option key={index} value={prov.idProveedor + '|' + prov.nombreProveedor}>{prov.nombreProveedor}</option>)
                                     })
                                 }
                             </Form.Control>
@@ -107,14 +149,14 @@ const PedidoProveedor = () => {
                     </Form.Group>
                     <Form.Row>
                         <Button type="submit" variant="primary" onClick={() => handleAddProduct()} >Agregar</Button>
-                        <Button variant="secondary" type="submit">Realizar Pedido</Button>
+                        <Button variant="secondary" type="submit" onClick={() => handleRealizarPedido()}>Realizar Pedido</Button>
                     </Form.Row>
                 </Form>
                 <ul>
                     {provProdSelected.length ? provProdSelected.map((prov, idx) => {
                         console.log(prov)
                         return (
-                            <li>Producto: {prov.provProd.producto.nombreProducto} | Cantidad: {prov.cantidadDetPed} <button onClick={() => handleDeleteProduct(prov.idFlag)}>X</button></li>
+                            <li key={idx}> Proveedor: {prov.nombreProveedor} | Producto: {prov.detalle.provProd.producto.nombreProducto} | Cantidad: {prov.detalle.cantidadDetPed} <button onClick={() => handleDeleteProduct(prov.idFlag)}>X</button></li>
                         )
                     }) : null}
                 </ul>
