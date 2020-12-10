@@ -15,7 +15,9 @@ const apiSetStateFromUrl = (url, setState, setLoading, id = undefined) => {
     if (id !== undefined) {
         return api.get(url + id).then(res => {
             setState(res.data);
-            setLoading(false);
+            if (setLoading !== undefined) {
+                setLoading(false)
+            }
         }).catch((err) => {
             console.log(err);
             return;
@@ -23,7 +25,9 @@ const apiSetStateFromUrl = (url, setState, setLoading, id = undefined) => {
     } else {
         return api.get(url).then(res => {
             setState(res.data);
-            setLoading(false);
+            if (setLoading !== undefined) {
+                setLoading(false)
+            }
         }).catch((err) => {
             console.log(err);
             return;
