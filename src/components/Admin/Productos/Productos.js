@@ -3,16 +3,16 @@ import { LayoutCrud, Layout } from '../Layout/Layout';
 import CrudTable from '../../Comunes/CrudTable';
 import { apiSetStateFromUrl } from '../../Comunes/Api';
 import { CustomSpinner } from '../../Comunes/CustomSpinner';
-const header = ['ID','Valor del producto', 'Proveedor', 'Producto'];
+const header = ['ID', 'Valor del producto', 'Proveedor', 'Producto'];
 
 //DEFAULT
 const ProductosProveedor = () => {
 
     const [provProd, setProvProd] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [nombreProducto, setNombreProducto] = useState('');
-    const [valorProducto, setValorProducto] = useState(1);
-    const [proveedor, setProveedor] = useState('');
+    const [nombreProducto, setNombreProducto] = useState(1);
+    const [valorProducto, setValorProducto] = useState(1500);
+    const [proveedor, setProveedor] = useState(1);
     const [apiProducto, setApiProducto] = useState([]);
     const [apiProveedor, setApiProveedor] = useState([]);
 
@@ -48,15 +48,15 @@ const ProductosProveedor = () => {
             apiResult: apiProveedor,
             idSelect: 'idProveedor',
             nameSelect: 'nombreProveedor'
-            
+
         }
     ]
 
 
     const handleReset = _ => {
-        setNombreProducto('');
+        setNombreProducto(1);
         setValorProducto(1500);
-        setProveedor('');
+        setProveedor(1);
     }
 
 
