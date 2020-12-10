@@ -66,7 +66,7 @@ const Proveedores = () => {
         setNombreProveedor('');
         setEmailProveedor('');
         setTelefono('+56901234567');
-        setEstado('T');
+        setEstado('t');
     }
 
 

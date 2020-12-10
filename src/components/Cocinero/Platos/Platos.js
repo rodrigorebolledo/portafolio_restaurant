@@ -3,6 +3,7 @@ import { LayoutCrud, Layout } from '../LayoutCocinero';
 import CrudTable from '../../Comunes/CrudTable';
 import { apiSetStateFromUrl } from '../../Comunes/Api';
 import { CustomSpinner } from '../../Comunes/CustomSpinner';
+import { responsiveFontSizes } from '@material-ui/core';
 const header = ['ID', 'Nombre_Plato', 'Valor_Plato', 'Tiempo_Preparación', 'Preparación', 'Foto', 'Categoria']
 
 const Platos = () => {
@@ -94,6 +95,7 @@ const Platos = () => {
         apiSetStateFromUrl("/api/platos", setPlatos, setLoading);
         apiSetStateFromUrl("/api/categorias/", setApiCategoria);
         document.title = 'Admin Platos';
+        
     }, [])
 
     return (

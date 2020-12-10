@@ -20,7 +20,7 @@ const routes = [
         component: Productos,
         exact: true,
         isPrivate: true,
-        name: 'Productos'
+        name: 'Productos Proveedor'
     },
 
     {

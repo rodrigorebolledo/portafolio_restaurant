@@ -23,39 +23,19 @@ export default function Inicio() {
                             </p>
                             <footer className="blockquote-footer">
                                 <ul>
-                                    <li>Generar Reportes</li>
+                                    <li>Reportes Platos</li>
+                                    <li>Reportes Stock</li>
+                                    <li>Reportes Reserva</li>
+                                    <li>Reportes Proveedores</li>
                                 </ul>
                             </footer>
                         </blockquote>
                     </Card.Body>
                 </Card>
                 <br></br>
-                <h2>Resumen de movimientos</h2>
-                <Col>
-                    <div className="w3-card-4 w3-green" >
-                        <Row className="justify-content-center mt-5">
-                            <div className="divCard">
-                                <h2>Ventas mensuales</h2>
-                                <Row>
-                                    <i className="fa fa-usd" aria-hidden="true"></i>
-                                    <h2>120.000</h2>
-                                </Row>
-                            </div>
-                        </Row>
-                    </div>
-                    <div className="w3-card-4 w3-red" >
-                        <Row className="justify-content-center mt-5">
-                            <div className="divCard">
-                                <h2>Egresos mensuales</h2>
-                                <Row>
-                                    <i className="fa fa-usd" aria-hidden="true"></i>
-                                    <h2>120.000</h2>
-                                </Row>
-                            </div>
-                        </Row>
-                    </div>
+               
                     <br></br>
-                </Col>
+                
                 <br></br>
                 <h2>Consejos</h2>
                 <br></br>
@@ -101,14 +81,48 @@ export default function Inicio() {
                     <Col>
                         <Card border="success" style={{ width: 'auto' }}>
                             <Card.Body>
-                                <Card.Title>Generar Reportes</Card.Title>
+                                <Card.Title>Reporte de platos</Card.Title>
                                 <Card.Text>
-                                    Para generar reportes, haga click en el botón.
+                                    Podra ver reportes de platos vendidos del último mes.
                                 </Card.Text>
-                                <Button variant="primary" href="finanzas/reportes">Reportes</Button>
+                                <Button variant="primary" href="finanzas/reportes_plato">Reporte Plato</Button>
                             </Card.Body>
                         </Card>
                     </Col>
+                    <Col>
+                        <Card border="success" style={{ width: 'auto' }}>
+                            <Card.Body>
+                                <Card.Title>Reporte Stock</Card.Title>
+                                <Card.Text>
+                                Podra ver el stock de los prodcutos en bodega.
+                                </Card.Text>
+                                <Button variant="primary" href="finanzas/reportes_stock">Reportes Stock</Button>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                    <Col>
+                        <Card border="success" style={{ width: 'auto' }}>
+                            <Card.Body>
+                                <Card.Title>Reporte Reserva</Card.Title>
+                                <Card.Text>
+                                Podra ver un reporte de las cantidaddes de reservas de los usuarios en el último mes.
+                                </Card.Text>
+                                <Button variant="primary" href="finanzas/reportes_reservas">Reportes Reserva</Button>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                    <Col>
+                        <Card border="success" style={{ width: 'auto' }}>
+                            <Card.Body>
+                                <Card.Title>Reporte Proveedores</Card.Title>
+                                <Card.Text>
+                                Podra ver un reporte de las cantidaddes de pedidos a proveedores en el último mes.
+                                </Card.Text>
+                                <Button variant="primary" href="finanzas/reportes_proveedores">Reportes Proveedores</Button>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                    
                 </Row>
             </Container>
         </Layout>

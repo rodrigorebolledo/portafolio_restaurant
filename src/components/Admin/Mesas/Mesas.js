@@ -13,6 +13,7 @@ const Mesas = () => {
     const [numeroMesa, setNumeroMesa] = useState(1);
     const [capacidadMesa, setCapacidadMesa] = useState(1);
     const [estadoMesa, setEstadoMesa] = useState(1);
+    const [apimesas, setApiMesas] = useState([]);
     const INPUTS = [
         {
             label: 'Número mesa',
@@ -34,21 +35,15 @@ const Mesas = () => {
         },
         {
             label: 'Estado',
-            type: 'select',
+            type: 'select-bd',
             column: 'estado',
             subcolumn: 'idEstadoMesa',
             value: estadoMesa,
             setValue: setEstadoMesa,
-            options: [
-                {
-                    nombre: 'Disponible',
-                    value: 1
-                },
-                {
-                    nombre: 'No Disponible',
-                    value: 2
-                }
-            ]
+            apiResult: apimesas,
+            idSelect: 'idEstadoMesa',
+            nameSelect: 'nombreEstadoMesa'
+            
         }
     ]
 
@@ -63,13 +58,14 @@ const Mesas = () => {
 
     useEffect(() => {
         apiSetStateFromUrl("/api/mesas", setMesas, setLoading);
+        apiSetStateFromUrl("/api/estadosmesa/", setApiMesas);
         document.title = 'Admin Mesas';
     }, [])
 
     return (
         <Layout>
             <LayoutCrud>
-                {!loading ? <CrudTable items={mesas} setItems={setMesas} header={header} title="Mesas" inputs={INPUTS} url="/api/mesas" nameId="idMesa" apiSetStateFromUrl={apiSetStateFromUrl} handleReset={handleReset} /> : <CustomSpinner />}
+                {!loading ? <CrudTable items={mesas} setItems={setMesas} header={header} title="Mesas" inputs={INPUTS} url="/api/mesas" nameId="idMesa" apiSetStateFromUrl={apiSetStateFromUrl} handleReset={handleReset} eliminar={false} /> : <CustomSpinner />}
             </LayoutCrud>
         </Layout>
     )

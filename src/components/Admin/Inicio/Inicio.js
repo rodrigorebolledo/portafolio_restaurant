@@ -33,8 +33,9 @@ const Inicio = () => {
                                     <li>Administrar Usuarios</li>
                                     <li>Administrar Mesas</li>
                                     <li>Administrar Personas</li>
-                                    <li>Revisar Reportes Históricos</li>
-                                    <li>Administrar Proovedores</li>
+                                    <li>Administrar Proveedores</li>
+                                    <li>Realizar Pedidos</li>
+                                    
                                 </ul>
                             </footer>
                         </blockquote>
@@ -85,7 +86,7 @@ const Inicio = () => {
                     <Col>
                         <Card border="success" style={{ width: 'auto' }}>
                             <Card.Body>
-                                <Card.Title>Administrar productos</Card.Title>
+                                <Card.Title>Administrar productos del Proveedor</Card.Title>
                                 <Card.Text>
                                     Para administrar los productos, haga click en el botón.
                                 </Card.Text>
@@ -132,36 +133,26 @@ const Inicio = () => {
                     <Col>
                         <Card border="success" style={{ width: 'auto' }}>
                             <Card.Body>
-                                <Card.Title>Reportes históricos</Card.Title>
+                                <Card.Title>Proveedores</Card.Title>
                                 <Card.Text>
-                                    Para revisar los reportes históricos, haga click en el botón.
+                                    Administrar los proveedores con los que cuenta el negocio.
                                 </Card.Text>
-                                <Button variant="primary" href="admin/reportes_historicos">Reportes Históricos</Button>
+                                <Button variant="primary" href="admin/proveedores">Proveedor</Button>
                             </Card.Body>
                         </Card>
                     </Col>
                     <Col>
                         <Card border="success" style={{ width: 'auto' }}>
                             <Card.Body>
-                                <Card.Title>Generar reportes</Card.Title>
+                                <Card.Title>Pedidos a Proveedores</Card.Title>
                                 <Card.Text>
-                                    Para generar reportes, haga click en el botón.
+                                    Podra realizar pedidos a los distintos proveedores registrados
                                 </Card.Text>
-                                <Button variant="primary" href="admin/generar_reportes">Generar Reportes</Button>
+                                <Button variant="primary" href="admin/pedido_proveedor">Pedidos</Button>
                             </Card.Body>
                         </Card>
                     </Col>
-                    <Col>
-                        <Card border="success" style={{ width: 'auto' }}>
-                            <Card.Body>
-                                <Card.Title>Administrar productos</Card.Title>
-                                <Card.Text>
-                                    Para administrar los productos, haga click en el botón.
-                                </Card.Text>
-                                <Button variant="primary" href="admin/proveedores">Proveedores</Button>
-                            </Card.Body>
-                        </Card>
-                    </Col>
+                    
                 </Row>
             </Container> 
         </Layout>

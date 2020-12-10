@@ -12,9 +12,9 @@ const ReporteStock = () => {
     const [nombreProducto, setNombreProducto] = useState('');
     const [stock, setStock] = useState(1);
     const [unidad, setUnidad] = useState('');
-    const [apiUnidad, setApiUnidad] = useState([]);
+    
 
-    const HEADER = ['ID','Nombre del producto', 'stock', 'Unidad'];
+    const HEADER = ['stock', 'Nombre del producto', 'Unidad de medida'];
     const EXCEPTO = ['stockMinimo']
     const INPUTS = [
         {
@@ -37,14 +37,11 @@ const ReporteStock = () => {
         },
         {
             label: 'Unidad de medida',
-            type: 'select-bd',
-            column: 'unidad',
-            subcolumn: 'idUnidadMedida',
+            type: 'text',
+            column: 'unidadMedida',
             value: unidad,
             setValue: setUnidad,
-            apiResult: apiUnidad,
-            idSelect: 'idUnidadMedida',
-            nameSelect: 'nombreUnidadMedida'
+            
             
         }
     ]
@@ -60,9 +57,9 @@ const ReporteStock = () => {
 
     useEffect(() => {
 
-        apiSetStateFromUrl("/api/productos/", setProducto, setLoading);
+        apiSetStateFromUrl("/api/productos/reporteproductos", setProducto, setLoading);
         
-        apiSetStateFromUrl("api/unidades/", setApiUnidad);
+       
 
         document.title = 'Admin Stock';
     }, [])
