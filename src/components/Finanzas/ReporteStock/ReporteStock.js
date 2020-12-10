@@ -1,38 +1,34 @@
 import React, { useEffect, useState } from 'react'
 import { Col, Row, Table } from 'react-bootstrap';
 import Layout from '../LayoutFinanzas';
+import Datatable from './Datatable';
+
+require("es6-promise").polyfill()
+require("isomorphic-fetch");
+
 
 const ReporteStock =() =>{
+  const [data, setData]=useState([]);
+  const [nombreProducto, setNombreProducto]= useState('');
+  const [stockProducto, setStockProducto]=useState(1);
+
+useEffect(()=>{
+  fetch("http://localhost:80/api/reservas/reportereservas")
+  .then((response) => response.json())
+  .then((json => setData(json)));
+  console.log(data);
+}, [])
+
     return(
     <Layout>
-        <h1>Stock de productos en bodega del último mes</h1>
-        <br></br>
-    <Table striped bordered hover variant="dark">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Nombre Producto</th>
-      <th>Stock</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>Mark</td>
-      <td>Otto</td>
-      
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      
-    </tr>
-    
-  </tbody>
-</Table>
+        <div>
+          <div>filtro</div>
+          <div>
+            <Datatable data={data} />
+          </div>
+        </div>
 </Layout>
 )
 }
 export default ReporteStock;
+
