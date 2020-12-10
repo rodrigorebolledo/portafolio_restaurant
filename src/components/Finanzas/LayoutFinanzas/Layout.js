@@ -11,14 +11,14 @@ const statusObject = {
     itemCount: 1
 }
 
-const Layout = (props) => {
+export const Layout = (props) => {
 
     const { children } = props;
     
     return (
         <>
             <Header statusObject={statusObject} />
-            <MenuFinanzas />
+            <MenuFinanzas/>
             <Container className="container-client">
                 {children}
             </Container>
@@ -26,5 +26,6 @@ const Layout = (props) => {
         </>
     )
 }
+
 
 export default Layout;
