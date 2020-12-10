@@ -101,7 +101,13 @@ const Ordenes = () => {
 
     return (
         <Layout>
-            {!loading ? <PrintPedidos /> : <CustomSpinner />}
+            <Col>
+                <h3 className="mt-3">Ordenes</h3>
+                <Row>
+                    {!loading && ordenes.length > 0 ? <PrintOrdenes /> : <CustomSpinner />}
+                </Row>
+            </Col>
+           
         </Layout>
     )
 }

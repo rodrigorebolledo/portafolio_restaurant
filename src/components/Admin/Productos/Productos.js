@@ -3,91 +3,80 @@ import { LayoutCrud, Layout } from '../Layout/Layout';
 import CrudTable from '../../Comunes/CrudTable';
 import { apiSetStateFromUrl } from '../../Comunes/Api';
 import { CustomSpinner } from '../../Comunes/CustomSpinner';
-const header = ['ID', 'Nombre producto', 'Stock', 'Stock Mínimo', 'Unidad'];
+const header = ['ID','Valor del producto', 'Proveedor', 'Producto'];
 
 //DEFAULT
-const Productos = () => {
+const ProductosProveedor = () => {
 
-    const [productos, setProductos] = useState([]);
+    const [provProd, setProvProd] = useState([]);
     const [loading, setLoading] = useState(true);
     const [nombreProducto, setNombreProducto] = useState('');
-    const [stockProducto, setStockProducto] = useState(1);
-    const [stockMinimo, setStockMinimo] = useState(0);
-    const [unidad, setUnidad] = useState(1);
+    const [valorProducto, setValorProducto] = useState(1);
+    const [proveedor, setProveedor] = useState('');
+    const [apiProducto, setApiProducto] = useState([]);
+    const [apiProveedor, setApiProveedor] = useState([]);
 
     const INPUTS = [
         {
             label: 'Nombre del producto',
-            type: 'text',
-            placeholder: 'Ingrese el nombre del producto',
-            column: 'nombreProducto',
+            type: 'select-bd',
+            placeholder: 'Seleccione el nombre del producto',
+            column: 'producto',
+            subcolumn: 'idProducto',
             value: nombreProducto,
             setValue: setNombreProducto,
+            apiResult: apiProducto,
+            idSelect: 'idProducto',
+            nameSelect: 'nombreProducto'
         },
         {
-            label: 'Stock',
+            label: 'Valor Producto',
             type: 'number',
             min: 1,
-            placeholder: 'Ingrese el stock del producto',
-            column: 'stockProducto',
-            value: stockProducto,
-            setValue: setStockProducto,
+            placeholder: 'Ingrese el valor del producto',
+            column: 'valorProducto',
+            value: valorProducto,
+            setValue: setValorProducto,
         },
         {
-            label: 'Stock Mínimo',
-            type: 'number',
-            min: 0,
-            placeholder: 'Ingrese el stock mínimo del producto',
-            column: 'stockMinimo',
-            value: stockMinimo,
-            setValue: setStockMinimo,
-        },
-        {
-            label: 'Unidad de Medida',
-            type: 'select',
-            column: 'unidad',
-            subcolumn: 'idUnidadMedida',
-            value: unidad,
-            setValue: setUnidad,
-            options: [
-                {
-                    nombre: 'Gramos',
-                    value: 1
-                },
-                {
-                    nombre: 'Litros',
-                    value: 2
-                },
-                {
-                    nombre: 'Unidad',
-                    value: 3
-                }
-            ]
+            label: 'Nombre Proveedor',
+            type: 'select-bd',
+            column: 'proveedor',
+            subcolumn: 'idProveedor',
+            value: proveedor,
+            setValue: setProveedor,
+            apiResult: apiProveedor,
+            idSelect: 'idProveedor',
+            nameSelect: 'nombreProveedor'
+            
         }
     ]
 
 
     const handleReset = _ => {
         setNombreProducto('');
-        setStockProducto(1);
-        setStockMinimo(0);
-        setUnidad(1);
+        setValorProducto(1500);
+        setProveedor('');
     }
 
 
 
     useEffect(() => {
-        apiSetStateFromUrl("/api/productos", setProductos, setLoading);
+
+        apiSetStateFromUrl("/api/proveedorproductos/", setProvProd, setLoading);
+        apiSetStateFromUrl("/api/proveedores/", setApiProveedor);
+        apiSetStateFromUrl("api/productos/", setApiProducto);
+
         document.title = 'Admin Productos';
     }, [])
 
     return (
         <Layout>
             <LayoutCrud>
-                {!loading ? <CrudTable items={productos} setItems={setProductos} header={header} title="Productos" inputs={INPUTS} url="/api/productos" nameId="idProducto" apiSetStateFromUrl={apiSetStateFromUrl} handleReset={handleReset} /> : <CustomSpinner />}
+                {!loading ? <CrudTable items={provProd} setItems={setProvProd} header={header} title="Productos de Proveedor" inputs={INPUTS} url="/api/proveedorproductos" nameId="idProvProd" apiSetStateFromUrl={apiSetStateFromUrl} handleReset={handleReset} /> : <CustomSpinner />}
             </LayoutCrud>
         </Layout>
     )
 }
 
-export default Productos;
+export default ProductosProveedor;

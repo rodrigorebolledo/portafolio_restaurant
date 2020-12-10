@@ -12,6 +12,8 @@ const Recetas = () => {
     const [nombrePlato, setNombrePlato] = useState(undefined);
     const [ingredientes, setIngredientes] = useState(1);
     const [cantidad, setCantidad] = useState(1);
+    const [apiPlatos, setApiPlatos] = useState([]);
+    const [apiIngredientes, setApiIngredientes] = useState([]);
 
     const INPUTS = [
         {
@@ -24,64 +26,27 @@ const Recetas = () => {
         },
         {
             label: 'Ingredientes',
-            type: 'select',
+            type: 'select-bd',
             placeholder: 'nombre del ingrediente para el plato',
             column: 'producto',
             subcolumn:'idProducto',
             value: ingredientes,
             setValue: setIngredientes,
-            options: [
-                {
-                    nombre: 'palta',
-                    value: 1
-                    
-                },
-                {
-                    nombre: 'azucar',
-                    value: 2
-                },
-                {
-                    nombre: 'harina',
-                    value: 3
-                },
-                {
-                    nombre: 'sal',
-                    value: 4
-                },
-                {
-                    nombre: 'pollo',
-                    value: 5
-                },
-                {
-                    nombre: 'papa',
-                    value: 6
-                }
-            ]
+            apiResult: apiIngredientes,
+            idSelect: 'idProducto',
+            nameSelect: 'nombreProducto'
         },
         {
             label: 'Nombre Plato',
-            type: 'select',
+            type: 'select-bd',
             placeholder: 'Ingrese el nombre del plato',
             column: 'plato',
             subcolumn: 'idPlato',
             value: nombrePlato,
             setValue: setNombrePlato,
-            options: [
-                {
-                    nombre: 'ASDAS',
-                    value: 1
-                    
-                },
-                {
-                    nombre: 'Pure',
-                    value: 2
-                },
-                {
-                    nombre: 'PURE',
-                    value: 3
-                },
-                
-            ]
+            apiResult: apiPlatos,
+            idSelect: 'idPlato',
+            nameSelect: 'nombrePlato'
             
         },    
     ]
@@ -94,6 +59,8 @@ const Recetas = () => {
 
     useEffect(() => {
         apiSetStateFromUrl("/api/recetas", setRecetas, setLoading);
+        apiSetStateFromUrl("/api/platos/", setApiPlatos);
+        apiSetStateFromUrl("/api/productos/", setApiIngredientes);
         document.title = 'Admin Recetas';
         
     }, [])

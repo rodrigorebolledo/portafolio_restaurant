@@ -36,6 +36,17 @@ const apiSetStateFromUrl = (url, setState, setLoading, id = undefined) => {
 
 }
 
+
+const apiGetElements = (url) => {
+
+    return api.get(url).then(res => {
+        return res.data;
+    }).catch((err) => {
+        console.log(err);
+        return;
+    });
+}
+
 const addElment = (url, objeto) => {
     return api.post(`${url}`, objeto)
         .then((res) => {
@@ -67,4 +78,4 @@ const editById = (url, id, objeto) => {
 }
 
 
-export { api, apiSetStateFromUrl, addElment, deleteById, editById };
+export { api, apiSetStateFromUrl, addElment, deleteById, editById, apiGetElements };
