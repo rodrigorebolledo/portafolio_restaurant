@@ -14,7 +14,7 @@ const ReporteStock = () => {
     const [unidad, setUnidad] = useState('');
     
 
-    const HEADER = ['stock', 'Nombre del producto', 'Unidad de medida'];
+    const HEADER = ['Nombre del producto', 'stock',  'Unidad de medida'];
     const EXCEPTO = ['stockMinimo']
     const INPUTS = [
         {
@@ -67,7 +67,7 @@ const ReporteStock = () => {
     return (
         <Layout>
             <LayoutCrud>
-                {!loading ? <CrudTable items={producto} setItems={setProducto} header={HEADER} title="Stock" inputs={INPUTS} excepto={EXCEPTO} url="/api/productos" nameId="idProducto" apiSetStateFromUrl={apiSetStateFromUrl} handleReset={handleReset} eliminar={false} agregar={false}  /> : <CustomSpinner />}
+                {!loading ? <CrudTable items={producto} setItems={setProducto} header={HEADER} title="Stock" inputs={INPUTS} excepto={EXCEPTO} url="/api/productos" nameId="idProducto" apiSetStateFromUrl={apiSetStateFromUrl} handleReset={handleReset} eliminar={false} agregar={false} editar={false} /> : <CustomSpinner />}
             </LayoutCrud>
         </Layout>
     )
