@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 //import '../Inicio/DivCard.scss'
 
 
+
 const Inicio = () => {
     useEffect(_ => {
         document.title = 'Cocinero';
@@ -112,3 +113,6 @@ const Inicio = () => {
 }
 
 export default Inicio;
+
+
+
