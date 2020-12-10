@@ -2,8 +2,7 @@ import Inicio from '../Inicio';
 import Mesas from '../Mesas';
 import Usuarios from '../Usuarios';
 import Productos from '../Productos';
-import GeneradorReportes from '../GeneradorReportes';
-import ReportesHistoricos from '../ReportesHistoricos';
+
 import Personas from '../Personas';
 import Login from '../../Comunes/Login';
 import Proveedores from '../Proveedores';
@@ -44,20 +43,6 @@ const routes = [
         exact: true,
         isPrivate: true,
         name: 'Personas'
-    },
-    {
-        path: '/admin/reportes_historicos',
-        component: ReportesHistoricos,
-        exact: true,
-        isPrivate: true,
-        name: 'Reportes Históricos'
-    },
-    {
-        path: '/admin/generar_reportes',
-        component: GeneradorReportes,
-        exact: true,
-        isPrivate: true,
-        name: 'Generar Reportes'
     },
     {
         path: '/admin/proveedores',

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Col, Row, Table } from 'react-bootstrap';
-import Layout from '../LayoutFinanzas';
+import {Layout} from '../LayoutFinanzas';
 
 const ReporteEgresos =() =>{
     return(

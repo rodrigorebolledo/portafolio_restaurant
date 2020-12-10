@@ -1,34 +1,79 @@
-import React, { useEffect, useState } from 'react'
-import { Col, Row, Table } from 'react-bootstrap';
-import Layout from '../LayoutFinanzas';
-import Datatable from './Datatable';
+import React, { useState, useEffect } from 'react';
+import { LayoutCrud, Layout } from '../LayoutFinanzas/Layout';
+import CrudTable from '../../Comunes/CrudTable';
+import { apiSetStateFromUrl } from '../../Comunes/Api';
+import { CustomSpinner } from '../../Comunes/CustomSpinner';
 
-require("es6-promise").polyfill()
-require("isomorphic-fetch");
+//DEFAULT
+const ReporteStock = () => {
+
+    const [producto, setProducto] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [nombreProducto, setNombreProducto] = useState('');
+    const [stock, setStock] = useState(1);
+    const [unidad, setUnidad] = useState('');
+    const [apiUnidad, setApiUnidad] = useState([]);
+
+    const HEADER = ['ID','Nombre del producto', 'stock', 'Unidad'];
+    const EXCEPTO = ['stockMinimo']
+    const INPUTS = [
+        {
+            label: 'Nombre del producto',
+            type: 'text',
+            placeholder: 'Nombre del Producto',
+            column: 'nombreProducto',
+            value: nombreProducto,
+            setValue: setNombreProducto,
+            
+        },
+        {
+            label: 'stock',
+            type: 'number',
+            min: 1,
+            placeholder: 'Stock de productos',
+            column: 'stockProducto',
+            value: stock,
+            setValue: setStock,
+        },
+        {
+            label: 'Unidad de medida',
+            type: 'select-bd',
+            column: 'unidad',
+            subcolumn: 'idUnidadMedida',
+            value: unidad,
+            setValue: setUnidad,
+            apiResult: apiUnidad,
+            idSelect: 'idUnidadMedida',
+            nameSelect: 'nombreUnidadMedida'
+            
+        }
+    ]
 
 
-const ReporteStock =() =>{
-  const [data, setData]=useState([]);
-  const [nombreProducto, setNombreProducto]= useState('');
-  const [stockProducto, setStockProducto]=useState(1);
+    const handleReset = _ => {
+        setNombreProducto('');
+        setStock(15);
+        setUnidad('');
+    }
 
-useEffect(()=>{
-  fetch("http://localhost:80/api/reservas/reportereservas")
-  .then((response) => response.json())
-  .then((json => setData(json)));
-  console.log(data);
-}, [])
 
-    return(
-    <Layout>
-        <div>
-          <div>filtro</div>
-          <div>
-            <Datatable data={data} />
-          </div>
-        </div>
-</Layout>
-)
+
+    useEffect(() => {
+
+        apiSetStateFromUrl("/api/productos/", setProducto, setLoading);
+        
+        apiSetStateFromUrl("api/unidades/", setApiUnidad);
+
+        document.title = 'Admin Stock';
+    }, [])
+
+    return (
+        <Layout>
+            <LayoutCrud>
+                {!loading ? <CrudTable items={producto} setItems={setProducto} header={HEADER} title="Stock" inputs={INPUTS} excepto={EXCEPTO} url="/api/productos" nameId="idProducto" apiSetStateFromUrl={apiSetStateFromUrl} handleReset={handleReset} eliminar={false} agregar={false}  /> : <CustomSpinner />}
+            </LayoutCrud>
+        </Layout>
+    )
 }
-export default ReporteStock;
 
+export default ReporteStock;

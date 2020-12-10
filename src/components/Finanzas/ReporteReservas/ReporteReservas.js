@@ -2,13 +2,21 @@ import React, { useEffect, useState } from 'react'
 import { Col, Row, Table } from 'react-bootstrap';
 import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
-import Layout from '../LayoutFinanzas';
+import CrudTable from '../../Comunes/CrudTable';
+import { apiSetStateFromUrl } from '../../Comunes/Api';
+import { CustomSpinner } from '../../Comunes/CustomSpinner';
+import {Layout, LayoutCrud} from '../LayoutFinanzas';
 
-
+const HEADER = ['Nombre del cliente', 'Rut Cliente', 'Cantidad de reservas'];
 const ReporteReserva =() =>{
+    //Constantes Tablas
+    const[reservas, setReservas]=useState([]);
+    const[loading, setLoading]=useState([]);
+    
+  //Constantes Graficos  
     const[rutPerson, setRutPerson]=useState([]);
     const[cantidadReserva, setCantidadReserva]=useState([]);
-
+    
     const data={
         labels:rutPerson ,
         datasets:[{
@@ -24,7 +32,17 @@ const ReporteReserva =() =>{
     };
     const opciones={
         maintainAspectRatio: false,
-        responsive: true
+        responsive: true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true,
+                    min: 0,
+                    
+                }
+              }]
+           }
+        
     }
     const peticionesApi=async()=>{
         await axios.get('http://localhost:80/api/reservas/reportereservas')
@@ -39,15 +57,23 @@ const ReporteReserva =() =>{
             setRutPerson(auxRut);
         })
     }
-
+   
     useEffect(()=>{
         console.log(peticionesApi);
         peticionesApi();
+        apiSetStateFromUrl("/api/reservas/reportereservas", setReservas, setLoading);
+        
+        
+
+      
         
     },[])
     return(
     <Layout>
-      <div className= "ReporteReservas" style={{width: "100%", height: "500px"}}>
+        <LayoutCrud>
+        {!loading ? <CrudTable items={reservas} setItems={setReservas} header={HEADER} title="Reservas por clientes del último mes"  url="/api/reservas/reportereservas" nameId="nombrePerson" apiSetStateFromUrl={apiSetStateFromUrl} eliminar={false} agregar={false}  /> : <CustomSpinner />}
+        </LayoutCrud>
+      <div className= "ReporteReservas" style={{width: "80%", height: "90%"}}>
           <h2>Reserva por rut</h2>
           <Bar data={data} options={opciones}></Bar>
 

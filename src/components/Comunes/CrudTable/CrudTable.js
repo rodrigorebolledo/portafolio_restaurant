@@ -305,7 +305,7 @@ export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs,
                         <div className="table-title">
                             <Row className="align-content-around">
                                 <Col xs={6}>
-                                    <h2 className="title"> Administrar <b>{title}</b></h2>
+                                    <h2 className="title">  <b>{title}</b></h2>
                                 </Col>
                                 <Col xs={6}>
                                     {agregar !== false ? (

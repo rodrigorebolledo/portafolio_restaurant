@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../LayoutFinanzas';
+import {Layout} from '../LayoutFinanzas';
 import { Col, Row, Card, Button } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 //import '../Inicio/DivCard.scss'

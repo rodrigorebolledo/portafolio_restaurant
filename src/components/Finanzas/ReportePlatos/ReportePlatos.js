@@ -2,10 +2,18 @@ import React, { useEffect, useState } from 'react'
 import { Col, Row, Table } from 'react-bootstrap';
 import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
-import Layout from '../LayoutFinanzas';
+import {Layout, LayoutCrud} from '../LayoutFinanzas';
+import CrudTable from '../../Comunes/CrudTable';
+import { apiSetStateFromUrl } from '../../Comunes/Api';
+import { CustomSpinner } from '../../Comunes/CustomSpinner';
 
 
+const HEADER = ['Cantidad vendida','Nombre del plato' ];
 const ReportePlatos =() =>{
+    //Constante tabla
+    const[platos, setPlatos]=useState([]);
+    const[loading, setLoading]=useState([]);
+    //Constante Graficos
     const[cantidadPlato, setCantidadPlato]=useState([]);
     const[nombrePlato, setNombrePlato]=useState([]);
 
@@ -24,7 +32,16 @@ const ReportePlatos =() =>{
     };
     const opciones={
         maintainAspectRatio: false,
-        responsive: true
+        responsive: true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true,
+                    min: 0,
+                    
+                }
+              }]
+           }
     }
     const peticionesApi=async()=>{
         await axios.get('http://localhost:80/api/platos/reporteplatos')
@@ -41,13 +58,16 @@ const ReportePlatos =() =>{
     }
 
     useEffect(()=>{
-        console.log(peticionesApi);
+        apiSetStateFromUrl("/api/platos/reporteplatos", setPlatos, setLoading);
         peticionesApi();
         
     },[])
     return(
     <Layout>
-      <div className= "ReportePlatos" style={{width: "100%", height: "500px"}}>
+        <LayoutCrud>
+        {!loading ? <CrudTable items={platos} setItems={setPlatos} header={HEADER} title="Cantidad de platos vendidos del último mes"  url="/api/platos/reporteplatos" nameId="nombrePlato" apiSetStateFromUrl={apiSetStateFromUrl} eliminar={false} agregar={false}  /> : <CustomSpinner />}
+        </LayoutCrud>
+      <div className= "ReportePlatos" style={{width: "90%", height: "90%"}}>
           <h2>Cantidad de Platos vendidos</h2>
           <Bar data={data} options={opciones}></Bar>
 
