@@ -8,6 +8,7 @@ import { apiSetStateFromUrl, addElment } from '../../Comunes/Api';
 import { CustomSpinner } from '../../Comunes/CustomSpinner';
 import { List } from '@material-ui/core';
 import { useAuthState } from '../../Context';
+import Container from 'react-bootstrap/Container';
 
 
 const header = ['ID', 'Cantidad', 'Ingredientes', 'Nombre_Plato']
@@ -116,41 +117,67 @@ const PedidoProveedor = () => {
     return (
         <Layout>
             {!loading ? <>
+            <Container>
+            <Row className="justify-content-md-center">
+                <br></br>
+                <h2>Realizar Pedido</h2>
+                <br></br>
+            </Row>
                 <Form onSubmit={(e) => e.preventDefault()}>
-                    <Form.Row>
-                        <Form.Group as={Col} controlId="formGridState">
-                            <Form.Label>Proveedor</Form.Label>
-                            <Form.Control as="select" value={idProveedor} onChange={(e) => {
-                                setIdProveedor(e.target.value)
-                            }}>
-                                <option selected disabled hidden value='msg'>Selecciona un proveedor</option>
-                                {
-                                    proveedor.map((prov, index) => {
-                                        return (<option key={index} value={prov.idProveedor + '|' + prov.nombreProveedor}>{prov.nombreProveedor}</option>)
-                                    })
-                                }
-                            </Form.Control>
-                        </Form.Group>
-                    </Form.Row>
-                    <Form.Group controlId="formGridState">
-                        <Form.Label>Producto</Form.Label>
-                        <Form.Control as="select" value={idProvProd} required onChange={(e) => {
-                            setIdProvProd(e.target.value)
-                        }}>
-                            <option selected disabled hidden value='msg'>Selecciona un producto</option>
-                            {proveProductos ? proveProductos.map((provprod, index) => {
-                                return (<option key={index} value={provprod.idProvProd + '|' + provprod.producto.nombreProducto} nombreProducto={provprod.producto.nombreProducto}>{provprod.producto.nombreProducto}</option>)
-                            }) : null}
-                        </Form.Control>
-                    </Form.Group>
-                    <Form.Group controlId="Cantidad">
-                        <Form.Label>Cantidad de Producto</Form.Label>
-                        <Form.Control required value={cantidad} onChange={(e) => setCantidad(parseInt(e.target.value))} type="number" placeholder="Ingrese cantidad a pedir" />
-                    </Form.Group>
-                    <Form.Row>
-                        <Button type="submit" variant="primary" onClick={() => handleAddProduct()} >Agregar</Button>
-                        <Button variant="secondary" type="submit" onClick={() => handleRealizarPedido()}>Realizar Pedido</Button>
-                    </Form.Row>
+                    <Row className="justify-content-md-center">
+                        <Col md="auto">
+                            <Form.Row>                            
+                                <Form.Group as={Col} controlId="formGridState">
+                                    <Form.Label>Proveedor</Form.Label>
+                                    <Form.Control as="select" value={idProveedor} onChange={(e) => {
+                                        setIdProveedor(e.target.value)
+                                    }}>
+                                        <option selected disabled hidden value='msg'>Selecciona un proveedor</option>
+                                        {
+                                            proveedor.map((prov, index) => {
+                                                return (<option key={index} value={prov.idProveedor + '|' + prov.nombreProveedor}>{prov.nombreProveedor}</option>)
+                                            })
+                                        }
+                                    </Form.Control>
+                                </Form.Group>  
+                            </Form.Row>
+                        </Col>
+                    </Row>
+                    <Row className="justify-content-md-center">
+                        <Col md="auto">
+                            <Form.Group controlId="formGridState">
+                                <Form.Label>Producto</Form.Label>
+                                <Form.Control as="select" value={idProvProd} required onChange={(e) => {
+                                    setIdProvProd(e.target.value)
+                                }}>
+                                    <option selected disabled hidden value='msg'>Selecciona un producto</option>
+                                    {proveProductos ? proveProductos.map((provprod, index) => {
+                                        return (<option key={index} value={provprod.idProvProd + '|' + provprod.producto.nombreProducto} nombreProducto={provprod.producto.nombreProducto}>{provprod.producto.nombreProducto}</option>)
+                                    }) : null}
+                                </Form.Control>
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <Row className="justify-content-md-center">
+                        <Col md="auto">
+                            <Form.Group controlId="Cantidad">
+                                <Form.Label>Cantidad de Producto</Form.Label>
+                                <Form.Control required value={cantidad} onChange={(e) => setCantidad(parseInt(e.target.value))} type="number" placeholder="Ingrese cantidad a pedir" />
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <Row className="justify-content-md-center">
+                        <Col md="auto">
+                            <Form.Row>
+                                <Col>
+                                    <Button type="submit" variant="primary" onClick={() => handleAddProduct()}>Agregar</Button>
+                                </Col>
+                                
+                                    <Button variant="secondary" type="submit" onClick={() => handleRealizarPedido()}>Realizar Pedido</Button>
+                                                                 
+                            </Form.Row>
+                        </Col>
+                    </Row>
                 </Form>
                 <ul>
                     {provProdSelected.length ? provProdSelected.map((prov, idx) => {
@@ -160,6 +187,7 @@ const PedidoProveedor = () => {
                         )
                     }) : null}
                 </ul>
+            </Container>
             </> : <CustomSpinner />}
         </Layout>
     )
