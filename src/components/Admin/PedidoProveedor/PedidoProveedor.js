@@ -34,12 +34,7 @@ const PedidoProveedor = () => {
         
         apiSetStateFromUrl("/api/proveedores", setProveedor, setLoading);
         // apiSetStateFromUrl("api/proveedorproductos/prov/", setProveProductos, undefined, PROVEEDOR_ID);
-<<<<<<< HEAD
-        //apiSetStateFromUrl("/api/pedidos", setListaPedido);
-        document.title = 'Admin Pedidos';
-=======
         document.title = 'Admin | Pedidos';
->>>>>>> a342a1959da230eb6042fcd8268b79101551914a
         setIdUsuario(userDetails.user.idUsuario);
 
     }, [])
