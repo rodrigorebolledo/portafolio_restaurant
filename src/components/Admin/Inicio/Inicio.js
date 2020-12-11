@@ -49,14 +49,14 @@ const Inicio = () => {
                         <Card border="primary" style={{ width: 'auto' }}>
                             <MDBIcon icon="star" size="4x"/>
                             <h5>
-                                Recuerde el buen trato a los clientes.
+                                Recuerde resguardar su información.
                             </h5>
-                            <p>Tips para entregar un buen servicio:</p>
+                            <p>Tips para conservar la seguridad de su sitio:</p>
                             <ul>
-                                <li>Saludar a los clientes a su llegada.</li>
-                                <li>Presentarse y darles a conocer que los atenderán.</li>
-                                <li>Estar pendientes a las necesidades del cliente.</li>
-                                <li>Despedirse a la partida del reecinto, invitandolos a volver pronto.</li>
+                                <li>No entregar su equipo a alguien que pueda hacer mal uso de este.</li>
+                                <li>Mantener actualizado su antivirus y los distintos softwares que utilice.</li>
+                                <li>No abrir correos o links que no parezcan venir de fuentes confiables.</li>
+                                <li>Utilizar una contraseña de combinación entre letras, números, mayúsculas y símbolos.</li>
                             </ul>
                         </Card>
                     </Col>
@@ -64,9 +64,9 @@ const Inicio = () => {
                         <Card border="primary" style={{ width: 'auto' }}>
                             <MDBIcon icon="check" size="4x"/>
                             <h5>
-                                Recuerde entregar el dispositivo al cliente.
+                                Recuerde tener lo necesario para el funcionamiento del local
                             </h5>
-                            <p>Entregue el dispositivo para que el cliente pueda ordenar y seleccionar los platos a pedir.</p>
+                            <p>El equipo de trabajo necesita mantener sus implementos y los insumos para continuar realizando su gran labor. Revise que estos se encuentren disponibles.</p>
                         </Card>
                     </Col>
                     <Col sm align="center">
