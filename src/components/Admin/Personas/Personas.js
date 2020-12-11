@@ -55,7 +55,7 @@ const Personas = () => {
 
     useEffect(() => {
         apiSetStateFromUrl("/api/personas/active", setPersonas, setLoading);
-        document.title = 'Admin Productos';
+        document.title = 'Admin | Productos';
     }, [])
     return (
         <Layout>

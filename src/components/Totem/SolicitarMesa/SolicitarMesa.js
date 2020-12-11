@@ -14,7 +14,7 @@ const SolicitarMesa = () => {
     const [salir, setSalir] = useState(false);
 
     useEffect(_ => {
-        document.title = 'Solicitar Mesa';
+        document.title = 'Totem | Solicitar Mesa';
         handleBuscarMesas()
     }, [])
 

@@ -6,6 +6,7 @@ import { CustomSpinner } from '../../Comunes/CustomSpinner';
 
 
 const HEADER=['Total Ingresos del mes']
+const HEADER2=['Total Ingresos del día']
 const ReporteEgresos =() =>{
     
   const [ingresos, setIngresos] = useState([]);
@@ -18,7 +19,7 @@ const ReporteEgresos =() =>{
     apiSetStateFromUrl("/api/movimientos/totalingresosmes", setIngresos, setLoading);
     apiSetStateFromUrl("/api/movimientos/totalingresosdia", setIngresosDiario, setLoadingDiario);
     
-    document.title = 'Admin Ingresos Mensuales';
+    document.title = 'Finanzas | Reportes Ingresos';
 }, [])
   
   
@@ -28,7 +29,7 @@ const ReporteEgresos =() =>{
   {!loading ? <CrudTable items={ingresos} setItems={setIngresos} header={HEADER} title="Ingresos del ultimo mes"  url="/api/movimientos/totalingresosmes" nameId="totalIngresosMes" apiSetStateFromUrl={apiSetStateFromUrl}  eliminar={false} editar={false} agregar={false}  /> : <CustomSpinner />}
   </LayoutCrud>
   <LayoutCrud>
-  {!loadingDiario ? <CrudTable items={ingresosdiario} setItems={setIngresosDiario} header={HEADER} title="Ingresos del día"  url="/api/movimientos/totalingresosdia" nameId="totalIngresosDia" apiSetStateFromUrl={apiSetStateFromUrl}  eliminar={false} editar={false} agregar={false}  /> : <CustomSpinner />}
+  {!loadingDiario ? <CrudTable items={ingresosdiario} setItems={setIngresosDiario} header={HEADER2} title="Ingresos del día"  url="/api/movimientos/totalingresosdia" nameId="totalIngresosDia" apiSetStateFromUrl={apiSetStateFromUrl}  eliminar={false} editar={false} agregar={false}  /> : <CustomSpinner />}
   </LayoutCrud>
   </Layout>
 )

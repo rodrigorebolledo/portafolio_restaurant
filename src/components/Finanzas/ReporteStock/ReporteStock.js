@@ -61,7 +61,7 @@ const ReporteStock = () => {
         
        
 
-        document.title = 'Admin Stock';
+        document.title = 'Finanzas | Reporte Stock';
     }, [])
 
     return (

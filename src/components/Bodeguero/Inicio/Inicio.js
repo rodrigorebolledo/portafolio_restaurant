@@ -8,7 +8,7 @@ import { MDBIcon } from "mdbreact";
 
 const Inicio = () => {
     useEffect(_ => {
-        document.title = 'Inicio';
+        document.title = 'Bodeguero | Inicio';
     }, [])
 
     return (
