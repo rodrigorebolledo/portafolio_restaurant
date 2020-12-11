@@ -12,6 +12,14 @@ export function addPlate(dispatch, carroPayload) {
     return { platosSeleccionados: carroPayload.platosSeleccionados, totalPago: carroPayload.totalPago }
 }
 
+
+export function removePlate(dispatch, carroPayload) {
+    dispatch({ type: 'REMOVE_PLATE', payload: { platosSeleccionados: carroPayload.platosSeleccionados, totalPago: carroPayload.totalPago } });
+    localStorage.setItem('platosCarro', JSON.stringify(carroPayload.platosSeleccionados));
+    localStorage.setItem('totalCarro', JSON.stringify(carroPayload.totalPago));
+    return { platosSeleccionados: carroPayload.platosSeleccionados, totalPago: carroPayload.totalPago }
+}
+
 export async function loginUser(dispatch, loginPayload) {
 
     try {

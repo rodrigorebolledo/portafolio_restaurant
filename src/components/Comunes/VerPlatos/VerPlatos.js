@@ -4,7 +4,7 @@ import { apiSetStateFromUrl } from '../Api'
 import './VerPlatos.scss';
 
 
-export const VerPlatos = ({ orden, setOrdenes, handleEstadoPedido, indexOrden }) => {
+export const VerPlatos = ({ detalle, setOrdenes, handleEstadoPedido }) => {
     // const [colorOrden, setColorOrden] = useState('#6c757d');
     const [isDisabledCola, setIsDisabledCola] = useState(true);
     const [isDisabledPrep, setIsDisabledPrep] = useState(false);
@@ -81,7 +81,7 @@ export const VerPlatos = ({ orden, setOrdenes, handleEstadoPedido, indexOrden })
     return (
         <div className="container">
             <Row className="mt-3">
-                {orden.detalle.map((detalle, idx) => {
+                {detalle.map((detalle, idx) => {
                     let colorOrden = '#6c757d';
                     switch (detalle.estadoPlato.idEstadoPlato) {
                         case 1:

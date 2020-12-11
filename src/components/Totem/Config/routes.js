@@ -5,7 +5,7 @@ const routes = [
         path: '/totem',
         component: SolicitarMesa,
         exact: true,
-        isPrivate: true,
+        isPrivate: false,
         name: 'Totem'
     },
 
