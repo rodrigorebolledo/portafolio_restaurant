@@ -49,7 +49,7 @@ export const VerPlatos = ({ detalle, setOrdenes, handleEstadoPedido }) => {
                     <Row className="justify-content-center buttonContainer mt-3">
                         <Col xs={12} md={8}>
                             <Button variant="secondary" className="buttonOrden" disabled={false} onClick={async _ => {
-                                const result = await handleEstadoPedido(idDetOr, 3)
+                                const result = await handleEstadoPedido(idDetOr, 1)
                                 if (result === true) {
                                     tarjetaRef.current.style.backgroundColor = '#6c757d'
                                 }
@@ -57,7 +57,7 @@ export const VerPlatos = ({ detalle, setOrdenes, handleEstadoPedido }) => {
                         </Col>
                         <Col xs={12} md={8}>
                             <Button variant="warning" className="buttonOrden" disabled={false} onClick={async _ => {
-                                const result = await handleEstadoPedido(idDetOr, 1)
+                                const result = await handleEstadoPedido(idDetOr, 2)
                                 if (result === true) {
                                     tarjetaRef.current.style.backgroundColor = '#ffc107'
                                 }
@@ -65,7 +65,7 @@ export const VerPlatos = ({ detalle, setOrdenes, handleEstadoPedido }) => {
                         </Col>
                         <Col xs={12} md={8}>
                             <Button variant="success" className="buttonOrden" disabled={false} onClick={async _ => {
-                                const result = await handleEstadoPedido(idDetOr, 2)
+                                const result = await handleEstadoPedido(idDetOr, 3)
                                 if (result === true) {
                                     tarjetaRef.current.style.backgroundColor = '#28a745'
                                 }
@@ -85,13 +85,16 @@ export const VerPlatos = ({ detalle, setOrdenes, handleEstadoPedido }) => {
                     let colorOrden = '#6c757d';
                     switch (detalle.estadoPlato.idEstadoPlato) {
                         case 1:
-                            colorOrden = '#ffc107';
+                            colorOrden = '#6c757d';
+                            // amarillo: '#ffc107
+                            // VERDE: #28a745
+                            //PLOMO: '#6c757d'
                             break;
                         case 2:
-                            colorOrden = '#28a745';
+                            colorOrden = '#ffc107';
                             break;
                         case 3:
-                            colorOrden = '#6c757d';
+                            colorOrden = '#28a745';
                             break;
                         default:
                             colorOrden = '#6c757d'
