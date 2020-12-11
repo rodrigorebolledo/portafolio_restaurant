@@ -102,7 +102,7 @@ const Ordenes = () => {
     return (
         <Layout>
             <Col>
-                <h3 className="mt-3">Ordenes</h3>
+                <h3 className="mt-3">Órdenes</h3>
                 <Row>
                     {!loading && ordenes.length > 0 ? <PrintPedidos /> : <CustomSpinner />}
                 </Row>
