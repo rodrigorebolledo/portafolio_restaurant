@@ -56,7 +56,7 @@ const Inicio = () => {
                             <h5>
                                 Recuerde mantener orden e higiene
                             </h5>
-                            <p>Dentro de su espacio de trabajo se necesita mantener una higiene de altos estandares que asegure la entrega impecable de los alimentos.</p>
+                            <p>Dentro de su espacio de trabajo se necesita mantener una higiene de altos estándares que asegure la entrega impecable de los alimentos.</p>
                         </Card>
                     </Col>
                     <Col sm align="center">
