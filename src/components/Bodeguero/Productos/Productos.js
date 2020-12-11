@@ -14,6 +14,7 @@ const Productos = () => {
     const [stockProducto, setStockProducto] = useState(1);
     const [stockMinimo, setStockMinimo] = useState(0);
     const [unidad, setUnidad] = useState(1);
+    const [apiMedida, setApiMedida] = useState([]);
 
     const INPUTS = [
         {
@@ -44,25 +45,14 @@ const Productos = () => {
         },
         {
             label: 'Unidad de Medida',
-            type: 'select',
+            type: 'select-bd',
             column: 'unidad',
             subcolumn: 'idUnidadMedida',
             value: unidad,
             setValue: setUnidad,
-            options: [
-                {
-                    nombre: 'Gramos',
-                    value: 1
-                },
-                {
-                    nombre: 'Litros',
-                    value: 2
-                },
-                {
-                    nombre: 'Unidad',
-                    value: 3
-                }
-            ]
+            apiResult: apiMedida,
+            idSelect: 'idUnidadMedida',
+            nameSelect: 'nombreUnidadMedida'
         }
     ]
 
@@ -78,6 +68,7 @@ const Productos = () => {
 
     useEffect(() => {
         apiSetStateFromUrl("/api/productos", setProductos, setLoading);
+        apiSetStateFromUrl("/api/unidades", setApiMedida);
         document.title = 'Admin Productos';
     }, [])
 

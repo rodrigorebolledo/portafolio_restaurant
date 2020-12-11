@@ -269,7 +269,7 @@ export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs,
                         })
                     }
                     <td>
-                    {editar !== false ? ( <EditIcon
+                    {editar !== false ? (<EditIcon
                             style={{ color: '#FFC107', cursor: 'pointer' }}
                             onClick={() => {
                                 handleShowModalEdit();
@@ -324,7 +324,7 @@ export const CrudTable = ({ items, setItems, header, title, url, nameId, inputs,
                                         <th></th>
                                     ) : null}
                                     {header ? <PrintHeader /> : <PrintHeaderByKey />}
-                                    <th>Acciones</th>
+                                    {eliminar === false && editar === false ? null: <th>Acciones</th>}
                                 </tr>
                             </thead>
                             <tbody>

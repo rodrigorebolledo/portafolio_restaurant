@@ -5,7 +5,7 @@ import CocineroRouter from '../components/Cocinero/CocineroRouter';
 import BodegueroRouter from '../components/Bodeguero/BodegueroRouter';
 import MeseroRouter from '../components/Mesero/MeseroRouter';
 import FinanzasRouter from '../components/Finanzas/FinanzasRouter';
-
+import TotemRouter from '../components/Totem/TotemRouter';
 const routes = [
     {
         path: '/admin',
@@ -35,6 +35,11 @@ const routes = [
     {
         path: '/mesero',
         component: MeseroRouter,
+        exact: false
+    },
+    {
+        path: '/totem',
+        component: TotemRouter,
         exact: false
     },
     {
