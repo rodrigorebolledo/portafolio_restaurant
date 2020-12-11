@@ -21,6 +21,9 @@ const Orden = () => {
 
 
 
+    const pagar =() =>{
+        alert('Pago procesado')
+    }
 
     const agregarCarro = (plato) => {
         const platoCopy = plato
@@ -61,8 +64,10 @@ const Orden = () => {
                             Tiempo estimado: {plato.tiempoPlato} minutos
                         </Card.Text>
                         <Button variant="primary" onClick={() => agregarCarro(plato, plato.valorPlato)}>Agregar a la orden</Button>
+                        
                     </Card.Body>
                 </Card>
+              
             </Col>
         ))
     )
@@ -89,8 +94,9 @@ const Orden = () => {
                     {!loading && platos.length > 0 ?
                         <PrintPlatos />
                         : <CustomSpinner />}
+                      
                 </Row>
-
+                <Button href='https://sandbox.flow.cl/btn.php?token=6gdyjy6' target='_blank'>Pagar</Button>
             </Col>
         </Layout>
     )
