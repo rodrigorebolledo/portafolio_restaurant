@@ -1,4 +1,3 @@
-import Pedidos from '../Pedidos';
 import Productos from '../Productos';
 import Inicio from '../Inicio';
 import Login from '../../Comunes/Login';
@@ -15,15 +14,7 @@ const routes = [
         needlogin: true,
               
     },
-    {
-        path: '/bodeguero/pedidos',
-        component: Pedidos,
-        exact: true,
-        isPrivate: true,
-        name: 'Pedidos',
-        needlogin: true,
-        
-    },
+   
     {
         path: '/bodeguero/productos',
         component: Productos,
