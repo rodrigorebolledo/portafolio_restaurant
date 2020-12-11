@@ -14,7 +14,6 @@ const routes = [
         needlogin: true,
               
     },
-   
     {
         path: '/bodeguero/productos',
         component: Productos,
