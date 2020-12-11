@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useEffect} from 'react';
 import Layout from '../LayoutMesero';
 import Container from 'react-bootstrap/Container';
 import { Col, Row, Card, Button } from 'react-bootstrap';
 import { MDBIcon } from "mdbreact";
 
+
+
 export default function Inicio() {
+
+    useEffect(() => {
+        document.title = 'Mesero | Inicio';
+    }, [])
+
     return (
         <Layout>
             <Container>

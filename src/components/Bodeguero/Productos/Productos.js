@@ -69,7 +69,7 @@ const Productos = () => {
     useEffect(() => {
         apiSetStateFromUrl("/api/productos", setProductos, setLoading);
         apiSetStateFromUrl("/api/unidades", setApiMedida);
-        document.title = 'Admin Productos';
+        document.title = 'Bodeguero | Productos';
     }, [])
 
     return (

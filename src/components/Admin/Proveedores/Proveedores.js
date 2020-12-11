@@ -73,7 +73,7 @@ const Proveedores = () => {
 
     useEffect(() => {
         apiSetStateFromUrl("/api/proveedores", setProveedor, setLoading);
-        document.title = 'Admin Proveedores';
+        document.title = 'Admin | Proveedores';
     }, [])
 
     return (

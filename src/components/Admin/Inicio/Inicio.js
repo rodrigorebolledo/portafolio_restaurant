@@ -9,7 +9,7 @@ import { MDBIcon } from "mdbreact";
 
 const Inicio = () => {
     useEffect(_ => {
-        document.title = 'Admin Inicio';
+        document.title = 'Admin | Inicio';
     }, [])
 
     return (

@@ -22,7 +22,7 @@ const Reservar = () => {
     const [fechaMinima, setFechaMinima] = useState(undefined);
 
     useEffect(_ => {
-        document.title = 'Reservar';
+        document.title = 'Cliente | Reservar';
         setFechaReserva(moment().format('YYYY-MM-DDTHH:mm'));
         setFechaMinima(moment().format('YYYY-MM-DDTHH:mm'));
         apiSetStateFromUrl("/api/rut/usuario/", setRutPersona, undefined, IDUSUARIOPERSONA);

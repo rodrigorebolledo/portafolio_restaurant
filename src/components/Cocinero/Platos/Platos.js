@@ -94,7 +94,7 @@ const Platos = () => {
     useEffect(() => {
         apiSetStateFromUrl("/api/platos", setPlatos, setLoading);
         apiSetStateFromUrl("/api/categorias/", setApiCategoria);
-        document.title = 'Admin Platos';
+        document.title = 'Cocinero | Platos';
         
     }, [])
 

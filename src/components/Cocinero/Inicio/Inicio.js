@@ -9,7 +9,7 @@ import Container from 'react-bootstrap/Container';
 
 const Inicio = () => {
     useEffect(_ => {
-        document.title = 'Cocinero';
+        document.title = 'Cocinero | Inicio';
     }, [])
 
     return (

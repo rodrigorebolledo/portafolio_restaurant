@@ -42,8 +42,43 @@ const Ordenes = () => {
                 <div className="container">
                     <Row className=" justify-content-center mt-3">
                         {ordenes.map(((orden, idx) => {
+
+                            let colorBox = '#6c757d';
+                            let cantidadEnCola = 0;
+                            let cantidadListo = 0;
+                            let cantidadPreparando = 0;
+                            let lengthDetalleOrden = orden.detalle.length;
+
+                            orden.detalle.map((detalle) => {
+                                switch (detalle.estadoPlato.idEstadoPlato) {
+                                    case 1:
+                                        cantidadEnCola += 1;
+                                        break;
+                                    case 2:
+                                        cantidadPreparando += 1
+                                        break;
+                                    case 3:
+                                        cantidadListo += 1
+                                        break;
+                                    default:
+                                        return;
+
+                                }
+
+
+                            })
+                            console.log(orden)
+                            console.log(cantidadEnCola)
+                            console.log(cantidadPreparando)
+                            console.log(cantidadListo)
+                            if (cantidadEnCola === lengthDetalleOrden) {
+                                colorBox = '#6c757d'
+                            } else if (cantidadListo === lengthDetalleOrden) {
+                                colorBox = '#28a745'
+                            }
+
                             return (
-                                <Col key={idx} className="tarjetaPedido" xs={12} md={3} onClick={() => {
+                                <Col key={idx} className="tarjetaPedido" style={{ backgroundColor: colorBox }} xs={12} md={3} onClick={() => {
                                     setIsPreparing(true)
                                     setCurrentOrden(orden)
                                 }}>
@@ -91,7 +126,11 @@ const Ordenes = () => {
 
     useEffect(() => {
         apiSetStateFromUrl("/api/ordenes/ordenadas/cocina", setOrdenes, setLoading);
-        document.title = 'Admin ordenes';
+<<<<<<< HEAD
+        document.title = 'Cocinero | Pedidos';
+=======
+        document.title = 'Cocinero | Órdenes';
+>>>>>>> 73dae4c5f7cbc14d65efb6d4082f60ad9abe5cfc
     }, [])
 
 
@@ -102,7 +141,11 @@ const Ordenes = () => {
     return (
         <Layout>
             <Col>
-                <h3 className="mt-3">Ordenes</h3>
+<<<<<<< HEAD
+                <h3 className="mt-3">Pedidos</h3>
+=======
+                <h3 className="mt-3">Órdenes</h3>
+>>>>>>> 73dae4c5f7cbc14d65efb6d4082f60ad9abe5cfc
                 <Row>
                     {!loading && ordenes.length > 0 ? <PrintPedidos /> : <CustomSpinner />}
                 </Row>

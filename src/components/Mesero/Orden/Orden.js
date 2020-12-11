@@ -83,7 +83,7 @@ const Orden = () => {
         if (localStorage.getItem('totalCarro')) {
             setTotalOrden(JSON.parse(localStorage.getItem('totalCarro')));
         }
-        document.title = 'Inicio';
+        document.title = 'Mesero | Orden';
     }, [])
 
     return (

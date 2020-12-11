@@ -60,6 +60,7 @@ const ReportePlatos =() =>{
     useEffect(()=>{
         apiSetStateFromUrl("/api/platos/reporteplatos", setPlatos, setLoading);
         peticionesApi();
+        document.title = 'Finanzas | Reportes Platos';
         
     },[])
     return(
