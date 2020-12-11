@@ -19,7 +19,7 @@ const ReporteEgresos =() =>{
     apiSetStateFromUrl("/api/movimientos/totalingresosmes", setIngresos, setLoading);
     apiSetStateFromUrl("/api/movimientos/totalingresosdia", setIngresosDiario, setLoadingDiario);
     
-    document.title = 'Admin Ingresos Mensuales';
+    document.title = 'Finanzas | Reportes Ingresos';
 }, [])
   
   

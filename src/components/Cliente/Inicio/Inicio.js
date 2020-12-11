@@ -33,7 +33,7 @@ const Inicio = () => {
 
     useEffect(_ => {
         apiSetStateFromUrl('/api/platos', setPlatos, setLoading);
-        document.title = 'Inicio';
+        document.title = 'Cliente | Inicio';
     }, [])
 
     return (

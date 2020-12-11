@@ -91,7 +91,7 @@ const Ordenes = () => {
 
     useEffect(() => {
         apiSetStateFromUrl("/api/ordenes/ordenadas/cocina", setOrdenes, setLoading);
-        document.title = 'Admin ordenes';
+        document.title = 'Cocinero | Órdenes';
     }, [])
 
 

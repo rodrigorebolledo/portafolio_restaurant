@@ -62,7 +62,7 @@ const ReporteProveedor = () => {
         peticionesApi();
         
 
-        document.title = 'Admin Pedidos a Proveedor';
+        document.title = 'Finanzas | Reportes Proveedores';
     }, [])
 
     return (

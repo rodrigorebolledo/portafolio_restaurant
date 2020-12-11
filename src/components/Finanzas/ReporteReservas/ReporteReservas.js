@@ -63,7 +63,7 @@ const ReporteReserva =() =>{
         peticionesApi();
         apiSetStateFromUrl("/api/reservas/reportereservas", setReservas, setLoading);
         
-        
+        document.title = 'Finanzas | Reporte Reservas';
 
       
         

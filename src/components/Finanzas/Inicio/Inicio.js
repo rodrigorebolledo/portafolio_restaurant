@@ -18,6 +18,7 @@ export default function Inicio() {
     useEffect(()=>{
         
         apiSetStateFromUrl("/api/movimientos/reportedineromes", setDetalleMovimiento, setLoading);
+        document.title = 'Finanzas | Inicio';
         
     },[])
     

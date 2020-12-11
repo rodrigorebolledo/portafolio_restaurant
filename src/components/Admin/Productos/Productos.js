@@ -67,7 +67,7 @@ const ProductosProveedor = () => {
         apiSetStateFromUrl("/api/proveedores/", setApiProveedor);
         apiSetStateFromUrl("api/productos/", setApiProducto);
 
-        document.title = 'Admin Productos';
+        document.title = 'Admin | Productos';
     }, [])
 
     return (

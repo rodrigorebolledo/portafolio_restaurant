@@ -31,7 +31,7 @@ const PedidoProveedor = () => {
     useEffect(() => {
         apiSetStateFromUrl("/api/proveedores", setProveedor, setLoading);
         // apiSetStateFromUrl("api/proveedorproductos/prov/", setProveProductos, undefined, PROVEEDOR_ID);
-        document.title = 'Admin Pedidos';
+        document.title = 'Admin | Pedidos';
         setIdUsuario(userDetails.user.idUsuario);
 
     }, [])

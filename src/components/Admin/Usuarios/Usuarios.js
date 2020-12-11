@@ -119,7 +119,7 @@ const Usuarios = () => {
 
     useEffect(() => {
         apiSetStateFromUrl("/api/usuarios", setUsers, setLoading);
-        document.title = 'Admin Usuarios';
+        document.title = 'Admin | Usuarios';
     }, []);
 
     return (

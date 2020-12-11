@@ -15,7 +15,7 @@ const VerReservas = () => {
     const data = useAuthState();
     const DIRECCION = 'Oficinas Centrales 133';
     useEffect(_ => {
-        document.title = 'Ver Reservas';
+        document.title = 'Cliente | Ver Reservas';
         apiSetStateFromUrl("/api/reservas/activas/", setReservas, setIsLoading, data.user.idUsuario);
     }, [])
 
