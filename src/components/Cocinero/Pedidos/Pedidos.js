@@ -7,7 +7,7 @@ import { CustomSpinner } from '../../Comunes/CustomSpinner';
 import { VerPlatos } from '../../Comunes/VerPlatos/VerPlatos';
 import './Pedidos.scss';
 
-const Ordenes = () => {
+const Pedidos = () => {
 
     const [ordenes, setOrdenes] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -126,11 +126,7 @@ const Ordenes = () => {
 
     useEffect(() => {
         apiSetStateFromUrl("/api/ordenes/ordenadas/cocina", setOrdenes, setLoading);
-<<<<<<< HEAD
         document.title = 'Cocinero | Pedidos';
-=======
-        document.title = 'Cocinero | Órdenes';
->>>>>>> 73dae4c5f7cbc14d65efb6d4082f60ad9abe5cfc
     }, [])
 
 
@@ -141,11 +137,7 @@ const Ordenes = () => {
     return (
         <Layout>
             <Col>
-<<<<<<< HEAD
                 <h3 className="mt-3">Pedidos</h3>
-=======
-                <h3 className="mt-3">Órdenes</h3>
->>>>>>> 73dae4c5f7cbc14d65efb6d4082f60ad9abe5cfc
                 <Row>
                     {!loading && ordenes.length > 0 ? <PrintPedidos /> : <CustomSpinner />}
                 </Row>
@@ -155,4 +147,4 @@ const Ordenes = () => {
     )
 }
 
-export default Ordenes;
+export default Pedidos;

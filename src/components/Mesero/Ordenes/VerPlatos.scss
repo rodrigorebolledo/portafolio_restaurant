@@ -1,0 +1,40 @@
+.tarjetaOrden {
+    height: 400px;
+    border-radius: 19px 19px 19px 19px;
+    border-radius: 19px 19px 19px 19px;
+    -moz-border-radius: 19px 19px 19px 19px;
+    -webkit-border-radius: 19px 19px 19px 19px;
+    border: 2px solid #7a7a7a;
+
+    .imagenOrden{
+        width: 100%;
+    }
+
+
+    .buttonContainer {
+        height: 300px;
+
+
+        .buttonOrden {
+            width: 100%;
+            height: 70px;
+            font-size: larger;
+            border-radius: 19px 19px 19px 19px;
+            -moz-border-radius: 19px 19px 19px 19px;
+            -webkit-border-radius: 19px 19px 19px 19px;
+            border: 2px solid #000000;
+        }
+    }
+}
+
+
+.titlePedido {
+    margin-top: -45px;
+}
+
+$breakpoint-mobile-1: 768px;
+@media (max-width: $breakpoint-mobile-1) {
+    .titlePedido {
+        margin-top: 10px;
+    }
+}
