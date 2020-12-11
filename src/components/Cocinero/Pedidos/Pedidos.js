@@ -126,7 +126,11 @@ const Pedidos = () => {
 
     useEffect(() => {
         apiSetStateFromUrl("/api/ordenes/ordenadas/cocina", setOrdenes, setLoading);
+<<<<<<< HEAD
         document.title = 'Cocinero | Pedidos';
+=======
+        
+>>>>>>> 162628d1b96ea7bf02eca8e2f3b5e0fe803e3c82
     }, [])
 
 
@@ -138,6 +142,10 @@ const Pedidos = () => {
         <Layout>
             <Col>
                 <h3 className="mt-3">Pedidos</h3>
+<<<<<<< HEAD
+=======
+                
+>>>>>>> 162628d1b96ea7bf02eca8e2f3b5e0fe803e3c82
                 <Row>
                     {!loading && ordenes.length > 0 ? <PrintPedidos /> : <CustomSpinner />}
                 </Row>

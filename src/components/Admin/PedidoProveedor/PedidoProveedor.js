@@ -11,7 +11,7 @@ import { useAuthState } from '../../Context';
 import Container from 'react-bootstrap/Container';
 
 
-const header = ['ID', 'Cantidad', 'Ingredientes', 'Nombre_Plato']
+
 
 
 
@@ -26,9 +26,12 @@ const PedidoProveedor = () => {
     const [proveProductos, setProveProductos] = useState([]);
     const [idUsuario, setIdUsuario] = useState(undefined);
     const [provProdSelected, setProvProdSelected] = useState([]);
-
+    const [listaPedido, setListaPedido] = useState([]);
+    
+    
 
     useEffect(() => {
+        
         apiSetStateFromUrl("/api/proveedores", setProveedor, setLoading);
         // apiSetStateFromUrl("api/proveedorproductos/prov/", setProveProductos, undefined, PROVEEDOR_ID);
         document.title = 'Admin | Pedidos';
@@ -46,7 +49,9 @@ const PedidoProveedor = () => {
     }, [idProveedor]
     )
 
-
+const pagar =() =>{
+    alert('Pago procesado')
+}
     const handleAddProduct = () => {
         if (idProvProd !== 'msg') {
 
@@ -174,7 +179,9 @@ const PedidoProveedor = () => {
                                 </Col>
                                 
                                     <Button variant="secondary" type="submit" onClick={() => handleRealizarPedido()}>Realizar Pedido</Button>
-                                                                 
+                                    <Col>
+                                    <Button href='https://sandbox.flow.cl/btn.php?token=6gdyjy6' target='_blank'>Pagar</Button>
+                                </Col>                       
                             </Form.Row>
                         </Col>
                     </Row>
