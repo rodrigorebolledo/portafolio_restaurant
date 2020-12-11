@@ -10,10 +10,13 @@ const ReporteEgresos =() =>{
     
   const [egresos, setEgresos] = useState([]);
   const [loading, setLoading] = useState([]);
+  const [egresosDiario, setEgresosDiario] = useState([]);
+  const [loadingDiario, setLoadingDiario] = useState([]);
 
   useEffect(() => {
-
+    
     apiSetStateFromUrl("/api/movimientos/totalegresosmes", setEgresos, setLoading);
+    apiSetStateFromUrl("/api/movimientos/totalegresosdia", setEgresosDiario, setLoadingDiario);
     
     document.title = 'Admin Egresos Mensuales';
 }, [])
@@ -23,6 +26,9 @@ const ReporteEgresos =() =>{
   <Layout>
   <LayoutCrud>
   {!loading ? <CrudTable items={egresos} setItems={setEgresos} header={HEADER} title="Egresos del ultimo mes"  url="/api/movimientos/totalegresosmes" nameId="totalEgresosMes" apiSetStateFromUrl={apiSetStateFromUrl}  eliminar={false} editar={false} agregar={false}  /> : <CustomSpinner />}
+  </LayoutCrud>
+  <LayoutCrud>
+  {!loadingDiario ? <CrudTable items={egresosDiario} setItems={setEgresosDiario} header={HEADER} title="Egresos del día"  url="/api/movimientos/totalegresosdia" nameId="totalEgresosMes" apiSetStateFromUrl={apiSetStateFromUrl}  eliminar={false} editar={false} agregar={false}  /> : <CustomSpinner />}
   </LayoutCrud>
   </Layout>
 )
