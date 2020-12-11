@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Component } from 'react';
 import Layout from '../LayoutMesero';
 import { Row, Col, Card, CardGroup, Button } from 'react-bootstrap';
-import { apiSetStateFromUrl } from '../../Comunes/Api';
+import { apiSetStateFromUrl, apiGetElements } from '../../Comunes/Api';
 import { CustomSpinner } from '../../Comunes/CustomSpinner';
 import ExampleImage from '../../../assets/img/exampleImage.png'
 import { addPlate, useCarroState, useCarroDispatch } from '../../Context';
@@ -9,6 +9,7 @@ import { addPlate, useCarroState, useCarroDispatch } from '../../Context';
 
 
 const Orden = () => {
+    const plateDetails = useCarroState();
 
     const [platos, setPlatos] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -17,6 +18,9 @@ const Orden = () => {
     const dispatch = useCarroDispatch();
     const { platosSeleccionados, totalPago } = useCarroState();
     //let listaPlatosSeleccionados = []
+
+
+
 
     const agregarCarro = (plato) => {
         const platoCopy = plato
@@ -28,6 +32,17 @@ const Orden = () => {
         addPlate(dispatch, { platosSeleccionados: listaPlatosSeleccionados, totalPago: sumaPago });
         alert(plato.nombrePlato + " se ha añadido al carrito.")
     }
+
+    useEffect(() => {
+        console.log(plateDetails.totalPago)
+        if (plateDetails.platosSeleccionados !== undefined) {
+            setListaPlatosSeleccionados(plateDetails.platosSeleccionados);
+        }
+
+        if (plateDetails.totalPago !== undefined) {
+            setTotalOrden(plateDetails.totalPago);
+        }
+    }, [plateDetails])
 
 
 

@@ -34,6 +34,12 @@ export const CarroReducer = (initialStateCarro, action) => {
                 platosSeleccionados: action.payload.platosSeleccionados,
                 totalPago: action.payload.totalPago,
             };
+        case 'REMOVE_PLATE':
+            return {
+                ...initialStateCarro,
+                platosSeleccionados: action.payload.platosSeleccionados,
+                totalPago: action.payload.totalPago,
+            };
         default:
             throw new Error(`Acción del tipo ${action.type} no manejada`);
     }

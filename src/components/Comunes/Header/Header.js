@@ -1,28 +1,138 @@
-import React, { useState } from 'react';
-import { Container, Row, Col, Badge, Button } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col, Badge, Button, Form } from 'react-bootstrap';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import { apiGetElements, addElment } from '../../Comunes/Api';
 import Logo from '../../../assets/img/logo.svg';
 import './Header.scss';
 import { Link } from 'react-router-dom';
 import { useAuthState } from '../../Context';
-import { logout, useAuthDispatch, useCarroState, useCarroDispatch } from '../../Context';
+import { logout, useAuthDispatch, useCarroState, useCarroDispatch, removePlate } from '../../Context';
 import Modal from 'react-bootstrap/Modal';
-
+import { PagesSharp } from '@material-ui/icons';
 
 
 const PrintCarrito = (props) => {
-    const plateDetails = useCarroState();
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const itemCount = plateDetails.platosSeleccionados ? plateDetails.platosSeleccionados.length : 0
+    const [itemCount, setItemCount] = useState(0);
+    const [eliminar, setEliminar] = useState(false)
+    const [mesas, setMesas] = useState([]);
+    const [idMesa, setIdMesa] = useState('msg');
+    const [canOrder, setCanOrder] = useState(false);
+    const dispatch = useCarroDispatch();
+    const plateDetails = useCarroState();
     //const propina = plateDetails.totalPago*0.1;
 
-    const handleDeleteProduct = (id) => {
-        console.log(id)
+    const handleBuscarMesas = async () => {
+
+        const allTables = await apiGetElements('/api/mesas');
+        const filterTables = allTables.filter((t) => t.estado.idEstadoMesa === 2);
+        setMesas(filterTables);
+
+
     }
 
+    useEffect(() => {
+        handleBuscarMesas();
+    }, [])
+
+    useEffect(() => {
+        if (eliminar === true && itemCount > 0) {
+            setItemCount(itemCount - 1);
+            setEliminar(false);
+        }
+    }, [eliminar])
+
+    useEffect(() => {
+        if (plateDetails.platosSeleccionados !== undefined) {
+            setItemCount(plateDetails.platosSeleccionados.length);
+        }
+    }, [plateDetails])
+
+    useEffect(() => {
+        if (idMesa !== 'msg' && itemCount > 0) {
+            setCanOrder(true);
+        } else {
+            setCanOrder(false);
+        }
+    }, [idMesa, itemCount])
+
+    const handleDeleteProduct = (plato) => {
+        const listaPlatosSeleccionados = plateDetails.platosSeleccionados;
+        const platosFiltrados = listaPlatosSeleccionados.filter(i => i.idRandom !== plato.idRandom);
+        const diferenciaPago = plateDetails.totalPago - plato.valorPlato;
+        removePlate(dispatch, { platosSeleccionados: platosFiltrados, totalPago: diferenciaPago });
+        setEliminar(true);
+        alert(plato.nombrePlato + " se ha retirado del carrito.")
+    }
+
+    const handleOrdenar = async () => {
+
+        const currentUser = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : undefined;
+        const detalles = [];
+        let sinRepetidos
+        if (plateDetails.platosSeleccionados.length > 0 && currentUser !== undefined) {
+            plateDetails.platosSeleccionados.map((plato => {
+                let contadorPlatos = 0
+                plateDetails.platosSeleccionados.map((platoChild, idx) => {
+                    if (plato.idPlato === platoChild.idPlato) {
+                        contadorPlatos += 1;
+                    }
+                });
+
+                const detalleObj = {
+                    cantidadDetOr: contadorPlatos,
+                    plato: {
+                        idPlato: plato.idPlato,
+                        valorPlato: plato.valorPlato
+                    }
+
+                }
+
+
+                detalles.push(detalleObj);
+
+
+
+
+            }))
+
+            sinRepetidos = detalles.filter((valorActual, indiceActual, arreglo) => {
+                //Podríamos omitir el return y hacerlo en una línea, pero se vería menos legible
+                return arreglo.findIndex(valorDelArreglo => JSON.stringify(valorDelArreglo) === JSON.stringify(valorActual)) === indiceActual
+            });
+
+            const obj = {
+                idTipoOr: 3,
+                idMesa: idMesa,
+                idUsuario: currentUser.idUsuario,
+                detalle: sinRepetidos
+            }
+
+
+
+            let valid = false;
+            if (obj !== undefined && obj !== {}) {
+                valid = await addElment('/api/ordenes/full', obj)
+            } else {
+                alert('La orden ingresada es invalida, inténtelo más tarde');
+                return;
+            }
+            if (valid !== false) {
+                alert('Orden ingresada exitosamente')
+                localStorage.removeItem('platosCarro');
+                localStorage.removeItem('totalCarro');
+                window.location.reload(false);
+            } else {
+                console.log('Ha ocurrido un error')
+            }
+        }
+
+
+
+    }
 
     return (
         <>
@@ -47,12 +157,25 @@ const PrintCarrito = (props) => {
                             return (
                                 <li key={idx} style={{ marginBottom: '10px' }}>
                                     {plato.nombrePlato}
-                                    <span style={{ marginLeft: '10px' }}><button onClick={() => handleDeleteProduct(plato.idPlato)}>X</button></span>
+                                    <span style={{ marginLeft: '10px' }}><button onClick={() => handleDeleteProduct(plato)}>X</button></span>
                                 </li>
                             )
-                        }) : null}
+                        }) : <p style={{ color: 'red', marginLeft: '-40px' }}>Selecciona un prodúcto</p>}
                     </ul>
-                    <h2>
+                    <h5>
+                        Seleccionar Mesa:
+                    </h5>
+                    <Form.Control className="mt-3" as="select" value={idMesa} onChange={(e) => {
+                        setIdMesa(e.target.value)
+                    }}>
+                        <option selected disabled hidden value='msg'>Selecciona una mesa</option>
+                        {
+                            mesas.map((mesa, index) => {
+                                return (<option key={index} value={mesa.idMesa}>Mesa número: {mesa.numeroMesa}</option>)
+                            })
+                        }
+                    </Form.Control>
+                    <h2 className="mt-3">
                         Total orden: ${plateDetails.totalPago}
                     </h2>
                 </Modal.Body>
@@ -60,7 +183,7 @@ const PrintCarrito = (props) => {
                     <Button variant="secondary" onClick={handleClose}>
                         Salir
                     </Button>
-                    <Button variant="primary" onClick={handleClose}>
+                    <Button variant="primary" disabled={!canOrder} onClick={() => handleOrdenar()}>
                         Ordenar
                     </Button>
                 </Modal.Footer>

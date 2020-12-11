@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { LayoutCrud, Layout } from '../LayoutCocinero';
-import { Row, Col, Button } from 'react-bootstrap';
+import { Row, Col, Button, Container } from 'react-bootstrap';
 import CrudTable from '../../Comunes/CrudTable';
 import { apiSetStateFromUrl, editById } from '../../Comunes/Api';
 import { CustomSpinner } from '../../Comunes/CustomSpinner';
@@ -23,7 +23,7 @@ const Ordenes = () => {
 
         if (ordenes.length > 0 && isPreparing === true) {
             return (
-                <div>
+                <Container>
                     <Row className="justify-content-start mt-3" style={{ marginLeft: '20px' }}>
                         <Button variant="success" className="buttonOrden" onClick={() => {
                             setIsPreparing(false);
@@ -33,8 +33,9 @@ const Ordenes = () => {
                     <Row className="justify-content-center titlePedido">
                         <h1>Pedido: {currentOrden.idOr} - Mesa: {currentOrden.numeroMesa}</h1>
                     </Row>
+
                     <PrintOrdenes />
-                </div>
+                </Container>
             )
         } else {
             return (
@@ -69,14 +70,13 @@ const Ordenes = () => {
 
     }
 
-    const PrintOrdenes = _ => {
+    const PrintOrdenes = () => {
+
         return (
-            ordenes.map((orden, idx) => {
-                return (
-                    <VerPlatos key={idx} orden={orden} handleEstadoPedido={handleEstadoPedido} indexOrden={idx} />
-                )
-            })
+            <VerPlatos detalle={currentOrden.detalle} handleEstadoPedido={handleEstadoPedido} />
         )
+
+
     }
 
 
